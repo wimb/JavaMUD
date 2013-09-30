@@ -6,6 +6,8 @@
 package be.vdab.dao;
     
 import be.vdab.entities.Gebruiker;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,10 +17,15 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class GebruikerDAOImpl implements GebruikerDAO {
+    public static List<Gebruiker> gebruikers = new ArrayList<>();
+    
+    {
+        // TODO: add gebruikers.
+    }
     
     @Override
     public void create(Gebruiker gebruiker){
-        
+        gebruikers.add(gebruiker);
     }
     
     @Override
