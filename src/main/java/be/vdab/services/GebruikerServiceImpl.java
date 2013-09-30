@@ -7,6 +7,7 @@ package be.vdab.services;
     
 import be.vdab.dao.GebruikerDAO;
 import be.vdab.entities.Gebruiker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class GebruikerServiceImpl implements GebruikerService {
     private final GebruikerDAO gebruikerDAO;
     
+    @Autowired
     public GebruikerServiceImpl(GebruikerDAO gebruikerDAO){
         this.gebruikerDAO = gebruikerDAO;
     }
