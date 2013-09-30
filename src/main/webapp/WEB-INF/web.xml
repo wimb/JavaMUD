@@ -13,7 +13,10 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
         
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:/conf/springControllers.xml</param-value>
+            	<param-value>
+            		classpath:/conf/springControllers.xml
+            		classpath:/conf/springSecurity.xml
+            	</param-value>
         </init-param>
         
         <load-on-startup>1</load-on-startup>
@@ -24,6 +27,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
+
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener
@@ -53,4 +57,16 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
       <filter-name>CharacterEncodingFilter</filter-name>
       <servlet-name>springDispatcher</servlet-name>
   </filter-mapping>
+
+        	<!-- Spring security -->
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<servlet-name>springDispatcher</servlet-name>
+	</filter-mapping>
+
 </web-app>
