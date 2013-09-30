@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
     
-package be.vdab.dao;
+package be.vdab.services;
     
 import be.vdab.entities.Lokatie;
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.List;
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
- * @version 1.0: 30-09-2013(tmtvl): Initial version.
+ * @version 1.0: 30-09-2013 (tmtvl): Initial version.
  */
-public interface LokatieDAO {
+public interface LokatieService {
     void create(Lokatie lokatie);
     Lokatie read(long id);
     void update(Lokatie lokatie);

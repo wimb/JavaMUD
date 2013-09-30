@@ -12,7 +12,8 @@ import java.util.List;
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
- * @version 0.1: 30-09-2013 (tmtvl): Initial version.
+ * @version 1.0: 30-09-2013 (tmtvl): Complete version.
+ *          0.1: 30-09-2013 (tmtvl): Initial version.
  */
 public class Lokatie implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -21,11 +22,13 @@ public class Lokatie implements Serializable {
     private String beschrijving;
     private List<Item> items;
     private List<Karakter> karakters;
+    private List<Lokatie> bestemmingen;
     
     protected Lokatie(){
         beschrijving = "";
         items = new ArrayList<>();
         karakters = new ArrayList<>();
+        bestemmingen = new ArrayList<>();
     }
     
     public Lokatie(String beschrijving){
@@ -61,6 +64,10 @@ public class Lokatie implements Serializable {
         this.karakters = karakters;
     }
     
+    public void setBestemmingen(List<Lokatie> bestemmingen){
+        this.bestemmingen = bestemmingen;
+    }
+    
     public long getId(){
         return lokatieId;
     }
@@ -75,6 +82,10 @@ public class Lokatie implements Serializable {
     
     public List<Karakter> getKarakters(){
         return karakters;
+    }
+    
+    public List<Lokatie> getBestemmingen(){
+        return bestemmingen;
     }
     
     public void addItem(Item item){
@@ -107,6 +118,28 @@ public class Lokatie implements Serializable {
     
     public int getKarakterCount(){
         return karakters.size();
+    }
+    
+    public void addBestemming(Lokatie bestemming){
+        bestemmingen.add(bestemming);
+        if(!bestemming.hasBestemming(this)){
+            bestemming.addBestemming(this);
+        }
+    }
+    
+    public void removeBestemming(Lokatie bestemming){
+        bestemmingen.remove(bestemming);
+        if(bestemming.hasBestemming(this)){
+            bestemming.removeBestemming(this);
+        }
+    }
+    
+    public boolean hasBestemming(Lokatie bestemming){
+        return bestemmingen.contains(bestemming);
+    }
+    
+    public int getBestemmingCount(){
+        return bestemmingen.size();
     }
     
     @Override

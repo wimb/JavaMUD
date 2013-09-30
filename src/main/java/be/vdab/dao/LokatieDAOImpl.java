@@ -1,0 +1,52 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+    
+package be.vdab.dao;
+    
+import be.vdab.entities.Lokatie;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ *
+ * @author Tim Van den Langenbergh (tmtvl)
+ * @version 1.0: 30-09-2013 (tmtvl): Initial version.
+ */
+public class LokatieDAOImpl implements LokatieDAO {
+    private static final Map<Long, Lokatie> lokaties = new ConcurrentHashMap<>();
+    
+    {
+        // TODO: Fill map.
+    }
+    
+    @Override
+    public void create(Lokatie lokatie){
+        long id = lokaties.size() + 1;
+        lokatie.setId(id);
+        lokaties.put(id, lokatie);
+    }
+    
+    @Override
+    public Lokatie read(long id){
+        return lokaties.get(id);
+    }
+    
+    @Override
+    public void update(Lokatie lokatie){
+        lokaties.put(lokatie.getId(), lokatie);
+    }
+    
+    @Override
+    public void delete(long id){
+        lokaties.remove(id);
+    }
+    
+    @Override
+    public List<Lokatie> findByBestemming(Lokatie bestemming){
+        return null;
+    }
+    
+}
