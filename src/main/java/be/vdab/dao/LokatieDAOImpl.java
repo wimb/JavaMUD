@@ -57,7 +57,7 @@ public class LokatieDAOImpl implements LokatieDAO {
                 result.add(lokatie);
             }
         }
-        return null;
+        return result;
     }
     
 }
