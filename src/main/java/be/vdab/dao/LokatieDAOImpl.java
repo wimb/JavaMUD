@@ -6,6 +6,7 @@
 package be.vdab.dao;
     
 import be.vdab.entities.Lokatie;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,7 +25,11 @@ public class LokatieDAOImpl implements LokatieDAO {
     
     @Override
     public void create(Lokatie lokatie){
-        long id = lokaties.size() + 1;
+        long id = 0;
+        for(Long l : lokaties.keySet()){
+            id = l > id ? l : id;
+        }
+        id++;
         lokatie.setId(id);
         lokaties.put(id, lokatie);
     }
@@ -46,6 +51,12 @@ public class LokatieDAOImpl implements LokatieDAO {
     
     @Override
     public List<Lokatie> findByBestemming(Lokatie bestemming){
+        List<Lokatie> result = new ArrayList<>();
+        for(Lokatie lokatie : lokaties.values()){
+            if(lokatie.hasBestemming(bestemming)){
+                result.add(lokatie);
+            }
+        }
         return null;
     }
     
