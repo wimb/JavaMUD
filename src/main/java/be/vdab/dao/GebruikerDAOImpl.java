@@ -19,8 +19,8 @@ import org.springframework.stereotype.Repository;
 public class GebruikerDAOImpl implements GebruikerDAO {
     public static List<Gebruiker> gebruikers = new ArrayList<>();
     
-    {
-        // TODO: add gebruikers.
+    public GebruikerDAOImpl(){
+        // TODO: Add gebruikers
     }
     
     @Override

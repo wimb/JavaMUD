@@ -10,17 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
  * @version 1.0: 30-09-2013 (tmtvl): Initial version.
  */
+@Repository
 public class LokatieDAOImpl implements LokatieDAO {
     private static final Map<Long, Lokatie> lokaties = new ConcurrentHashMap<>();
     
-    {
-        // TODO: Fill map.
+    public LokatieDAOImpl(){
+        Lokatie l = new Lokatie("De eerste lokatie");
+        l.setId(1L);
+        lokaties.put(1L, l);
     }
     
     @Override

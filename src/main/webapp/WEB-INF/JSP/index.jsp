@@ -16,5 +16,9 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <c:url var="lokatieURL" value="/lokatie">
+            <c:param name="lokatieId" value="1"/>
+        </c:url>
+        <a href="${lokatieURL}">Lokatie</a>
     </body>
 </html>

@@ -16,8 +16,8 @@
     </head>
     <body>
         <h1>Lokatie ${lokatie.id}</h1>
-        <div id="lokatieDescription">
-            ${lokatie.description}
+        <div id="lokatieBescrijving">
+            ${lokatie.beschrijving}
         </div>
     </body>
 </html>
