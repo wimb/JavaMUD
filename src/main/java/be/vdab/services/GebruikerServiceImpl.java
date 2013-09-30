@@ -7,12 +7,14 @@ package be.vdab.services;
     
 import be.vdab.dao.GebruikerDAO;
 import be.vdab.entities.Gebruiker;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
  * @version 1.0: 30-09-2013 (tmtvl): Initial version.
  */
+@Service
 public class GebruikerServiceImpl implements GebruikerService {
     private final GebruikerDAO gebruikerDAO;
     

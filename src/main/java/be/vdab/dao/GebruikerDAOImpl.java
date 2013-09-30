@@ -6,12 +6,14 @@
 package be.vdab.dao;
     
 import be.vdab.entities.Gebruiker;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
  * @version 1.0: 30-09-2013(tmtvl): Initial version.
  */
+@Repository
 public class GebruikerDAOImpl implements GebruikerDAO {
     
     @Override
