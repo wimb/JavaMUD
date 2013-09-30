@@ -3,6 +3,10 @@
  * and open the template in the editor.
  */
     
+/*
+ * Git test Door StijnVA --verwijder deze commentaar gerust
+ */
+	
 package be.vdab.entities;
     
 /**
