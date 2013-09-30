@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
     
-package be.vdab.services;
+package be.vdab.dao;
     
 import be.vdab.entities.Gebruiker;
 
@@ -12,7 +12,7 @@ import be.vdab.entities.Gebruiker;
  * @author Tim Van den Langenbergh (tmtvl)
  * @version 1.0: 30-09-2013 (tmtvl): Initial version.
  */
-public interface GebruikerService {
+public interface GebruikerDAO {
     void create(Gebruiker gebruiker);
     Gebruiker read(long id);
     void update(Gebruiker gebruiker);
