@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Sep 30, 2013, 12:48:08 PM
+    Document   : lokatie
+    Created on : Sep 30, 2013, 3:29:15 PM
     Author     : Tim.VandenLangenberg
 --%>
 
@@ -11,14 +11,13 @@
 <html lang="nl">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>index</title>
+        <title>JavaMUD</title>
         <link rel="stylesheet" href="${contextPath}/styles/default.css"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <c:url var="lokatieURL" value="/lokatie">
-            <c:param name="lokatieId" value="1"/>
-        </c:url>
-        <a href="${lokatieURL}">Lokatie</a>
+        <h1>Lokatie ${lokatie.id}</h1>
+        <div id="lokatieBescrijving">
+            ${lokatie.beschrijving}
+        </div>
     </body>
 </html>
