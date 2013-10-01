@@ -22,21 +22,24 @@ public class Karakter implements Serializable {
     private Gebruiker gebruiker;
     private Lokatie lokatie;
     private List<Item> items;
+    private String naam;
     
     protected Karakter(){
         gebruiker = null;
+        naam = "";
         lokatie = null;
         items = new ArrayList<>();
     }
     
-    public Karakter(Gebruiker gebruiker){
+    public Karakter(Gebruiker gebruiker, String naam){
         this();
         setGebruiker(gebruiker);
+        setNaam(naam);
     }
     
-    public Karakter(long karakterId, Gebruiker gebruiker, Lokatie lokatie, 
-            List<Item> items){
-        this(gebruiker);
+    public Karakter(long karakterId, Gebruiker gebruiker, String naam, 
+            Lokatie lokatie, List<Item> items){
+        this(gebruiker, naam);
         setId(karakterId);
         setLokatie(lokatie);
         setItems(items);
@@ -48,6 +51,10 @@ public class Karakter implements Serializable {
     
     public void setGebruiker(Gebruiker gebruiker){
         this.gebruiker = gebruiker;
+    }
+    
+    public void setNaam(String naam){
+        this.naam = naam;
     }
     
     public void setLokatie(Lokatie lokatie){
@@ -70,6 +77,10 @@ public class Karakter implements Serializable {
     
     public Gebruiker getGebruiker(){
         return gebruiker;
+    }
+    
+    public String getNaam(){
+        return naam;
     }
     
     public Lokatie getLokatie(){
@@ -112,11 +123,13 @@ public class Karakter implements Serializable {
             else {
                 if(this.lokatie == null){
                     return this.gebruiker.equals(k.getGebruiker()) &&
-                            this.items.equals(k.getItems());
+                            this.items.equals(k.getItems()) && 
+                            this.naam.equals(k.getNaam());
                 }
                 else {
                     return this.gebruiker.equals(k.getGebruiker()) &&
                             this.items.equals(k.getItems()) && 
+                            this.naam.equals(k.getNaam()) &&
                             this.lokatie.equals(k.getLokatie());
                 }
             }
@@ -131,6 +144,7 @@ public class Karakter implements Serializable {
         hash = 73 * hash + Objects.hashCode(this.gebruiker);
         hash = 73 * hash + Objects.hashCode(this.lokatie);
         hash = 73 * hash + Objects.hashCode(this.items);
+        hash = 73 * hash + Objects.hashCode(this.naam);
         return hash;
     }
     

@@ -1,6 +1,6 @@
 package be.vdab.exceptions;
 
-public class EmailAdresAlInGebruikException extends RuntimeException {
+public class GebruikerHeeftNogKaraktersException extends RuntimeException {
 
 	/**
 	 * 
