@@ -1,6 +1,6 @@
 package be.vdab.exceptions;
 
-public class VerkeerdeEmailAdresException extends Exception {
+public class VerkeerdeEmailAdresException extends RuntimeException {
 
 	/**
 	 * 
