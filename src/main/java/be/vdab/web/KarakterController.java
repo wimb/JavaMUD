@@ -15,9 +15,7 @@ import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
 
 @Controller
-
 @RequestMapping("/karakter")
-
 public class KarakterController {
 	private final KarakterService karakterService;
 	private final LokatieService lokatieService;
@@ -27,7 +25,7 @@ public class KarakterController {
 		this.lokatieService = lokatieService;
 	}
 	
-        @RequestMapping(value="/karakters", method = RequestMethod.POST)
+        @RequestMapping(method = RequestMethod.POST)
         public String create(@Valid Karakter karakter, BindingResult bindingResult){
             if(!bindingResult.hasErrors()){
                 try {
@@ -40,9 +38,14 @@ public class KarakterController {
             }
             return "karakters/karaktergeneratie";
         }
+        
+        @RequestMapping(value = "nieuw", method = RequestMethod.GET)
+        public ModelAndView createForm(){
+            return new ModelAndView("karakters/karaktergeneratie.jsp", 
+                    "karakter", new Karakter());
+        }
 
 	@RequestMapping(value="/karakters", method = RequestMethod.GET)
-
 	public ModelAndView findAllKaraktersInLokatie(@RequestParam long lokatieId) {
 		ModelAndView mav = new ModelAndView("karakters");
 		Lokatie lokatie = lokatieService.read(lokatieId);
