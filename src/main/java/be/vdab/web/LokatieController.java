@@ -39,13 +39,6 @@ public class LokatieController {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView read(@RequestParam long lokatieId){
-        ModelAndView mav = new ModelAndView("lokatie");
-        mav.addObject("lokatie", lokatieService.read(lokatieId));
-        return mav;
-    }
-    
-    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView findKarakterLokatie(@RequestParam long karakterId){
         ModelAndView mav = new ModelAndView("lokatie");
         Karakter k = karakterService.read(karakterId);
