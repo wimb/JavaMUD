@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="contextPath" value="${pageContext.servletContext.contextPath}"/>
 <!DOCTYPE html>
 <html lang="nl">
@@ -15,6 +16,11 @@
         <link rel="stylesheet" href="${contextPath}/styles/default.css"/>
     </head>
     <body>
-        <h1>Hello World! Nieuw karakter</h1>
+        <h1>Nieuw karakter</h1>
+        <c:url value="/karakters" var="url"/>
+        <form:form action="${url}" method="POST" commandName="karakter">
+            <jsp:include page="karakterformfields.jsp"/>
+            <input type="submit" value="Klaar"/>
+        </form:form>
     </body>
 </html>
