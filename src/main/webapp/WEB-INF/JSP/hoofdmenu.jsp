@@ -23,7 +23,7 @@
                 </div>
 
                 <div id="karakterLijst">
-                    Hier komt de lijst van karakters.
+                    <jsp:include page="karakters/karakterlijst.jsp"/>
                 </div>
                 
                 <div id="afmelden">
