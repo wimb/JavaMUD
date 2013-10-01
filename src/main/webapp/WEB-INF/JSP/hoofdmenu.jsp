@@ -18,8 +18,7 @@
         <c:choose>
             <c:when test="${not empty gebruiker}">
                 <div id="nieuwKarakter">
-                    <c:url var="nieuwKarakterURL"/>
-                    <a href="${nieuwKarakterURL}">Nieuw karakter</a>
+                    <a href="<c:url value='karakters/nieuw'/>">Nieuw karakter</a>
                 </div>
 
                 <div id="karakterLijst">
