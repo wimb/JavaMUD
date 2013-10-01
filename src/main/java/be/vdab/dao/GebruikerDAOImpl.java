@@ -79,4 +79,9 @@ public class GebruikerDAOImpl implements GebruikerDAO {
         return null;
     }
     
+    @Override
+	public Gebruiker inloggen(long gebruikerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
