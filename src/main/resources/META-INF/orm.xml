@@ -14,7 +14,20 @@
 			select g from Gebruiker g where u.emailAdres = :emailAdres  
 		</query>
 	</named-query>
+	
+	<named-query name="findKarakterByGebruiker">
+		<query>
+			select k from Karakter k where Gebruiker.id = :id 
+		</query>
+	</named-query>
+	
+	<named-query name="findKarakterByLokatie">
+		<query>
+			select k from Karakter k where Lokatie.lokatieId = :lokatieId
+		</query>
+	</named-query>
 
 </entity-mappings>
+
 
 
