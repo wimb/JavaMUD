@@ -5,7 +5,7 @@
     
 package be.vdab.entities;
     
-import be.vdab.interfaces.HeeftActie;
+import be.vdab.enums.ActieTypes;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -20,18 +20,21 @@ public class Actie implements Serializable {
     private long actieId;
     private HeeftActie actieObject;
     private String classString;
+    private ActieTypes actieType;
     
     public Actie(){
         actieObject = null;
         classString = "";
     }
     
-    public Actie(HeeftActie actieObject){
+    public Actie(HeeftActie actieObject, ActieTypes actieType){
         setActieObject(actieObject);
+        setActieType(actieType);
     }
     
-    public Actie(HeeftActie actieObject, long actieId, String classString){
-        this(actieObject);
+    public Actie(HeeftActie actieObject, ActieTypes actieType, long actieId, 
+            String classString){
+        this(actieObject, actieType);
         setId(actieId);
         setClassString(classString);
     }
@@ -43,6 +46,10 @@ public class Actie implements Serializable {
     public void setActieObject(HeeftActie actieObject){
         this.actieObject = actieObject;
         classString = actieObject.getClass().getSimpleName();
+    }
+    
+    public void setActieType(ActieTypes actieType){
+        this.actieType = actieType;
     }
     
     public void setClassString(String classString){
@@ -57,6 +64,10 @@ public class Actie implements Serializable {
         return actieObject;
     }
     
+    public ActieTypes getActieType(){
+        return actieType;
+    }
+    
     public String getClassString(){
         return classString;
     }
@@ -69,11 +80,13 @@ public class Actie implements Serializable {
     public boolean equals(Object o){
         if(o instanceof Actie){
             Actie actie = (Actie) o;
-            if(this.actieId > 0){
-                return this.actieId == actie.getId();
-            }
-            else {
-                return this.actieObject.equals(actie.getActieObject());
+            if(this.actieType == actie.actieType){
+                if(this.actieId > 0){
+                    return this.actieId == actie.getId();
+                }
+                else {
+                    return this.actieObject.equals(actie.getActieObject());
+                }
             }
         }
         return false;
@@ -84,6 +97,7 @@ public class Actie implements Serializable {
         int hash = 7;
         hash = 41 * hash + (int) (this.actieId ^ (this.actieId >>> 32));
         hash = 41 * hash + Objects.hashCode(this.actieObject);
+        hash = 41 * hash + Objects.hashCode(actieType);
         return hash;
     }
     

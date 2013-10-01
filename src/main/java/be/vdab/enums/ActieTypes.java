@@ -3,13 +3,13 @@
  * and open the template in the editor.
  */
     
-package be.vdab.interfaces;
+package be.vdab.enums;
     
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
- * @version 1.0: 01-10-2013 (tmtvl): Initial version.
+ * @version 0.1: 01-10-2013 (tmtvl): Initial version.
  */
-public interface HeeftActie {
-    public void doeActie();
+public enum ActieTypes {
+    
 }
