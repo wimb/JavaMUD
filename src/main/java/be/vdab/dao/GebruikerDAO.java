@@ -18,4 +18,6 @@ public interface GebruikerDAO {
     void update(Gebruiker gebruiker);
     void delete(long id);
     Gebruiker findByEmail(String email);
+    Gebruiker inloggen(long gebruikerId);
+
 }
