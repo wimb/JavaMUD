@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Tim Van den Langenbergh (tmtvl)
  * @version 1.0: 30-09-2013(tmtvl): Initial version.
  */
+
 public class LokatieServiceImpl implements LokatieService {
     private final LokatieDAO lokatieDAO;
     

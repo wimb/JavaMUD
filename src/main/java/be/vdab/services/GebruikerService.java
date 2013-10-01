@@ -6,6 +6,7 @@
 package be.vdab.services;
     
 import be.vdab.entities.Gebruiker;
+import be.vdab.valueobjects.EmailAdres;
 
 /**
  *
@@ -17,5 +18,5 @@ public interface GebruikerService {
     Gebruiker read(long id);
     void update(Gebruiker gebruiker);
     void delete(long id);
-    Gebruiker findByEmail(String email);
+    Gebruiker findByEmail(EmailAdres email);
 }
