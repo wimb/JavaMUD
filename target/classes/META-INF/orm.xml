@@ -63,9 +63,9 @@
             </query>
         </named-query>
         
-        <named-query name="findActiesByClassString">
+        <named-query name="findActiesByActieType">
             <query>
-                select a from Actie a where a.classString like :classString
+                select a from Actie a where a.actieType like :actieType
             </query>
         </named-query>
 

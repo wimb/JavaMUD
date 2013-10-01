@@ -6,6 +6,7 @@
 package be.vdab.dao;
     
 import be.vdab.entities.Actie;
+import be.vdab.enums.ActieTypes;
 import java.util.List;
 
 /**
@@ -18,5 +19,5 @@ public interface ActieDAO {
     Actie read(long actieId);
     void update(Actie actie);
     void delete(long actieId);
-    List<Actie> findByClassString(String classString);
+    public List<Actie> findByActieType(ActieTypes actieType);
 }

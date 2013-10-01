@@ -6,6 +6,7 @@
 package be.vdab.dao;
     
 import be.vdab.entities.Actie;
+import be.vdab.enums.ActieTypes;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -62,10 +63,10 @@ public class ActieDAOImpl implements ActieDAO {
     }
     
     @Override
-    public List<Actie> findByClassString(String classString){
-        TypedQuery<Actie> query = 
-                entityManager.createNamedQuery("findActiesByClassString", Actie.class);
-        query.setParameter("classString", classString);
+    public List<Actie> findByActieType(ActieTypes actieType){
+        TypedQuery<Actie> query = entityManager.createNamedQuery("findActieByActieType", 
+                Actie.class);
+        query.setParameter("actieType", actieType);
         return query.getResultList();
     }
     

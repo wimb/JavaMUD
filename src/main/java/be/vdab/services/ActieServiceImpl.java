@@ -7,6 +7,7 @@ package be.vdab.services;
     
 import be.vdab.dao.ActieDAO;
 import be.vdab.entities.Actie;
+import be.vdab.enums.ActieTypes;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,8 +52,8 @@ public class ActieServiceImpl implements ActieService {
     }
     
     @Override
-    public List<Actie> findByClassString(String classString){
-        return actieDAO.findByClassString(classString);
+    public List<Actie> findByActieType(ActieTypes actieType){
+        return actieDAO.findByActieType(actieType);
     }
     
 }
