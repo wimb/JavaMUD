@@ -12,6 +12,7 @@ import be.vdab.entities.Lokatie;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -28,6 +29,7 @@ public class ItemServiceImpl implements ItemService {
     }
     
     @Override
+    @Transactional(readOnly = false)
     public void create(Item item){
         itemDAO.create(item);
     }
@@ -38,11 +40,13 @@ public class ItemServiceImpl implements ItemService {
     }
     
     @Override
+    @Transactional(readOnly = false)
     public void update(Item item){
         itemDAO.update(item);
     }
     
     @Override
+    @Transactional(readOnly = false)
     public void delete(long id){
         itemDAO.delete(id);
     }
