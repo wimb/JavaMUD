@@ -35,7 +35,7 @@ public class GebruikerController {
 			try {
 				gebruikerService.create(gebruiker);
 				return "redirect:/gebruikers/toegevoegd";
-			} catch (GebruikerNaamAlInGebruikException e) {
+			} catch (Exception e) {
 				bindingResult.rejectValue("gebruikerNaam",
 						"GebruikerNaamAlInGebruikException");
 			}

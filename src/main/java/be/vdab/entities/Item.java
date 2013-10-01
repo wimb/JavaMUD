@@ -11,7 +11,8 @@ import java.util.Objects;
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
- * @version 0.1: 30-09-2013 (tmtvl): Initial version.
+ * @version 1.0: 01-10-2013 (tmtvl): Complete version.
+ *          0.1: 30-09-2013 (tmtvl): Initial version.
  */
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -26,11 +27,13 @@ public class Item implements Serializable {
     }
     
     public Item(Lokatie positie){
-        
+        this();
+        setPositie(positie);
     }
     
     public Item(Karakter eigenaar){
-        
+        this();
+        setEigenaar(eigenaar);
     }
     
     public Item(long itemId, Karakter eigenaar, Lokatie positie){
