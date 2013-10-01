@@ -14,7 +14,7 @@ import be.vdab.entities.Lokatie;
  */
 public enum ActieTypes {
     
-    MOVE(Lokatie.class.getSimpleName());
+    NULL_TYPE(""), MOVE(Lokatie.class.getSimpleName());;
     
     private String classString;
     

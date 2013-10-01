@@ -19,11 +19,10 @@ public class Actie implements Serializable {
     
     private long actieId;
     private long actieObjectId;
-    private String classString;
     private ActieTypes actieType;
     
     public Actie(){
-        classString = "";
+        actieType = ActieTypes.NULL_TYPE;
     }
     
     public Actie(long actieObjectId, ActieTypes actieType){
