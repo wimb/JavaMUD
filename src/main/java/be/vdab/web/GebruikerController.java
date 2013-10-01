@@ -85,7 +85,7 @@ public class GebruikerController {
 		try {
 			gebruikerService.update(gebruiker);
 			return "redirect:gebruikers/gebruiker";
-		} catch (Exception e) {
+		} catch (EmailAdresAlInGebruikException e) {
 			bindingResult.rejectValue("emailAdres",
 					"EmailAdresAlInGebruikException");
 			return "gebruikers/wijzigen";
