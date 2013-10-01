@@ -11,8 +11,11 @@
 <link rel="stylesheet" href="${contextPath}/styles/default.css" />
 </head>
 <body>
-	<h1>Gebruiker wijzigen</h1>
-	<form:form action="${contextPath}/gebruikers" method="put" commandName="gebruiker">
+	<h1>${gebruiker.emailAdres} wijzigen</h1>
+	<spring:url value="/gebruikers/{id}" var="wijzigURL">
+		<spring:param name="id" value="${gebruiker.id}" />
+	</spring:url>
+	<form:form action="${wijzigURL}" method="put" commandName="gebruiker">
 		<jsp:include page="gebruikerformfields.jsp" />
 		<input type="submit" value="Wijzigen" />
 	</form:form>
