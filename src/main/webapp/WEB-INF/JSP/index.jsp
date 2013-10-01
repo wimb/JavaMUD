@@ -26,9 +26,9 @@
 	<c:url var="gebruikerURL" value="/gebruiker">
 	</c:url>
 	<a href="${gebruikerURL}">Gebruiker Aanmaken</a>
-	<c:url var="gebruikerURL" value="/gebruiker">
+	<c:url var="aanmeldenURL" value="/aanmeldenURL">
 	</c:url>
-	<a href="${gebruikerURL}">Gebruiker Inloggen</a>
+	<a href="${aanmeldenURLURL}">Aanmelden</a>
 
 </body>
 </html>
