@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class LokatieDAOImpl implements LokatieDAO {
     private static final Map<Long, Lokatie> lokaties = new ConcurrentHashMap<>();
+    private EntityManager entityManager;
     
     public LokatieDAOImpl(){
         Lokatie l = new Lokatie("De eerste lokatie");
@@ -27,30 +30,46 @@ public class LokatieDAOImpl implements LokatieDAO {
         lokaties.put(1L, l);
     }
     
+    @PersistenceContext
+    public void setEntityManager(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+    
     @Override
     public void create(Lokatie lokatie){
-        long id = 0;
-        for(Long l : lokaties.keySet()){
-            id = l > id ? l : id;
+        try {
+            entityManager.persist(lokatie);
         }
-        id++;
-        lokatie.setId(id);
-        lokaties.put(id, lokatie);
+        catch(RuntimeException re){
+            entityManager.clear();
+            throw re;
+        }
     }
     
     @Override
     public Lokatie read(long id){
-        return lokaties.get(id);
+        return entityManager.find(Lokatie.class, id);
     }
     
     @Override
     public void update(Lokatie lokatie){
-        lokaties.put(lokatie.getId(), lokatie);
+        try {
+            entityManager.merge(lokatie);
+            entityManager.flush();
+        }
+        catch(RuntimeException re){
+            entityManager.clear();
+            throw re;
+        }
     }
     
     @Override
     public void delete(long id){
-        lokaties.remove(id);
+        Lokatie lokatie = entityManager.find(Lokatie.class, id);
+        if(lokatie != null){
+            entityManager.remove(lokatie);
+            entityManager.flush();
+        }
     }
     
     @Override

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -22,35 +24,52 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ItemDAOImpl implements ItemDAO {
     private static final Map<Long, Item> items = new ConcurrentHashMap<>();
+    private EntityManager entityManager;
     
     public ItemDAOImpl(){
         // TODO: Add items.
     }
     
+    @PersistenceContext
+    public void setEntityManager(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+    
     @Override
     public void create(Item item){
-        long id = 0;
-        for(Long l : items.keySet()){
-            id = l > id ? l : id;
+        try {
+            entityManager.persist(item);
         }
-        id++;
-        item.setId(id);
-        items.put(id, item);
+        catch(RuntimeException re){
+            entityManager.clear();
+            throw re;
+        }
     }
     
     @Override
     public Item read(long id){
-        return items.get(id);
+        return entityManager.find(Item.class, id);
     }
     
     @Override
     public void update(Item item){
-        items.put(item.getId(), item);
+        try {
+            entityManager.merge(item);
+            entityManager.flush();
+        }
+        catch(RuntimeException re){
+            entityManager.clear();
+            throw re;
+        }
     }
     
     @Override
     public void delete(long id){
-        items.remove(id);
+        Item item = entityManager.find(Item.class, id);
+        if(item != null){
+            entityManager.remove(item);
+            entityManager.flush();
+        }
     }
     
     @Override
