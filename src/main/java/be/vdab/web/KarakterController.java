@@ -11,6 +11,7 @@ import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
 
 @Controller
+@RequestMapping("/karakter")
 public class KarakterController {
 	private final KarakterService karakterService;
 	private final LokatieService lokatieService;
@@ -20,7 +21,7 @@ public class KarakterController {
 		this.lokatieService = lokatieService;
 	}
 	
-	@RequestMapping(value="/karakters", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView findAllKaraktersInLokatie(@RequestParam long lokatieId) {
 		ModelAndView mav = new ModelAndView("karakters");
 		Lokatie lokatie = lokatieService.read(lokatieId);
@@ -28,7 +29,7 @@ public class KarakterController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/karakter/eigenschappen", method = RequestMethod.GET)
+	@RequestMapping(value="eigenschappen", method = RequestMethod.GET)
 	public ModelAndView findKarakter(@RequestParam long karakterId) {
 		ModelAndView mav = new ModelAndView("karakters");
 		mav.addObject("karakter/eigenschappen", karakterService.read(karakterId));
