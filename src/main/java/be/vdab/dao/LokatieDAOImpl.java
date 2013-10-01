@@ -6,12 +6,10 @@
 package be.vdab.dao;
     
 import be.vdab.entities.Lokatie;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -21,14 +19,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class LokatieDAOImpl implements LokatieDAO {
-    private static final Map<Long, Lokatie> lokaties = new ConcurrentHashMap<>();
     private EntityManager entityManager;
-    
-    public LokatieDAOImpl(){
-        Lokatie l = new Lokatie("De eerste lokatie");
-        l.setId(1L);
-        lokaties.put(1L, l);
-    }
     
     @PersistenceContext
     public void setEntityManager(EntityManager entityManager){
@@ -74,13 +65,10 @@ public class LokatieDAOImpl implements LokatieDAO {
     
     @Override
     public List<Lokatie> findByBestemming(Lokatie bestemming){
-        List<Lokatie> result = new ArrayList<>();
-        for(Lokatie lokatie : lokaties.values()){
-            if(lokatie.hasBestemming(bestemming)){
-                result.add(lokatie);
-            }
-        }
-        return result;
+        TypedQuery<Lokatie> query = 
+                entityManager.createNamedQuery("findLokatiesByBestemming", Lokatie.class);
+        query.setParameter("bestemming", bestemming);
+        return query.getResultList();
     }
     
 }

@@ -48,13 +48,13 @@ public class ItemServiceImpl implements ItemService {
     }
     
     @Override
-    public List<Item> findByKarakter(Karakter karakter){
-        return itemDAO.findByKarakter(karakter);
+    public List<Item> findByEigenaar(Karakter eigenaar){
+        return itemDAO.findByEigenaar(eigenaar);
     }
     
     @Override
-    public List<Item> findByLokatie(Lokatie lokatie){
-        return itemDAO.findByLokatie(lokatie);
+    public List<Item> findByPositie(Lokatie positie){
+        return itemDAO.findByPositie(positie);
     }
     
 }

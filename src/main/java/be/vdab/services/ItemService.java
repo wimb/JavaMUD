@@ -20,6 +20,6 @@ public interface ItemService {
     Item read(long id);
     void update(Item item);
     void delete(long id);
-    List<Item> findByKarakter(Karakter karakter);
-    List<Item> findByLokatie(Lokatie lokatie);
+    List<Item> findByEigenaar(Karakter eigenaar);
+    List<Item> findByPositie(Lokatie positie);
 }

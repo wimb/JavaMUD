@@ -35,7 +35,7 @@ public class Lokatie implements Serializable {
     private long lokatieId;
     
     @NotNull
-    @Size(min = 1, max = 140, message = "")
+    @Size(min = 1, max = 140, message = "{Size.tekst}")
     private String beschrijving;
     
     @OneToMany(mappedBy = "positie")

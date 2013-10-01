@@ -45,7 +45,7 @@ public class Karakter implements Serializable {
     private List<Item> items;
     
     @NotNull
-    @Size(min = 1, max = 50, message = "")
+    @Size(min = 1, max = 50, message = "{Size.tekst}")
     private String naam;
     
     public Karakter(){
