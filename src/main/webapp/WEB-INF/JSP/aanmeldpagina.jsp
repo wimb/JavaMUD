@@ -23,7 +23,7 @@
 			<security:authorize access="isAuthenticated()">disabled="disabled"</security:authorize> />
 	</form>
 	<c:if test="${param.fout }">
-		<p class="fout">Foutieve inloggegevens</p>
+		<p class="fout">Foutieve inloggegevens!</p>
 	</c:if>
 
 </body>
