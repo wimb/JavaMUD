@@ -10,6 +10,7 @@ import be.vdab.entities.Actie;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
  * @version 1.0: 01-10-2013 (tmtvl): Initial version.
  */
 @Service
+@Transactional(readOnly = true)
 public class ActieServiceImpl implements ActieService {
     private final ActieDAO actieDAO;
     
@@ -26,6 +28,7 @@ public class ActieServiceImpl implements ActieService {
     }
     
     @Override
+    @Transactional(readOnly = false)
     public void create(Actie actie){
         actieDAO.create(actie);
     }
@@ -36,11 +39,13 @@ public class ActieServiceImpl implements ActieService {
     }
     
     @Override
+    @Transactional(readOnly = false)
     public void update(Actie actie){
         actieDAO.update(actie);
     }
     
     @Override
+    @Transactional(readOnly = false)
     public void delete(long actieId){
         actieDAO.delete(actieId);
     }
