@@ -18,62 +18,50 @@ public class Actie implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private long actieId;
-    private HeeftActie actieObject;
+    private long actieObjectId;
     private String classString;
     private ActieTypes actieType;
     
     public Actie(){
-        actieObject = null;
         classString = "";
     }
     
-    public Actie(HeeftActie actieObject, ActieTypes actieType){
-        setActieObject(actieObject);
+    public Actie(long actieObjectId, ActieTypes actieType){
+        setActieObject(actieObjectId);
         setActieType(actieType);
     }
     
-    public Actie(HeeftActie actieObject, ActieTypes actieType, long actieId, 
-            String classString){
-        this(actieObject, actieType);
+    public Actie(long actieObjectId, ActieTypes actieType, long actieId){
+        this(actieObjectId, actieType);
         setId(actieId);
-        setClassString(classString);
     }
     
     public void setId(long actieId){
         this.actieId = actieId;
     }
     
-    public void setActieObject(HeeftActie actieObject){
-        this.actieObject = actieObject;
-        classString = actieObject.getClass().getSimpleName();
+    public void setActieObject(long actieObjectId){
+        this.actieObjectId = actieObjectId;
     }
     
     public void setActieType(ActieTypes actieType){
         this.actieType = actieType;
     }
     
-    public void setClassString(String classString){
-        this.classString = classString;
-    }
-    
     public long getId(){
         return actieId;
     }
     
-    public HeeftActie getActieObject(){
-        return actieObject;
+    public long getActieObjectId(){
+        return actieObjectId;
     }
     
     public ActieTypes getActieType(){
         return actieType;
     }
     
-    public String getClassString(){
-        return classString;
-    }
-    
     public void doe(){
-        actieObject.doeActie();
+        
     }
     
     @Override
@@ -85,7 +73,7 @@ public class Actie implements Serializable {
                     return this.actieId == actie.getId();
                 }
                 else {
-                    return this.actieObject.equals(actie.getActieObject());
+                    return this.actieObjectId == actie.getActieObjectId();
                 }
             }
         }
@@ -95,9 +83,8 @@ public class Actie implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + (int) (this.actieId ^ (this.actieId >>> 32));
-        hash = 41 * hash + Objects.hashCode(this.actieObject);
-        hash = 41 * hash + Objects.hashCode(actieType);
+        hash = 41 * hash + (int)(this.actieId ^ (this.actieId >>> 32));
+        hash = 41 * hash + (int)this.actieObjectId;
         return hash;
     }
     
