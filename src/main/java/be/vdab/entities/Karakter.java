@@ -9,22 +9,46 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
  * @version 0.1: 30-09-2013 (tmtvl): Initial version.
  */
+@Entity
+@Table(name = "karakter")
 public class Karakter implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    @Id
+    @GeneratedValue
     private long karakterId;
+    
+    @ManyToOne
+    @JoinColumn(name = "GebruikerId")
     private Gebruiker gebruiker;
+    
+    @ManyToOne
+    @JoinColumn(name = "LokatieId")
     private Lokatie lokatie;
+    
+    @OneToMany(mappedBy = "eigenaar")
     private List<Item> items;
+    
+    @NotNull
+    @Size(min = 1, max = 50, message = "")
     private String naam;
     
-    protected Karakter(){
+    public Karakter(){
         gebruiker = null;
         naam = "";
         lokatie = null;

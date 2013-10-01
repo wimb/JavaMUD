@@ -22,17 +22,39 @@ form {
 </style>
 </head>
 <body>
-	<h1>${gebruiker.emailAdres}</h1>
-	<dl>
-		<dt>EmailAdres</dt>
-		<dd>${gebruiker.emailAdres}</dd>
-		<dt>Voornaam</dt>
-		<dd>${gebruiker.voornaam}</dd>
-		<dt>FamilieNaam</dt>
-		<dd>${gebruiker.familienaam}</dd>
-		<dt>paswoord</dt>
-		<dd>${gebruiker.paswoord}</dd>
-	</dl>
+	<c:choose>
+		<c:when test="${not empty gebruiker}">
+			<h1>${gebruiker.emailAdres}</h1>
+			<dl>
+				<dt>EmailAdres</dt>
+				<dd>${gebruiker.emailAdres}</dd>
+				<dt>Voornaam</dt>
+				<dd>${gebruiker.voornaam}</dd>
+				<dt>FamilieNaam</dt>
+				<dd>${gebruiker.familienaam}</dd>
+				<dt>paswoord</dt>
+				<dd>${gebruiker.paswoord}</dd>
+			</dl>
+			<!-- DELETE -->
+			<spring:url value="/gebruikers/{id}" var="verwijderURL">
+				<spring:param name="id" value="${gebruiker.id}" />
+			</spring:url>
+			<form:form action="${verwijderURL}" method="delete">
+				<input type="submit" value="Verwijderen" />
+			</form:form>
+			<!-- UPDATE -->
+			<spring:url value="/gebruikers/{id}/wijzigen" var="wijzigURL">
+				<spring:param name="id" value="${gebruiker.id}" />
+			</spring:url>
+			<form action="${wijzigURL}" method="get">
+				<input type="submit" value="Wijzigen" />
+			</form>
+		</c:when>
+		<c:otherwise>
+			<div>Gebruiker niet gevonden</div>
+		</c:otherwise>
+	</c:choose>
+
 	<c:if test="${not empty param.fout}">
 		<div class="fout">${param.fout}</div>
 	</c:if>

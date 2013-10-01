@@ -78,7 +78,7 @@ public class Gebruiker implements Serializable {
 	public String getPaswoord() {
 		return paswoord;
 	}
-	
+
 	public void setPaswoord(String paswoord) {
 		String userName = this.emailAdres.toString();
 		this.paswoord = Paswoord.paswoordEncoder(paswoord, userName);
@@ -92,8 +92,8 @@ public class Gebruiker implements Serializable {
 
 	}
 
-	public Gebruiker(String voornaam, String familienaam,
-			EmailAdres emailAdres, String paswoord) {
+	public Gebruiker(String voornaam, String familienaam, String emailAdres,
+			String paswoord) {
 		this.setVoornaam(voornaam);
 		this.setFamilienaam(familienaam);
 		this.setEmailAdres(emailAdres);
@@ -105,7 +105,7 @@ public class Gebruiker implements Serializable {
 		this.setFamilienaam(familienaam);
 		this.setPaswoord(paswoord);
 	}
-	
+
 	public Gebruiker(Gebruiker gebruiker) {
 		this.voornaam = gebruiker.getVoornaam();
 		this.familienaam = gebruiker.getFamilienaam();
@@ -121,9 +121,9 @@ public class Gebruiker implements Serializable {
 	public EmailAdres getEmailAdres() {
 		return emailAdres;
 	}
-	
-	public void setEmailAdres(EmailAdres emailAdres) {
-		this.emailAdres = emailAdres;
+
+	public void setEmailAdres(String emailAdres) {
+		this.emailAdres = new EmailAdres(emailAdres);
 	}
 
 	@Override
