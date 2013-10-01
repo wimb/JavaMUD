@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -22,9 +24,12 @@ public class Karakter implements Serializable {
     private Gebruiker gebruiker;
     private Lokatie lokatie;
     private List<Item> items;
+    
+    @NotNull
+    @Size(min = 1, max = 50, message = "Naam moet tussen {min} en {max} tekens zijn")
     private String naam;
     
-    protected Karakter(){
+    public Karakter(){
         gebruiker = null;
         naam = "";
         lokatie = null;
