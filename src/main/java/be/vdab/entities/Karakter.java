@@ -31,9 +31,10 @@ public class Karakter implements Serializable {
         items = new ArrayList<>();
     }
     
-    public Karakter(Gebruiker gebruiker, String naaù){
+    public Karakter(Gebruiker gebruiker, String naam){
         this();
         setGebruiker(gebruiker);
+        setNaam(naam);
     }
     
     public Karakter(long karakterId, Gebruiker gebruiker, String naam, 
