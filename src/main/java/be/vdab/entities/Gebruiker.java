@@ -116,7 +116,7 @@ public class Gebruiker implements Serializable {
 	public EmailAdres getEmailAdres() {
 		return emailAdres;
 	}
-	//geldige emailadres controlleren
+	
 	public void setEmailAdres(EmailAdres emailAdres) {
 		this.emailAdres = emailAdres;
 	}
