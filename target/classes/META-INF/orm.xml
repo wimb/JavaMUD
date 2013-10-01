@@ -62,6 +62,12 @@
                 select i from Item i where i.positie = :positie
             </query>
         </named-query>
+        
+        <named-query name="findActiesByClassString">
+            <query>
+                select a from Actie a where a.classString like :classString
+            </query>
+        </named-query>
 
 </entity-mappings>
 
