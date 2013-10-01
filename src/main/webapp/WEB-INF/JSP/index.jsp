@@ -12,7 +12,7 @@
 <html lang="nl">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Multi User Dungeon Java</title>
+<title>Multi User Dungeon Java </title>
 <link rel="stylesheet" href="${contextPath}/styles/default.css" />
 </head>
 <body>
@@ -26,9 +26,15 @@
 	<c:url var="gebruikerURL" value="/gebruiker">
 	</c:url>
 	<a href="${gebruikerURL}">Gebruiker Aanmaken</a>
+<<<<<<< HEAD
 	<c:url var="aanmeldenURL" value="/aanmeldenURL">
 	</c:url>
 	<a href="${aanmeldenURLURL}">Aanmelden</a>
+=======
+	<c:url var="aanmeldenURL" value="/aanmelden">
+	</c:url>
+	<a href="${aanmeldenURL}">Aanmelden</a>
+>>>>>>> tony
 
 </body>
 </html>
