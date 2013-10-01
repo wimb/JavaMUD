@@ -11,13 +11,9 @@ import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
 
 @Controller
-<<<<<<< HEAD
 
 @RequestMapping("/karakter")
 
-=======
-@RequestMapping("/karakter")
->>>>>>> 5ab71bfbf27459e0dbcfdb348ef42b192d08ecbf
 public class KarakterController {
 	private final KarakterService karakterService;
 	private final LokatieService lokatieService;
