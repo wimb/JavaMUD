@@ -24,14 +24,14 @@ public class KarakterController {
 	public ModelAndView findAllKaraktersInLokatie(@RequestParam long lokatieId) {
 		ModelAndView mav = new ModelAndView("karakters");
 		Lokatie lokatie = lokatieService.read(lokatieId);
-		mav.addObject("karaktersInLokatie", karakterService.findByLokatie(lokatie));
+		mav.addObject("karakters/karaktersInLokatie", karakterService.findByLokatie(lokatie));
 		return mav;
 	}
 	
-	@RequestMapping(value="/karakter", method = RequestMethod.GET)
+	@RequestMapping(value="/karakter/eigenschappen", method = RequestMethod.GET)
 	public ModelAndView findKarakter(@RequestParam long karakterId) {
 		ModelAndView mav = new ModelAndView("karakters");
-		mav.addObject("karakter", karakterService.read(karakterId));
+		mav.addObject("karakter/eigenschappen", karakterService.read(karakterId));
 		return mav;
 	}
 	
