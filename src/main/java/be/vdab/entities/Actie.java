@@ -12,25 +12,28 @@ import java.util.Objects;
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
- * @version 0.1: 01-10-2013 (tmtvl): Initial version.
+ * @version 1.0: 01-10-2013 (tmtvl): Initial version.
  */
 public class Actie implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private long actieId;
     private HeeftActie actieObject;
+    private String classString;
     
     public Actie(){
         actieObject = null;
+        classString = "";
     }
     
     public Actie(HeeftActie actieObject){
         setActieObject(actieObject);
     }
     
-    public Actie(HeeftActie actieObject, long actieId){
+    public Actie(HeeftActie actieObject, long actieId, String classString){
         this(actieObject);
         setId(actieId);
+        setClassString(classString);
     }
     
     public void setId(long actieId){
@@ -39,6 +42,11 @@ public class Actie implements Serializable {
     
     public void setActieObject(HeeftActie actieObject){
         this.actieObject = actieObject;
+        classString = actieObject.getClass().getSimpleName();
+    }
+    
+    public void setClassString(String classString){
+        this.classString = classString;
     }
     
     public long getId(){
@@ -47,6 +55,10 @@ public class Actie implements Serializable {
     
     public HeeftActie getActieObject(){
         return actieObject;
+    }
+    
+    public String getClassString(){
+        return classString;
     }
     
     public void doe(){
