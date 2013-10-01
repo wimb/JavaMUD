@@ -14,7 +14,50 @@
 			select g from Gebruiker g where u.emailAdres = :emailAdres  
 		</query>
 	</named-query>
+	
+	<named-query name="findKarakterByGebruiker">
+		<query>
+			select k from Karakter k where Gebruiker.id = :id 
+		</query>
+	</named-query>
+	
+	<named-query name="findKarakterByLokatie">
+		<query>
+			select k from Karakter k where Lokatie.lokatieId = :lokatieId
+		</query>
+	</named-query>
+
+	<named-query name="findKarakterByGebruiker">
+		<query>
+			select k from Karakter k where Gebruiker.id = :id 
+		</query>
+	</named-query>
+
+	<named-query name="findKarakterByLokatie">
+		<query>
+			select k from Karakter k where Lokatie.lokatieId = :lokatieId
+		</query>
+	</named-query>
+        
+        <named-query name="findLokatiesByBestemming">
+            <query>
+                select l from Lokatie l where l.bestemming = :bestemming
+            </query>
+        </named-query>
+        
+        <named-query name="findItemsByEigenaar">
+            <query>
+                select i from Item i where i.eigenaar = :eigenaar
+            </query>
+        </named-query>
+        
+        <named-query name="findItemsByPositie">
+            <query>
+                select i from Item i where i.positie = :positie
+            </query>
+        </named-query>
 
 </entity-mappings>
+
 
 
