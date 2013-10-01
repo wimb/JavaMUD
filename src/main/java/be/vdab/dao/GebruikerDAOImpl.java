@@ -23,10 +23,13 @@ import org.springframework.stereotype.Repository;
 public class GebruikerDAOImpl implements GebruikerDAO {
     public static List<Gebruiker> gebruikers = new ArrayList<>();
     
+<<<<<<< HEAD
 
     public GebruikerDAOImpl(){
         // TODO: Add gebruikers
 
+=======
+>>>>>>> remotes/TimMUD/master
     //EntityManager maken door Xiang
     private EntityManager entityManager;
 
@@ -37,7 +40,10 @@ public class GebruikerDAOImpl implements GebruikerDAO {
     
     {
         // TODO: add gebruikers.
+<<<<<<< HEAD
 
+=======
+>>>>>>> remotes/TimMUD/master
     }
     
     @Override
