@@ -1,6 +1,6 @@
 package be.vdab.exceptions;
 
-public class GebruikerNaamAlInGebruikException extends Exception {
+public class EmailAdresAlInGebruikException extends Exception {
 
 	/**
 	 * 

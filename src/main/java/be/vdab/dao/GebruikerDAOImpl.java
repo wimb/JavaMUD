@@ -2,70 +2,82 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-    
+
 package be.vdab.dao;
-    
-import be.vdab.entities.Gebruiker;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import be.vdab.entities.Gebruiker;
+import be.vdab.valueobjects.EmailAdres;
+
 /**
- *
+ * 
  * @author Tim Van den Langenbergh (tmtvl)
  * @version 1.0: 30-09-2013(tmtvl): Initial version.
  */
 @Repository
 public class GebruikerDAOImpl implements GebruikerDAO {
-    public static List<Gebruiker> gebruikers = new ArrayList<>();
-    
-    //EntityManager maken door Xiang
-    private EntityManager entityManager;
+
+	private EntityManager entityManager;
 
 	@PersistenceContext
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-    
-    {
-        // TODO: add gebruikers.
-    }
-    
-    @Override
-    public void create(Gebruiker gebruiker){
-        gebruikers.add(gebruiker);
-        //create(gebruiker) gebruikt EntityManager door Xiang
-        try {
+
+	@Override
+	public void create(Gebruiker gebruiker) {
+		try {
 			entityManager.persist(gebruiker);
 		} catch (RuntimeException e) {
-			// TODO: handle exception
 			entityManager.clear();
 			throw e;
 		}
-    }
-    
-    @Override
-    public Gebruiker read(long id){
-        return null;
-    }
-    
-    @Override
-    public void update(Gebruiker gebruiker){
-        
-    }
-    
-    @Override
-    public void delete(long id){
-        
-    }
-    
-    @Override
-    public Gebruiker findByEmail(String email){
-        return null;
-    }
-    
+	}
+
+	@Override
+	public Gebruiker read(long id) {
+		TypedQuery<Gebruiker> query = entityManager.createNamedQuery(
+				"findGebruikerById", Gebruiker.class);
+		query.setParameter("id", id);
+		return query.getSingleResult();
+	}
+
+	@Override
+	public void update(Gebruiker gebruiker) {
+		try {
+			entityManager.merge(gebruiker);
+			entityManager.flush();
+		} catch (RuntimeException e) {
+			entityManager.clear();
+			throw e;
+		}
+	}
+
+	@Override
+	public void delete(long id) {
+		Gebruiker gebruiker = entityManager.find(Gebruiker.class, id);
+		if (gebruiker != null) {
+			entityManager.remove(gebruiker);
+			entityManager.flush();
+		}
+	}
+
+	@Override
+	public Gebruiker findByEmail(EmailAdres emailAdres) {
+		TypedQuery<Gebruiker> query = entityManager.createNamedQuery(
+				"findGebruikerByEmailAdres", Gebruiker.class);
+		query.setParameter("emailAdres", emailAdres);
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 }
