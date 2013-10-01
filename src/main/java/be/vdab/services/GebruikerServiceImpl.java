@@ -57,4 +57,10 @@ public class GebruikerServiceImpl implements GebruikerService {
         return gebruikerDAO.findByEmail(email);
     }
     
+    @Override
+	public Gebruiker inloggen(long gebruikerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
 }
