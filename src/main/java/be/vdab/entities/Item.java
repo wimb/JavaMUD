@@ -7,6 +7,12 @@ package be.vdab.entities;
     
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -14,14 +20,24 @@ import java.util.Objects;
  * @version 1.0: 01-10-2013 (tmtvl): Complete version.
  *          0.1: 30-09-2013 (tmtvl): Initial version.
  */
+@Entity
+@Table(name = "item")
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    @Id
+    @GeneratedValue
     private long itemId;
+    
+    @ManyToOne
+    @JoinColumn(name = "EigenaarId")
     private Karakter eigenaar;
+    
+    @ManyToOne
+    @JoinColumn(name = "PositieId")
     private Lokatie positie;
     
-    protected Item(){
+    public Item(){
         eigenaar = null;
         positie = null;
     }

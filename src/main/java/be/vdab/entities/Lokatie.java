@@ -8,6 +8,16 @@ package be.vdab.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -15,16 +25,32 @@ import java.util.List;
  * @version 1.0: 30-09-2013 (tmtvl): Complete version.
  *          0.1: 30-09-2013 (tmtvl): Initial version.
  */
+@Entity
+@Table(name = "lokatie")
 public class Lokatie implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    @Id
+    @GeneratedValue
     private long lokatieId;
+    
+    @NotNull
+    @Size(min = 1, max = 140, message = "")
     private String beschrijving;
+    
+    @OneToMany(mappedBy = "positie")
     private List<Item> items;
+    
+    @OneToMany(mappedBy = "lokatie")
     private List<Karakter> karakters;
+    
+    @ManyToMany
+    @JoinTable(name = "lokatiebestemmingen", 
+            joinColumns = @JoinColumn(name = "LokatieId"), 
+            inverseJoinColumns = @JoinColumn(name = "BestemmingId"))
     private List<Lokatie> bestemmingen;
     
-    protected Lokatie(){
+    public Lokatie(){
         beschrijving = "";
         items = new ArrayList<>();
         karakters = new ArrayList<>();
