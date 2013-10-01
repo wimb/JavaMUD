@@ -68,8 +68,8 @@ public class GebruikerController {
 		return gebruikerService.findByEmail(emailAdres);
 	}
 
-	@RequestMapping(value = "wijzigen", method = RequestMethod.GET)
-	public ModelAndView updateForm() {
+	@RequestMapping(value = "{id}/wijzigen", method = RequestMethod.GET)
+	public ModelAndView updateForm(@PathVariable long id) {
 		Gebruiker gebruiker = this.getCurrentGebruiker();
 		if (gebruiker == null) {
 			return new ModelAndView("redirect:/gebruikers");
@@ -77,14 +77,15 @@ public class GebruikerController {
 		return new ModelAndView("gebruikers/wijzigen", "gebruiker", gebruiker);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
-	public String update(@Valid Gebruiker gebruiker, BindingResult bindingResult) {
+	@RequestMapping(method = RequestMethod.PUT, value = "{id}")
+	public String update(@Valid Gebruiker gebruiker,
+			BindingResult bindingResult, @PathVariable long id) {
 		if (bindingResult.hasErrors()) {
 			return "gebruikers/wijzigen";
 		}
 		try {
 			gebruikerService.update(gebruiker);
-			return "redirect:gebruikers/gebruiker";
+			return "redirect:/";
 		} catch (EmailAdresAlInGebruikException e) {
 			bindingResult.rejectValue("emailAdres",
 					"EmailAdresAlInGebruikException");
