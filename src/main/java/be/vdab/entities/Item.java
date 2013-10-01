@@ -47,12 +47,12 @@ public class Item implements Serializable {
     }
     
     public void setEigenaar(Karakter eigenaar){
-        if(this.eigenaar != null /* && this.eigenaar.hasItem(this) */){
-            //this.eigenaar.removeItem(this);
+        if(this.eigenaar != null && this.eigenaar.hasItem(this)){
+            this.eigenaar.removeItem(this);
         }
         this.eigenaar = eigenaar;
-        if(eigenaar != null /* && !eigenaar.hasItem(this) */){
-            //eigenaar.addItem(this);
+        if(eigenaar != null && !eigenaar.hasItem(this)){
+            eigenaar.addItem(this);
             setPositie(null);
         }
     }

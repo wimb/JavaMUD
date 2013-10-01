@@ -8,6 +8,7 @@ package be.vdab.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -101,6 +102,7 @@ public class Karakter implements Serializable {
         return items.size();
     }
     
+    @Override
     public boolean equals(Object obj){
         if(obj instanceof Karakter){
             Karakter k = (Karakter) obj;
@@ -120,6 +122,16 @@ public class Karakter implements Serializable {
             }
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 73 * hash + (int) (this.karakterId ^ (this.karakterId >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.gebruiker);
+        hash = 73 * hash + Objects.hashCode(this.lokatie);
+        hash = 73 * hash + Objects.hashCode(this.items);
+        return hash;
     }
     
 }
