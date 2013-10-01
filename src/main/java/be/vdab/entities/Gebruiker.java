@@ -94,13 +94,13 @@ public class Gebruiker implements Serializable {
 		this.setEmailAdres(emailAdres);
 		this.setPaswoord(paswoord);
 	}
-	//voor update -- update emailadres is niet moegelijk
+
 	public Gebruiker(String voornaam, String familienaam, String paswoord) {
 		this.setVoornaam(voornaam);
 		this.setFamilienaam(familienaam);
 		this.setPaswoord(paswoord);
 	}
-	//Data binnerhalen van gebruikerformfield.jsp GebruikerDAO void create(gebruiker)
+	
 	public Gebruiker(Gebruiker gebruiker) {
 		this.voornaam = gebruiker.getVoornaam();
 		this.familienaam = gebruiker.getFamilienaam();
