@@ -5,13 +5,15 @@
     
 package be.vdab.web;
     
+import be.vdab.entities.Gebruiker;
+import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
+import be.vdab.entities.Lokatie;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
-import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +33,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/lokatie")
 @SessionAttributes("karakter")
 public class LokatieController {
+    public static final Lokatie TEST_LOKATIE = new Lokatie(12, "TEST LOKATIE BESCHRIJVING", 
+            new ArrayList<Item>(), new ArrayList<Karakter>());
+    
     private final LokatieService lokatieService;
     private final KarakterService karakterService;
     

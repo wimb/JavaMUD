@@ -23,7 +23,7 @@
                 </div>
 
                 <div id="karakterLijst">
-                    <jsp:include page="karakters/karakterlijst.jsp"/>
+                    <jsp:include page="karakters/karakterlijsthoofdmenu.jsp"/>
                 </div>
                 
                 <div id="afmelden">

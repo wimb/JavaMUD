@@ -25,6 +25,7 @@ import javax.validation.constraints.Size;
 
 import be.vdab.util.Paswoord;
 import be.vdab.valueobjects.EmailAdres;
+import java.util.LinkedHashSet;
 
 @Entity
 @Table(name = "gebruikers")
@@ -45,7 +46,7 @@ public class Gebruiker implements Serializable {
 	private String paswoord;
 
 	@OneToMany(mappedBy = "gebruiker")
-	private Set<Karakter> karakters;
+	private Set<Karakter> karakters = new LinkedHashSet<>();
 
 	public Set<Karakter> getKarakter() {
 		return Collections.unmodifiableSet(karakters);
