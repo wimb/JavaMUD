@@ -6,10 +6,6 @@
 package be.vdab.web;
     
 import be.vdab.entities.Gebruiker;
-import be.vdab.entities.Item;
-import be.vdab.entities.Karakter;
-import be.vdab.factories.TestObjectsFactory;
-import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +26,9 @@ public class HoofdMenuController {
         ModelAndView mav = new ModelAndView("hoofdmenu");
         
         Gebruiker gebruiker = (Gebruiker) session.getAttribute("gebruiker");
-        if(gebruiker == null){
-            gebruiker = TestObjectsFactory.getGebruiker(true);
-            session.setAttribute("gebruiker", gebruiker);
+        if(gebruiker != null){
+            mav.addObject("gebruiker", gebruiker);
         }
-        
-        mav.addObject("gebruiker", gebruiker);
         
         return mav;
     }

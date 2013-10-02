@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import be.vdab.entities.Lokatie;
 import be.vdab.exceptions.KarakterNaamAlInGebruikException;
-import be.vdab.factories.TestObjectsFactory;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
 import javax.servlet.http.HttpSession;
@@ -50,7 +49,7 @@ public class KarakterController {
             Gebruiker g = (Gebruiker) session.getAttribute("gebruiker");
             
             if(g == null){
-                g = TestObjectsFactory.getGebruiker(false);
+                return new ModelAndView("redirect:/hoofdmenu");
             }
             
             k.setGebruiker(g);
