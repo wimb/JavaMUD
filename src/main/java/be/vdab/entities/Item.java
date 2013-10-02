@@ -29,6 +29,9 @@ public class Item implements Serializable {
     @GeneratedValue
     private long itemId;
     
+    /*
+     *  Dit wordt dus een ManyToOne naar IHeeftItems (wat een Karakter of een Locatie kan zijn
+     */    
     @ManyToOne
     @JoinColumn(name = "EigenaarId")
     private Karakter eigenaar;
@@ -52,6 +55,15 @@ public class Item implements Serializable {
         setEigenaar(eigenaar);
     }
     
+    /*
+     *  Dit wordt dus Item( ..., IHeeftItems) 
+     *  
+     *  Maar zowiso, indien je niet met een gemeenschappelijke basiklasse werkt, 
+     *  Maak je beter 2 constructors
+     *     Item( ..., Karakter k)
+     *     Item( ..., Lokatie k)
+     *  Nu reken je erop dat de gebruiker van je klasse 1 van beide leeg laat, maar je dwingt dit neit af!
+     */
     public Item(long itemId, Karakter eigenaar, Lokatie positie){
         setId(itemId);
         setEigenaar(eigenaar);
