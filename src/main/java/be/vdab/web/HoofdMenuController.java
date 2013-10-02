@@ -5,7 +5,9 @@
     
 package be.vdab.web;
     
+import be.vdab.entities.Gebruiker;
 import be.vdab.services.GebruikerService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,14 +31,14 @@ public class HoofdMenuController {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String hoofdmenu(){
-        return "hoofdmenu";
-    }
-    
-    @RequestMapping(value = "aangemeld", method = RequestMethod.GET)
-    public ModelAndView aangemeld(@RequestParam long gebruikerId){
+    public ModelAndView hoofdmenu(HttpSession session){
         ModelAndView mav = new ModelAndView("hoofdmenu");
-        mav.addObject("gebruiker", gebruikerService.read(gebruikerId));
+        
+        Gebruiker gebruiker = (Gebruiker) session.getAttribute("gebruiker");
+        if(gebruiker != null){
+            mav.addObject("gebruiker", gebruiker);
+        }
+        
         return mav;
     }
     

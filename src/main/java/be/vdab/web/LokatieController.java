@@ -54,17 +54,15 @@ public class LokatieController {
     }
     
     @RequestMapping(value = "/hoofdmenu", method = RequestMethod.GET)
-    public String hoofdmenu(SessionStatus sessionStatus, 
-            @ModelAttribute Karakter karakter){
+    public String stopSpel(SessionStatus sessionStatus){
         sessionStatus.setComplete();
-        return "redirect:/hoofdmenu?gebruikerId=" + karakter.getGebruiker().getId();
+        return "redirect:/hoofdmenu";
     }
     
     @RequestMapping(value = "/afmelden", method = RequestMethod.POST)
-    public String afmelden(SessionStatus sessionStatus, 
-            @ModelAttribute Karakter karakter){
+    public String afmelden(SessionStatus sessionStatus){
         sessionStatus.setComplete();
-        return "redirect:/afmelden?gebruikerId=" + karakter.getGebruiker().getId();
+        return "redirect:/afmelden";
     }
     
 }
