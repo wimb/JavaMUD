@@ -38,7 +38,7 @@ public class HoofdMenuController {
         }
         else {
             LokatieController.TEST_LOKATIE.addKarakter(TEST_KARAKTER);
-//            TEST_GEBRUIKER.addKarakter(TEST_KARAKTER);
+            TEST_GEBRUIKER.addKarakter(TEST_KARAKTER);
             mav.addObject("gebruiker", TEST_GEBRUIKER);
         }
         
