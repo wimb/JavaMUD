@@ -18,6 +18,7 @@ import be.vdab.exceptions.GebruikerHeeftNogKaraktersException;
 import be.vdab.exceptions.VerkeerdeEmailAdresException;
 import be.vdab.services.GebruikerService;
 import be.vdab.valueobjects.EmailAdres;
+import javax.servlet.http.HttpSession;
 import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
@@ -39,10 +40,12 @@ public class GebruikerController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String create(@Valid Gebruiker gebruiker, BindingResult bindingResult) {
+	public String create(@Valid Gebruiker gebruiker, BindingResult bindingResult, 
+                HttpSession session) {
 		if (!bindingResult.hasErrors()) {
 			try {
 				gebruikerService.create(gebruiker);
+                                session.setAttribute("gebruiker", gebruiker);
 				return "redirect:/hoofdmenu";
 			} catch (EmailAdresAlInGebruikException e) {
 				bindingResult.rejectValue("emailAdres",
