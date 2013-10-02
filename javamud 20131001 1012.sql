@@ -9,7 +9,7 @@
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_UNIQ_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
@@ -55,8 +55,8 @@ CREATE TABLE `item` (
   PRIMARY KEY (`Id`),
   KEY `ItemEigenaar` (`EigenaarId`),
   KEY `ItemPositie` (`PositieId`),
-  CONSTRAINT `ItemEigenaar` FOREIGN KEY (`EigenaarId`) REFERENCES `karakter` (`Id`),
-  CONSTRAINT `ItemPositie` FOREIGN KEY (`PositieId`) REFERENCES `lokatie` (`Id`)
+  CONSTRAINT `ItemEigenaarFK` FOREIGN KEY (`EigenaarId`) REFERENCES `karakter` (`Id`),
+  CONSTRAINT `ItemPositieFK` FOREIGN KEY (`PositieId`) REFERENCES `lokatie` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -80,8 +80,8 @@ CREATE TABLE `karakter` (
   PRIMARY KEY (`Id`),
   KEY `KarakterGebruiker` (`gebruikerId`),
   KEY `KarakterLokatie` (`lokatieId`),
-  CONSTRAINT `KarakterGebruiker` FOREIGN KEY (`GebruikerId`) REFERENCES `gebruiker` (`Id`),
-  CONSTRAINT `KarakterLokatie` FOREIGN KEY (`LokatieId`) REFERENCES `lokatie` (`Id`)
+  CONSTRAINT `KarakterGebruikerFK` FOREIGN KEY (`GebruikerId`) REFERENCES `gebruiker` (`Id`),
+  CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`LokatieId`) REFERENCES `lokatie` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -121,8 +121,8 @@ CREATE TABLE `lokatiebestemmingen` (
   `BestemmingId` int(10) unsigned NOT NULL,
   PRIMARY KEY (`LokatieId`,`BestemmingId`),
   KEY `BestemmingKey` (`BestemmingId`),
-  CONSTRAINT `LokatieKey` FOREIGN KEY (`LokatieId`) REFERENCES `lokatie` (`Id`),
-  CONSTRAINT `BestemmingKey` FOREIGN KEY (`BestemmingId`) REFERENCES `lokatie` (`Id`)
+  CONSTRAINT `LokatieKeyFK` FOREIGN KEY (`LokatieId`) REFERENCES `lokatie` (`Id`),
+  CONSTRAINT `BestemmingKeyFK` FOREIGN KEY (`BestemmingId`) REFERENCES `lokatie` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

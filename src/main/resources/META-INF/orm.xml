@@ -11,7 +11,7 @@
 
 	<named-query name="findGebruikerByEmailAdres">
 		<query>
-			select g from Gebruiker g where u.emailAdres = :emailAdres  
+			select g from Gebruiker g where g.emailAdres = :emailAdres  
 		</query>
 	</named-query>
 	
@@ -23,31 +23,19 @@
 	
 	<named-query name="findKarakterByGebruiker">
 		<query>
-			select k from Karakter k where Gebruiker.id = :id 
+			select k from Karakter k
 		</query>
 	</named-query>
 	
 	<named-query name="findKarakterByLokatie">
 		<query>
-			select k from Karakter k where Lokatie.lokatieId = :lokatieId
-		</query>
-	</named-query>
-
-	<named-query name="findKarakterByGebruiker">
-		<query>
-			select k from Karakter k where Gebruiker.id = :id 
-		</query>
-	</named-query>
-
-	<named-query name="findKarakterByLokatie">
-		<query>
-			select k from Karakter k where Lokatie.lokatieId = :lokatieId
+			select k from Karakter k
 		</query>
 	</named-query>
         
         <named-query name="findLokatiesByBestemming">
             <query>
-                select l from Lokatie l where l.bestemming = :bestemming
+                select l from Lokatie l
             </query>
         </named-query>
         
@@ -60,12 +48,6 @@
         <named-query name="findItemsByPositie">
             <query>
                 select i from Item i where i.positie = :positie
-            </query>
-        </named-query>
-        
-        <named-query name="findActiesByClassString">
-            <query>
-                select a from Actie a where a.classString like :classString
             </query>
         </named-query>
 

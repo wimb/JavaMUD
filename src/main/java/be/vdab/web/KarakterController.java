@@ -12,6 +12,7 @@ import be.vdab.exceptions.KarakterNaamAlInGebruikException;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 
 @Controller
@@ -20,6 +21,7 @@ public class KarakterController {
 	private final KarakterService karakterService;
 	private final LokatieService lokatieService;
 	
+        @Autowired
 	public KarakterController(KarakterService karakterService, LokatieService lokatieService) {
 		this.karakterService = karakterService;
 		this.lokatieService = lokatieService;
