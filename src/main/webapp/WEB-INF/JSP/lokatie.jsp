@@ -16,8 +16,16 @@
 <link rel="stylesheet" href="${contextPath}/styles/default.css" />
 </head>
 <body>
-	<c:import url="/WEB-INF/JSP/menu.jsp" />
-	<h1>Lokatie ${lokatie.id}</h1>
-	<div id="lokatieBescrijving">${lokatie.beschrijving}</div>
+    <a href="<c:url value='lokatie/hoofdmenu'/>">Hoofdmenu</a>
+    <h1>Lokatie ${lokatie.id}</h1>
+    <div id="lokatieBescrijving">${lokatie.beschrijving}</div>
+    <c:if test="${not empty lokatie.items}">
+        <c:set var="items" value="${lokatie.items}"/>
+        <jsp:include page="/WEB-INF/JSP/items/itemlijst"/>
+    </c:if>
+    <c:if test="${not empty lokatie.karakters}">
+        <c:set var="karakters" value="lokatie.karakters"/>
+        <jsp:include page="/WEB-INF/JSP/karakters/karakterlijstlokatie"/>
+    </c:if>
 </body>
 </html>

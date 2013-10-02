@@ -54,8 +54,7 @@ public class LokatieController {
     }
     
     @RequestMapping(value = "/hoofdmenu", method = RequestMethod.GET)
-    public String hoofdmenu(SessionStatus sessionStatus, 
-            @ModelAttribute Karakter karakter){
+    public String stopSpel(SessionStatus sessionStatus){
         sessionStatus.setComplete();
         return "redirect:/hoofdmenu";
     }
