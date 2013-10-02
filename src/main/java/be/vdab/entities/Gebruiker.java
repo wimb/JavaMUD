@@ -40,7 +40,7 @@ public class Gebruiker implements Serializable {
 	private String voornaam;
 	@NotNull
 	@Size(min = 1, max = 50, message = "{Size.tekst}")
-	private String naam;
+	private String familienaam;
 	@NotNull
 	@Size(min = 1, max = 50, message = "{Size.tekst}")
 	private String paswoord;
@@ -68,12 +68,12 @@ public class Gebruiker implements Serializable {
 		this.voornaam = voornaam;
 	}
 
-	public String getNaam() {
-		return naam;
+	public String getFamilienaam() {
+		return familienaam;
 	}
 
-	public void setNaam(String naam) {
-		this.naam = naam;
+	public void setFamilienaam(String familienaam) {
+		this.familienaam = familienaam;
 	}
 
 	public String getPaswoord() {
@@ -93,11 +93,11 @@ public class Gebruiker implements Serializable {
             karakters = new LinkedHashSet<>();
 	}
 
-	public Gebruiker(String voornaam, String naam, String emailAdres,
+	public Gebruiker(String voornaam, String familienaam, String emailAdres,
 			String paswoord) {
                 this();
 		this.setVoornaam(voornaam);
-		this.setNaam(naam);
+		this.setFamilienaam(familienaam);
 		this.setEmailAdres(emailAdres);
 		this.setPaswoord(paswoord);
 	}
@@ -105,14 +105,14 @@ public class Gebruiker implements Serializable {
 	public Gebruiker(String voornaam, String familienaam, String paswoord) {
                 this();
 		this.setVoornaam(voornaam);
-		this.setNaam(naam);
+		this.setFamilienaam(familienaam);
 		this.setPaswoord(paswoord);
 	}
 
 	public Gebruiker(Gebruiker gebruiker) {
                 this();
 		this.voornaam = gebruiker.getVoornaam();
-		this.naam = gebruiker.getNaam();
+		this.familienaam = gebruiker.getFamilienaam();
 		this.paswoord = gebruiker.getPaswoord();
 		this.emailAdres = gebruiker.getEmailAdres();
                 for(Karakter k : gebruiker.karakters){
