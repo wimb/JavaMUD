@@ -36,10 +36,6 @@
                 <div id="aanmelden">
                     <a href="<c:url value='aanmelden'/>">Aanmelden</a>
                 </div>
-                
-                <div id="nieuweGebruiker">
-                    <a href="<c:url value='/gebruiker'/>">Gebruiker Aanmaken</a>
-                </div>
             </c:otherwise>
         </c:choose>
     </body>
