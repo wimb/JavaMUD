@@ -79,7 +79,7 @@ public class GebruikerController {
 		return new ModelAndView("gebruikers/wijzigen", "gebruiker", gebruiker);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "{id}")
+	@RequestMapping(value = "/wijzigen", method = RequestMethod.PUT)
 	public String update(@Valid Gebruiker gebruiker,
 			BindingResult bindingResult, @PathVariable long id) {
 		if (bindingResult.hasErrors()) {
@@ -101,7 +101,7 @@ public class GebruikerController {
 		return "gebruikers/verwijderd";
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+	@RequestMapping(method = RequestMethod.DELETE, value = "{id}/verwijderen")
 	public ModelAndView delete(@PathVariable long id) {
 		Gebruiker gebruiker = gebruikerService.read(id);
 		if (gebruiker == null) {
