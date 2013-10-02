@@ -1,120 +1,187 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
-CREATE SCHEMA IF NOT EXISTS `javamud` ;
-USE `javamud` ;
-
--- -----------------------------------------------------
--- Table `javamud`.`gebruiker`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `javamud`.`gebruiker` ;
-
-CREATE TABLE IF NOT EXISTS `javamud`.`gebruiker` (
-  `Id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `emailadres` VARCHAR(50) NOT NULL,
-  `voornaam` VARCHAR(50) NOT NULL,
-  `naam` VARCHAR(50) NOT NULL,
-  `paswoord` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`Id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.6.13
 
 
--- -----------------------------------------------------
--- Table `javamud`.`item`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `javamud`.`item` ;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-CREATE TABLE IF NOT EXISTS `javamud`.`item` (
-  `Id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `Omschrijving` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`Id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- -----------------------------------------------------
--- Table `javamud`.`lokatie`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `javamud`.`lokatie` ;
+--
+-- Create schema javamud
+--
 
-CREATE TABLE IF NOT EXISTS `javamud`.`lokatie` (
-  `Id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `Beschrijving` VARCHAR(140) NOT NULL DEFAULT 'geen omschrijving',
-  PRIMARY KEY (`Id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+CREATE DATABASE IF NOT EXISTS javamud;
+USE javamud;
+
+--
+-- Definition of table `gebruiker`
+--
+
+DROP TABLE IF EXISTS `gebruiker`;
+CREATE TABLE `gebruiker` (
+  `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `emailadres` varchar(50) NOT NULL,
+  `voornaam` varchar(50) NOT NULL,
+  `naam` varchar(50) NOT NULL,
+  `paswoord` varchar(50) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `gebruiker`
+--
+
+/*!40000 ALTER TABLE `gebruiker` DISABLE KEYS */;
+INSERT INTO `gebruiker` (`Id`,`emailadres`,`voornaam`,`naam`,`paswoord`) VALUES 
+ (1,'johnny.test@nick.com','Jonathan','Test','J0n@than');
+/*!40000 ALTER TABLE `gebruiker` ENABLE KEYS */;
 
 
--- -----------------------------------------------------
--- Table `javamud`.`karakter`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `javamud`.`karakter` ;
+--
+-- Definition of table `heeftitems`
+--
 
-CREATE TABLE IF NOT EXISTS `javamud`.`karakter` (
-  `Id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `gebruikerId` INT(10) UNSIGNED NOT NULL,
-  `lokatieId` INT(10) UNSIGNED NOT NULL,
-  `naam` VARCHAR(50) NOT NULL,
+DROP TABLE IF EXISTS `heeftitems`;
+CREATE TABLE `heeftitems` (
+  `Id` int(10) unsigned NOT NULL,
+  `ItemID` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ItemID`,`Id`),
+  KEY `ItemLokatieFK` (`Id`),
+  CONSTRAINT `ItemFK` FOREIGN KEY (`Id`) REFERENCES `item` (`Id`),
+  CONSTRAINT `ItemKarakterFK` FOREIGN KEY (`Id`) REFERENCES `karakter` (`Id`),
+  CONSTRAINT `ItemLokatieFK` FOREIGN KEY (`Id`) REFERENCES `lokatie` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `heeftitems`
+--
+
+/*!40000 ALTER TABLE `heeftitems` DISABLE KEYS */;
+/*!40000 ALTER TABLE `heeftitems` ENABLE KEYS */;
+
+
+--
+-- Definition of table `item`
+--
+
+DROP TABLE IF EXISTS `item`;
+CREATE TABLE `item` (
+  `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Omschrijving` varchar(50) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `item`
+--
+
+/*!40000 ALTER TABLE `item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `item` ENABLE KEYS */;
+
+
+--
+-- Definition of table `karakter`
+--
+
+DROP TABLE IF EXISTS `karakter`;
+CREATE TABLE `karakter` (
+  `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gebruikerId` int(10) unsigned NOT NULL,
+  `lokatieId` int(10) unsigned NOT NULL,
+  `naam` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`),
-  INDEX `KarakterGebruiker` (`gebruikerId` ASC),
-  INDEX `KarakterLokatie` (`lokatieId` ASC),
-  CONSTRAINT `KarakterGebruikerFK`
-    FOREIGN KEY (`gebruikerId`)
-    REFERENCES `javamud`.`gebruiker` (`Id`),
-  CONSTRAINT `KarakterLokatieFK`
-    FOREIGN KEY (`lokatieId`)
-    REFERENCES `javamud`.`lokatie` (`Id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+  KEY `KarakterGebruiker` (`gebruikerId`),
+  KEY `KarakterLokatie` (`lokatieId`),
+  CONSTRAINT `KarakterGebruikerFK` FOREIGN KEY (`gebruikerId`) REFERENCES `gebruiker` (`Id`),
+  CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `karakter`
+--
+
+/*!40000 ALTER TABLE `karakter` DISABLE KEYS */;
+INSERT INTO `karakter` (`Id`,`gebruikerId`,`lokatieId`,`naam`) VALUES 
+ (1,1,1,'Testaenar');
+/*!40000 ALTER TABLE `karakter` ENABLE KEYS */;
 
 
--- -----------------------------------------------------
--- Table `javamud`.`heeftitems`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `javamud`.`heeftitems` ;
+--
+-- Definition of table `lokatie`
+--
 
-CREATE TABLE IF NOT EXISTS `javamud`.`heeftitems` (
-  `Id` INT(10) UNSIGNED NOT NULL,
-  `ItemID` INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`ItemID`, `Id`),
-  CONSTRAINT `ItemFK`
-    FOREIGN KEY (`Id`)
-    REFERENCES `javamud`.`item` (`Id`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
-  CONSTRAINT `ItemKarakterFK`
-    FOREIGN KEY (`Id`)
-    REFERENCES `javamud`.`karakter` (`Id`),
-  CONSTRAINT `ItemLokatieFK`
-    FOREIGN KEY (`Id`)
-    REFERENCES `javamud`.`lokatie` (`Id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+DROP TABLE IF EXISTS `lokatie`;
+CREATE TABLE `lokatie` (
+  `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Beschrijving` varchar(140) NOT NULL DEFAULT 'geen omschrijving',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `lokatie`
+--
 
--- -----------------------------------------------------
--- Table `javamud`.`lokatiebestemmingen`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `javamud`.`lokatiebestemmingen` ;
-
-CREATE TABLE IF NOT EXISTS `javamud`.`lokatiebestemmingen` (
-  `LokatieId` INT(10) UNSIGNED NOT NULL,
-  `BestemmingId` INT(10) UNSIGNED NOT NULL,
-  `Omschrijving` VARCHAR(150) NOT NULL DEFAULT 'geen omschrijving',
-  PRIMARY KEY (`LokatieId`, `BestemmingId`),
-  INDEX `BestemmingKey` (`BestemmingId` ASC),
-  CONSTRAINT `BestemmingKeyFK`
-    FOREIGN KEY (`BestemmingId`)
-    REFERENCES `javamud`.`lokatie` (`Id`),
-  CONSTRAINT `LokatieKeyFK`
-    FOREIGN KEY (`LokatieId`)
-    REFERENCES `javamud`.`lokatie` (`Id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+/*!40000 ALTER TABLE `lokatie` DISABLE KEYS */;
+INSERT INTO `lokatie` (`Id`,`Beschrijving`) VALUES 
+ (1,'Kelder'),
+ (2,'Hoofdingang'),
+ (3,'Straat'),
+ (4,'Keuken'),
+ (5,'Slaapkamer'),
+ (6,'Tuin');
+/*!40000 ALTER TABLE `lokatie` ENABLE KEYS */;
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+--
+-- Definition of table `lokatiebestemmingen`
+--
+
+DROP TABLE IF EXISTS `lokatiebestemmingen`;
+CREATE TABLE `lokatiebestemmingen` (
+  `LokatieId` int(10) unsigned NOT NULL,
+  `BestemmingId` int(10) unsigned NOT NULL,
+  `Omschrijving` varchar(150) NOT NULL DEFAULT 'geen omschrijving',
+  PRIMARY KEY (`LokatieId`,`BestemmingId`),
+  KEY `BestemmingKey` (`BestemmingId`),
+  CONSTRAINT `BestemmingKeyFK` FOREIGN KEY (`BestemmingId`) REFERENCES `lokatie` (`Id`),
+  CONSTRAINT `LokatieKeyFK` FOREIGN KEY (`LokatieId`) REFERENCES `lokatie` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `lokatiebestemmingen`
+--
+
+/*!40000 ALTER TABLE `lokatiebestemmingen` DISABLE KEYS */;
+INSERT INTO `lokatiebestemmingen` (`LokatieId`,`BestemmingId`,`Omschrijving`) VALUES 
+ (1,2,'Trap op'),
+ (2,1,'Naar de kelder'),
+ (2,3,'Naar buiten'),
+ (2,4,'Naar de keuken'),
+ (2,5,'Naar de slaapkamer'),
+ (3,2,'Naar binnen'),
+ (3,6,'Naar de tuin'),
+ (4,2,'Naar de hoofdingang'),
+ (4,6,'Naar de tuin'),
+ (5,2,'Naar de hoofdingang'),
+ (6,3,'Naar de straat'),
+ (6,4,'Naar de keuken');
+/*!40000 ALTER TABLE `lokatiebestemmingen` ENABLE KEYS */;
+
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
