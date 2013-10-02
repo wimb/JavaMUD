@@ -23,12 +23,12 @@
 		<c:param name="lokatieId" value="1" />
 	</c:url>
 	<a href="${lokatieURL}">Lokatie</a>
-	<c:url var="gebruikerURL" value="/gebruiker">
-	</c:url>
-	<a href="${gebruikerURL}">Gebruiker Aanmaken</a>
 	<c:url var="aanmeldenURL" value="/aanmelden">
 	</c:url>
-	<a href="${aanmeldenURL}">Aanmelden</a>
+	<a href="${aanmeldenURL}">Aanmelden Gebruiker</a>
+	<c:url var="gebruikerURL" value="/gebruiker">
+	</c:url>
+	<a href="${gebruikerURL}">Gegevens Gebruiker</a>
 
 </body>
 </html>

@@ -22,16 +22,17 @@ form {
 </style>
 </head>
 <body>
+<c:import url="/WEB-INF/JSP/menu.jsp" />
 	<c:choose>
 		<c:when test="${not empty gebruiker}">
-			<h1>${gebruiker.emailAdres}</h1>
+			<h1>${gebruiker.voornaam}</h1>
 			<dl>
 				<dt>EmailAdres</dt>
 				<dd>${gebruiker.emailAdres}</dd>
 				<dt>Voornaam</dt>
 				<dd>${gebruiker.voornaam}</dd>
 				<dt>FamilieNaam</dt>
-				<dd>${gebruiker.familienaam}</dd>
+				<dd>${gebruiker.naam}</dd>
 				<dt>paswoord</dt>
 				<dd>${gebruiker.paswoord}</dd>
 			</dl>

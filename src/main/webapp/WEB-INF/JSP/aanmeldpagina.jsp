@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${contextPath}/styles/default.css" />
 </head>
 <body>
+<c:import url="/WEB-INF/JSP/menu.jsp" />
 	<h1>Aanmelden</h1>
 	<form method="post" action='<c:url value="/j_spring_security_check"/>'>
 		<label>email: <input type="text" name="j_username" /></label> <label>Paswoord:
