@@ -29,7 +29,7 @@ public final class TestObjectsFactory {
     
     private static void initGebruiker(){
         TEST_GEBRUIKER.setVoornaam("Jonathan");
-        TEST_GEBRUIKER.setFamilienaam("Test");
+        TEST_GEBRUIKER.setNaam("Test");
         TEST_GEBRUIKER.setEmailAdres("J0n@than@nick.com");
         TEST_GEBRUIKER.setPaswoord("MUD");
         gebruikerInitialized = true;
