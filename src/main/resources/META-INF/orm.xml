@@ -50,12 +50,6 @@
                 select i from Item i where i.positie = :positie
             </query>
         </named-query>
-        
-        <named-query name="findActiesByActieType">
-            <query>
-                select a from Actie a
-            </query>
-        </named-query>
 
 </entity-mappings>
 
