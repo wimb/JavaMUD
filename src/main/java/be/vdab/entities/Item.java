@@ -17,10 +17,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import be.vdab.commands.Actie;
-import be.vdab.commands.HeeftActies;
-import be.vdab.commands.HerlaadActie;
-import be.vdab.commands.SchietActie;
+//import be.vdab.commands.Actie;
+//import be.vdab.commands.HeeftActies;
+//import be.vdab.commands.HerlaadActie;
+//import be.vdab.commands.SchietActie;
 
 /**
  *
@@ -30,7 +30,7 @@ import be.vdab.commands.SchietActie;
  */
 @Entity
 @Table(name = "item")
-public class Item implements Serializable, HeeftActies {
+public class Item implements Serializable /*, HeeftActies*/ {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -48,7 +48,7 @@ public class Item implements Serializable, HeeftActies {
     @JoinColumn(name = "PositieId")
     private Lokatie positie;
     
-    private Map<Long, Actie> acties = new HashMap<>();
+//    private Map<Long, Actie> acties = new HashMap<>();
     
     public Item(){
         eigenaar = null;
@@ -106,10 +106,10 @@ public class Item implements Serializable, HeeftActies {
         }
     }
     
-    public void setActies() {
-    	acties.put(1L, new SchietActie());
-    	acties.put(2L, new HerlaadActie(this));
-    }
+//    public void setActies() {
+//    	acties.put(1L, new SchietActie());
+//    	acties.put(2L, new HerlaadActie(this));
+//    }
     
     public long getId(){
         return id;
@@ -128,14 +128,14 @@ public class Item implements Serializable, HeeftActies {
     }
     
 
-	@Override
-	public Map<Long, Actie> getActies() {
-		return acties;
-	}
-	
-	public Actie getActie(long actieId) {
-	 return	acties.get(actieId);
-	}
+//	@Override
+//	public Map<Long, Actie> getActies() {
+//		return acties;
+//	}
+//	
+//	public Actie getActie(long actieId) {
+//	 return	acties.get(actieId);
+//	}
     
     @Override
     public boolean equals(Object obj){
