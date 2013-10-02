@@ -57,13 +57,14 @@ public class LokatieController {
     public String hoofdmenu(SessionStatus sessionStatus, 
             @ModelAttribute Karakter karakter){
         sessionStatus.setComplete();
-        return "redirect:/hoofdmenu";
+        return "redirect:/hoofdmenu?gebruikerId=" + karakter.getGebruiker().getId();
     }
     
     @RequestMapping(value = "/afmelden", method = RequestMethod.POST)
-    public String afmelden(SessionStatus sessionStatus){
+    public String afmelden(SessionStatus sessionStatus, 
+            @ModelAttribute Karakter karakter){
         sessionStatus.setComplete();
-        return "redirect:/afmelden";
+        return "redirect:/afmelden?gebruikerId=" + karakter.getGebruiker().getId();
     }
     
 }
