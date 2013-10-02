@@ -8,8 +8,10 @@ package be.vdab.web;
 import be.vdab.entities.Karakter;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,17 +44,18 @@ public class LokatieController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView findKarakterLokatie(@RequestParam long karakterId){
         ModelAndView mav = new ModelAndView("lokatie");
-        Karakter k = karakterService.read(karakterId);
-        if(k.getLokatie() == null){
-            k.setLokatie(lokatieService.read(1));
+        Karakter karakter = karakterService.read(karakterId);
+        if(karakter.getLokatie() == null){
+            karakter.setLokatie(lokatieService.read(1));
         }
-        mav.addObject("lokatie", k.getLokatie());
-        mav.addObject("karakter", k);
+        mav.addObject("lokatie", karakter.getLokatie());
+        mav.addObject("karakter", karakter);
         return mav;
     }
     
     @RequestMapping(value = "/hoofdmenu", method = RequestMethod.GET)
-    public String hoofdmenu(SessionStatus sessionStatus){
+    public String hoofdmenu(SessionStatus sessionStatus, 
+            @ModelAttribute Karakter karakter){
         sessionStatus.setComplete();
         return "redirect:/hoofdmenu";
     }
