@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.6.13
+-- Server version	5.1.44-community
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -30,7 +30,7 @@ CREATE TABLE `gebruiker` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `emailadres` varchar(50) NOT NULL,
   `voornaam` varchar(50) NOT NULL,
-  `naam` varchar(50) NOT NULL,
+  `familienaam` varchar(50) NOT NULL,
   `paswoord` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -40,7 +40,7 @@ CREATE TABLE `gebruiker` (
 --
 
 /*!40000 ALTER TABLE `gebruiker` DISABLE KEYS */;
-INSERT INTO `gebruiker` (`Id`,`emailadres`,`voornaam`,`naam`,`paswoord`) VALUES 
+INSERT INTO `gebruiker` (`Id`,`emailadres`,`voornaam`,`familienaam`,`paswoord`) VALUES 
  (1,'johnny.test@nick.com','Jonathan','Test','J0n@than');
 /*!40000 ALTER TABLE `gebruiker` ENABLE KEYS */;
 
