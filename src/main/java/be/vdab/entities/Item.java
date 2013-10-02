@@ -118,7 +118,11 @@ public class Item implements Serializable, HeeftActies {
 
 	@Override
 	public Map<Long, Actie> getActies() {
-		return null;
+		return acties;
+	}
+	
+	public Actie getActie(long actieId) {
+	 return	acties.get(actieId);
 	}
     
     @Override
