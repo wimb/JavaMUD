@@ -33,7 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/lokatie")
 @SessionAttributes("karakter")
 public class LokatieController {
-    public static final Lokatie TEST_LOKATIE = new Lokatie(12, "TEST LOKATIE BESCHRIJVING", 
+    public static final Lokatie TEST_LOKATIE = new Lokatie(1, "TEST LOKATIE BESCHRIJVING", 
             new ArrayList<Item>(), new ArrayList<Karakter>());
     
     private final LokatieService lokatieService;
@@ -49,7 +49,8 @@ public class LokatieController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView findKarakterLokatie(@RequestParam long karakterId){
         ModelAndView mav = new ModelAndView("lokatie");
-        Karakter karakter = karakterService.read(karakterId);
+//        Karakter karakter = karakterService.read(karakterId);
+        Karakter karakter = HoofdMenuController.TEST_KARAKTER;
         if(karakter.getLokatie() == null){
             karakter.setLokatie(lokatieService.read(1));
         }
