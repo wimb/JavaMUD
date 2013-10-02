@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `javamud`.`gebruiker` (
   `paswoord` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `javamud`.`item` (
   `Omschrijving` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `javamud`.`lokatie` (
   `Beschrijving` VARCHAR(140) NOT NULL DEFAULT 'geen omschrijving',
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `javamud`.`karakter` (
     FOREIGN KEY (`lokatieId`)
     REFERENCES `javamud`.`lokatie` (`Id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `javamud`.`lokatiebestemmingen` (
     FOREIGN KEY (`LokatieId`)
     REFERENCES `javamud`.`lokatie` (`Id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
