@@ -5,12 +5,9 @@
     
 package be.vdab.web;
     
-import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
-import be.vdab.entities.Lokatie;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
-import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;

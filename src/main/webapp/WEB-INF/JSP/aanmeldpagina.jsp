@@ -19,7 +19,7 @@
 			<input type="password" name="j_password" />
 		</label> <input type="submit" value="Inloggen" />
 	</form>
-	<form method="get" action='<c:url value="/hoofdmenu"/>'>
+	<form method="get" action='<c:url value="/gebruiker/toevoegen"/>'>
 		<input type="submit" value="Nieuwe gebruiker aanmaken"
 			<security:authorize access="isAuthenticated()">disabled="disabled"</security:authorize> />
 	</form>
