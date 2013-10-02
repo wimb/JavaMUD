@@ -17,12 +17,9 @@
 
 	<sec:authentication-manager>
 		<sec:authentication-provider>
-			<!-- <sec:user-service> -->
-			<!-- <sec:user name="danny.schoeter@gmail.com" password="MUD" -->
-			<!-- authorities="user" /> -->
-			<!-- <sec:user name="tony@email.com" password="MUD" authorities="user" 
-				/> -->
-			<!-- </sec:user-service> -->
+                    <sec:password-encoder hash="sha">
+                        <sec:salt-source user-property="username"/>
+                    </sec:password-encoder>
 			<sec:jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select emailadres as username, paswoord as password, true as enabled from gebruiker where emailadres = ?"
 				authorities-by-username-query="select emailadres as username, 'user' as authorities from gebruiker where emailadres = ?" />
