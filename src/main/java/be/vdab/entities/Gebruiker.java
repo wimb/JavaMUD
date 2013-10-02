@@ -95,8 +95,11 @@ public class Gebruiker implements Serializable {
 
 	public Gebruiker(String voornaam, String familienaam, String emailAdres,
 			String paswoord) {
-                this(voornaam, familienaam, paswoord);
+                this();
+		this.setVoornaam(voornaam);
+		this.setFamilienaam(familienaam);
 		this.setEmailAdres(emailAdres);
+		this.setPaswoord(paswoord);
 	}
 
 	public Gebruiker(String voornaam, String familienaam, String paswoord) {
