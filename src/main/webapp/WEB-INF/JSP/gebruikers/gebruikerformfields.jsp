@@ -10,7 +10,7 @@
 <form:label path="paswoord">paswoord:
 <form:errors path="paswoord" cssClass="fout" />
 </form:label>
-<form:input path="paswoord" />
+<form:password path="paswoord" />
 
 <form:label path="voornaam">voornaam:
 <form:errors path="voornaam" cssClass="fout" />
