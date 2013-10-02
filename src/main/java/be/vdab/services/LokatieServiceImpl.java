@@ -55,6 +55,8 @@ public class LokatieServiceImpl implements LokatieService {
         lokatieDAO.delete(id);
     }
     
+    
+    /* Waartoe dient dit? */
     @Override
     public List<Lokatie> findByBestemming(Lokatie bestemming){
         return lokatieDAO.findByBestemming(bestemming);

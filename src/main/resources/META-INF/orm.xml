@@ -11,30 +11,34 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
 		</query>
 	</named-query>
 	
+        <!-- findKaraktersByGebruiker meervoud Karakters -->
 	<named-query name="findKarakterByGebruiker">
 		<query>
 			select k from Karakter k
 		</query>
 	</named-query>
 	
+         <!-- findKaraktersByLocatie meervoud Karakters -->
 	<named-query name="findKarakterByLokatie">
 		<query>
 			select k from Karakter k
 		</query>
 	</named-query>
         
+        <!-- Waartoe dient dit? -->                        
         <named-query name="findLokatiesByBestemming">
             <query>
                 select l from Lokatie l
             </query>
         </named-query>
-        
+                
         <named-query name="findItemsByEigenaar">
             <query>
                 select i from Item i where i.eigenaar = :eigenaar
             </query>
         </named-query>
         
+        <!-- findItemsByLokatie? -->
         <named-query name="findItemsByPositie">
             <query>
                 select i from Item i where i.positie = :positie
