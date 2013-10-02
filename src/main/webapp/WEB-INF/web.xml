@@ -29,20 +29,14 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
           org.springframework.web.context.ContextLoaderListener
       </listener-class>
   </listener>
-  
-  <context-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>
-          classpath:/conf/springDAO.xml
-          classpath:/conf/springServices.xml
-      </param-value>
-  </context-param>
     
     	<!-- needed for ContextLoaderListener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath:/conf/springSecurity.xml
+          classpath:/conf/springDAO.xml
+          classpath:/conf/springServices.xml
 		</param-value>
 	</context-param>
 	

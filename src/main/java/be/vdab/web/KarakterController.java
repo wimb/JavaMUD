@@ -1,5 +1,6 @@
 package be.vdab.web;
 
+import be.vdab.entities.Gebruiker;
 import be.vdab.entities.Karakter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,9 @@ import be.vdab.entities.Lokatie;
 import be.vdab.exceptions.KarakterNaamAlInGebruikException;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 
 @Controller
@@ -20,6 +23,7 @@ public class KarakterController {
 	private final KarakterService karakterService;
 	private final LokatieService lokatieService;
 	
+        @Autowired
 	public KarakterController(KarakterService karakterService, LokatieService lokatieService) {
 		this.karakterService = karakterService;
 		this.lokatieService = lokatieService;
@@ -40,9 +44,18 @@ public class KarakterController {
         }
         
         @RequestMapping(value = "nieuw", method = RequestMethod.GET)
-        public ModelAndView createForm(){
-            return new ModelAndView("karakters/karaktergeneratie.jsp", 
-                    "karakter", new Karakter());
+        public ModelAndView createForm(HttpSession session){
+            Karakter k = new Karakter();
+            Gebruiker g = (Gebruiker) session.getAttribute("gebruiker");
+            
+            if(g == null){
+                g = HoofdMenuController.TEST_GEBRUIKER;
+            }
+            
+            k.setGebruiker(g);
+            
+            return new ModelAndView("karakters/karaktergeneratie", 
+                    "karakter", k);
         }
 
 	@RequestMapping(value="/karakters", method = RequestMethod.GET)

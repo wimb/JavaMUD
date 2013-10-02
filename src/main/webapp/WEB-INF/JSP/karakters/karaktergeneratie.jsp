@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="${contextPath}/styles/default.css"/>
     </head>
     <body>
+        <c:import url="/WEB-INF/JSP/menu.jsp" />
         <h1>Nieuw karakter</h1>
         <c:url value="/karakters" var="url"/>
         <form:form action="${url}" method="POST" commandName="karakter">

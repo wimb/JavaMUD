@@ -5,9 +5,13 @@
     
 package be.vdab.web;
     
+import be.vdab.entities.Gebruiker;
+import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
+import be.vdab.entities.Lokatie;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +33,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/lokatie")
 @SessionAttributes("karakter")
 public class LokatieController {
+    public static final Lokatie TEST_LOKATIE = new Lokatie(1, "TEST LOKATIE BESCHRIJVING", 
+            new ArrayList<Item>(), new ArrayList<Karakter>());
+    
     private final LokatieService lokatieService;
     private final KarakterService karakterService;
     
@@ -42,17 +49,18 @@ public class LokatieController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView findKarakterLokatie(@RequestParam long karakterId){
         ModelAndView mav = new ModelAndView("lokatie");
-        Karakter k = karakterService.read(karakterId);
-        if(k.getLokatie() == null){
-            k.setLokatie(lokatieService.read(1));
+//        Karakter karakter = karakterService.read(karakterId);
+        Karakter karakter = HoofdMenuController.TEST_KARAKTER;
+        if(karakter.getLokatie() == null){
+            karakter.setLokatie(lokatieService.read(1));
         }
-        mav.addObject("lokatie", k.getLokatie());
-        mav.addObject("karakter", k);
+        mav.addObject("lokatie", karakter.getLokatie());
+        mav.addObject("karakter", karakter);
         return mav;
     }
     
     @RequestMapping(value = "/hoofdmenu", method = RequestMethod.GET)
-    public String hoofdmenu(SessionStatus sessionStatus){
+    public String stopSpel(SessionStatus sessionStatus){
         sessionStatus.setComplete();
         return "redirect:/hoofdmenu";
     }

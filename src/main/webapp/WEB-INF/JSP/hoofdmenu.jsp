@@ -15,25 +15,28 @@
         <link rel="stylesheet" href="${contextPath}/styles/default.css"/>
     </head>
     <body>
+        <c:import url="/WEB-INF/JSP/menu.jsp" />
         <c:choose>
             <c:when test="${not empty gebruiker}">
                 <div id="nieuwKarakter">
-                    <a href="<c:url value='karakters/nieuw'/>">Nieuw karakter</a>
+                    <a href="<c:url value='karakter/nieuw'/>">Nieuw karakter</a>
                 </div>
 
                 <div id="karakterLijst">
-                    <jsp:include page="karakters/karakterlijst.jsp"/>
+                    <jsp:include page="karakters/karakterlijsthoofdmenu.jsp"/>
                 </div>
                 
                 <div id="afmelden">
-                    <c:url var="afmeldURL"/>
-                    <a href="${afmeldURL}">Afmelden</a>
+                    <a href="<c:url value='gebruiker/afmelden'/>">Afmelden</a>
                 </div>
             </c:when>
             <c:otherwise>
                 <div id="aanmelden">
-                    <c:url var="aanmeldURL"/>
-                    <a href="${aanmeldURL}">Aanmelden</a>
+                    <a href="<c:url value='aanmelden'/>">Aanmelden</a>
+                </div>
+                
+                <div id="nieuweGebruiker">
+                    <a href="<c:url value='/gebruiker'/>">Gebruiker Aanmaken</a>
                 </div>
             </c:otherwise>
         </c:choose>

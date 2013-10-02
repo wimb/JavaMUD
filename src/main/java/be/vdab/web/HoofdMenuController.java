@@ -5,12 +5,14 @@
     
 package be.vdab.web;
     
-import be.vdab.services.GebruikerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import be.vdab.entities.Gebruiker;
+import be.vdab.entities.Item;
+import be.vdab.entities.Karakter;
+import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -21,23 +23,25 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/hoofdmenu") // Dit wordt "/" wanneer alles klaar is
 public class HoofdMenuController {
-    private final GebruikerService gebruikerService;
-    
-    @Autowired
-    public HoofdMenuController(GebruikerService gebruikerService){
-        this.gebruikerService = gebruikerService;
-    }
+    public static final Gebruiker TEST_GEBRUIKER = new Gebruiker("Jonathan", 
+            "Test", "johnny.test@nick.com", "J0n@than");
+    public static final Karakter TEST_KARAKTER = new Karakter(1, TEST_GEBRUIKER, 
+            "Testaenar", LokatieController.TEST_LOKATIE, new ArrayList<Item>());
     
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView hoofdmenu(){
+    public ModelAndView hoofdmenu(HttpSession session){
         ModelAndView mav = new ModelAndView("hoofdmenu");
-        return mav;
-    }
-    
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView hoofdmenu(@RequestParam long gebruikerId){
-        ModelAndView mav = new ModelAndView("hoofdmenu");
-        mav.addObject("gebruiker", gebruikerService.read(gebruikerId));
+        
+        Gebruiker gebruiker = (Gebruiker) session.getAttribute("gebruiker");
+        if(gebruiker != null){
+            mav.addObject("gebruiker", gebruiker);
+        }
+        else {
+            LokatieController.TEST_LOKATIE.addKarakter(TEST_KARAKTER);
+//            TEST_GEBRUIKER.addKarakter(TEST_KARAKTER);
+            mav.addObject("gebruiker", TEST_GEBRUIKER);
+        }
+        
         return mav;
     }
     

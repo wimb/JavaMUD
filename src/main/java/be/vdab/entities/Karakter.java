@@ -31,7 +31,7 @@ public class Karakter implements Serializable {
     
     @Id
     @GeneratedValue
-    private long karakterId;
+    private long id;
     
     @ManyToOne
     @JoinColumn(name = "GebruikerId")
@@ -61,16 +61,16 @@ public class Karakter implements Serializable {
         setNaam(naam);
     }
     
-    public Karakter(long karakterId, Gebruiker gebruiker, String naam, 
+    public Karakter(long id, Gebruiker gebruiker, String naam, 
             Lokatie lokatie, List<Item> items){
         this(gebruiker, naam);
-        setId(karakterId);
+        setId(id);
         setLokatie(lokatie);
         setItems(items);
     }
     
-    public void setId(long karakterId){
-        this.karakterId = karakterId;
+    public void setId(long id){
+        this.id = id;
     }
     
     public void setGebruiker(Gebruiker gebruiker){
@@ -96,7 +96,7 @@ public class Karakter implements Serializable {
     }
     
     public long getId(){
-        return karakterId;
+        return id;
     }
     
     public Gebruiker getGebruiker(){
@@ -141,8 +141,8 @@ public class Karakter implements Serializable {
     public boolean equals(Object obj){
         if(obj instanceof Karakter){
             Karakter k = (Karakter) obj;
-            if(this.karakterId != 0){
-                return this.karakterId == k.getId();
+            if(this.id != 0){
+                return this.id == k.getId();
             }
             else {
                 if(this.lokatie == null){
@@ -164,7 +164,7 @@ public class Karakter implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 73 * hash + (int) (this.karakterId ^ (this.karakterId >>> 32));
+        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
         hash = 73 * hash + Objects.hashCode(this.gebruiker);
         hash = 73 * hash + Objects.hashCode(this.lokatie);
         hash = 73 * hash + Objects.hashCode(this.items);

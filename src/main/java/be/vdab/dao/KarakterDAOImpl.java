@@ -10,7 +10,9 @@ import javax.persistence.TypedQuery;
 import be.vdab.entities.Gebruiker;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class KarakterDAOImpl implements KarakterDAO {
 
 	private EntityManager entityManager;
@@ -33,10 +35,7 @@ public class KarakterDAOImpl implements KarakterDAO {
 
 	@Override
 	public Karakter read(long id) {
-		TypedQuery<Karakter> query = entityManager.createNamedQuery(
-				"findKarakterById", Karakter.class);
-		query.setParameter("id", id);
-		return query.getSingleResult();
+		return entityManager.find(Karakter.class, id);
 	}
 
 	@Override
