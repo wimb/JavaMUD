@@ -17,7 +17,7 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/JSP/menu.jsp" />
-	<h1>Lokatie ${lokatie.id}</h1>
+	<h1>Lokatie ${lokatie.lokatieId}</h1>
 	<div id="lokatieBescrijving">${lokatie.beschrijving}</div>
 </body>
 </html>

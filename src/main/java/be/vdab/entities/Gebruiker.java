@@ -27,7 +27,7 @@ import be.vdab.util.Paswoord;
 import be.vdab.valueobjects.EmailAdres;
 
 @Entity
-@Table(name = "gebruikers")
+@Table(name = "gebruiker")
 public class Gebruiker implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class Gebruiker implements Serializable {
 	private String voornaam;
 	@NotNull
 	@Size(min = 1, max = 50, message = "{Size.tekst}")
-	private String familienaam;
+	private String naam;
 	@NotNull
 	@Size(min = 1, max = 50, message = "{Size.tekst}")
 	private String paswoord;
@@ -67,12 +67,12 @@ public class Gebruiker implements Serializable {
 		this.voornaam = voornaam;
 	}
 
-	public String getFamilienaam() {
-		return familienaam;
+	public String getNaam() {
+		return naam;
 	}
 
-	public void setFamilienaam(String familienaam) {
-		this.familienaam = familienaam;
+	public void setNaam(String naam) {
+		this.naam = naam;
 	}
 
 	public String getPaswoord() {
@@ -92,23 +92,23 @@ public class Gebruiker implements Serializable {
 
 	}
 
-	public Gebruiker(String voornaam, String familienaam, String emailAdres,
+	public Gebruiker(String voornaam, String naam, String emailAdres,
 			String paswoord) {
 		this.setVoornaam(voornaam);
-		this.setFamilienaam(familienaam);
+		this.setNaam(naam);
 		this.setEmailAdres(emailAdres);
 		this.setPaswoord(paswoord);
 	}
 
-	public Gebruiker(String voornaam, String familienaam, String paswoord) {
+	public Gebruiker(String voornaam, String naam, String paswoord) {
 		this.setVoornaam(voornaam);
-		this.setFamilienaam(familienaam);
+		this.setNaam(naam);
 		this.setPaswoord(paswoord);
 	}
 
 	public Gebruiker(Gebruiker gebruiker) {
 		this.voornaam = gebruiker.getVoornaam();
-		this.familienaam = gebruiker.getFamilienaam();
+		this.naam = gebruiker.getNaam();
 		this.paswoord = gebruiker.getPaswoord();
 		this.emailAdres = gebruiker.getEmailAdres();
 	}
