@@ -32,7 +32,7 @@ public class Lokatie implements Serializable {
     
     @Id
     @GeneratedValue
-    private long lokatieId;
+    private long id;
     
     @NotNull
     @Size(min = 1, max = 140, message = "{Size.tekst}")
@@ -68,14 +68,14 @@ public class Lokatie implements Serializable {
         setKarakters(karakters);
     }
     
-    public Lokatie(long lokatieId, String beschrijving, List<Item> items, 
+    public Lokatie(long id, String beschrijving, List<Item> items, 
             List<Karakter> karakters){
         this(beschrijving, items, karakters);
-        setId(lokatieId);
+        setId(id);
     }
     
-    public void setId(long lokatieId){
-        this.lokatieId = lokatieId;
+    public void setId(long id){
+        this.id = id;
     }
     
     public void setBeschrijving(String beschrijving){
@@ -95,7 +95,7 @@ public class Lokatie implements Serializable {
     }
     
     public long getId(){
-        return lokatieId;
+        return id;
     }
     
     public String getBeschrijving(){
@@ -184,8 +184,8 @@ public class Lokatie implements Serializable {
     public boolean equals(Object o){
         if(o instanceof Lokatie){
             Lokatie lok = (Lokatie) o;
-            if(this.lokatieId > 0){
-                return this.lokatieId == lok.getId();
+            if(this.id > 0){
+                return this.id == lok.getId();
             }
             else {
                 return this.beschrijving.equals(lok.getBeschrijving()) && 
@@ -198,8 +198,8 @@ public class Lokatie implements Serializable {
     
     @Override
     public int hashCode(){
-        if(lokatieId > 0){
-            return (int) lokatieId;
+        if(id > 0){
+            return (int) id;
         }
         else {
             String hashString = beschrijving + items.toString() + karakters.toString();

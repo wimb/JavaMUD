@@ -35,10 +35,7 @@ public class KarakterDAOImpl implements KarakterDAO {
 
 	@Override
 	public Karakter read(long id) {
-		TypedQuery<Karakter> query = entityManager.createNamedQuery(
-				"findKarakterById", Karakter.class);
-		query.setParameter("id", id);
-		return query.getSingleResult();
+		return entityManager.find(Karakter.class, id);
 	}
 
 	@Override

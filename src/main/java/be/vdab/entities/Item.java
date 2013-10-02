@@ -27,7 +27,7 @@ public class Item implements Serializable {
     
     @Id
     @GeneratedValue
-    private long itemId;
+    private long id;
     
     /*
      *  Dit wordt dus een ManyToOne naar IHeeftItems (wat een Karakter of een Locatie kan zijn
@@ -64,14 +64,14 @@ public class Item implements Serializable {
      *     Item( ..., Lokatie k)
      *  Nu reken je erop dat de gebruiker van je klasse 1 van beide leeg laat, maar je dwingt dit neit af!
      */
-    public Item(long itemId, Karakter eigenaar, Lokatie positie){
-        setId(itemId);
+    public Item(long id, Karakter eigenaar, Lokatie positie){
+        setId(id);
         setEigenaar(eigenaar);
         setPositie(positie);
     }
     
-    public void setId(long itemId){
-        this.itemId = itemId;
+    public void setId(long id){
+        this.id = id;
     }
     
     public void setEigenaar(Karakter eigenaar){
@@ -97,7 +97,7 @@ public class Item implements Serializable {
     }
     
     public long getId(){
-        return itemId;
+        return id;
     }
     
     public Karakter getEigenaar(){
@@ -112,8 +112,8 @@ public class Item implements Serializable {
     public boolean equals(Object obj){
         if(obj instanceof Item){
             Item item = (Item) obj;
-            if(this.itemId != 0){
-                return item.getId() == this.itemId;
+            if(this.id != 0){
+                return item.getId() == this.id;
             }
             else {
                 if(this.eigenaar != null){
@@ -133,7 +133,7 @@ public class Item implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 83 * hash + (int) (this.itemId ^ (this.itemId >>> 32));
+        hash = 83 * hash + (int) (this.id ^ (this.id >>> 32));
         hash = 83 * hash + Objects.hashCode(this.eigenaar);
         hash = 83 * hash + Objects.hashCode(this.positie);
         return hash;

@@ -42,10 +42,7 @@ public class GebruikerDAOImpl implements GebruikerDAO {
 
 	@Override
 	public Gebruiker read(long id) {
-		TypedQuery<Gebruiker> query = entityManager.createNamedQuery(
-				"findGebruikerById", Gebruiker.class);
-		query.setParameter("id", id);
-		return query.getSingleResult();
+		return entityManager.find(Gebruiker.class, id);
 	}
 
 	@Override
