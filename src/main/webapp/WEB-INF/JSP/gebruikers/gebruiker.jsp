@@ -37,14 +37,14 @@ form {
 				<dd>${gebruiker.paswoord}</dd>
 			</dl>
 			<!-- DELETE -->
-			<spring:url value="/gebruikers/{id}" var="verwijderURL">
+			<spring:url value="/gebruiker/{id}/verwijderen" var="verwijderURL">
 				<spring:param name="id" value="${gebruiker.id}" />
 			</spring:url>
 			<form:form action="${verwijderURL}" method="delete">
 				<input type="submit" value="Verwijderen" />
 			</form:form>
 			<!-- UPDATE -->
-			<spring:url value="/gebruikers/{id}/wijzigen" var="wijzigURL">
+			<spring:url value="/gebruiker/{id}/wijzigen" var="wijzigURL">
 				<spring:param name="id" value="${gebruiker.id}" />
 			</spring:url>
 			<form action="${wijzigURL}" method="get">

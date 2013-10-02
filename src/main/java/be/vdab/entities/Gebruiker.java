@@ -126,6 +126,32 @@ public class Gebruiker implements Serializable {
 		this.emailAdres = new EmailAdres(emailAdres);
 	}
 
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result
+//				+ ((emailAdres == null) ? 0 : emailAdres.hashCode());
+//		return result;
+//	}
+
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Gebruiker other = (Gebruiker) obj;
+//		if (emailAdres == null) {
+//			if (other.emailAdres != null)
+//				return false;
+//		} else if (!emailAdres.equals(other.emailAdres))
+//			return false;
+//		return true;
+//	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Gebruiker)) {
@@ -139,4 +165,6 @@ public class Gebruiker implements Serializable {
 		return emailAdres.hashCode();
 	}
 
+	
+	
 }
