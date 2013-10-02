@@ -75,6 +75,7 @@ public class Karakter implements Serializable {
     
     public void setGebruiker(Gebruiker gebruiker){
         this.gebruiker = gebruiker;
+        gebruiker.addKarakter(this);
     }
     
     public void setNaam(String naam){

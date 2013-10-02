@@ -8,6 +8,7 @@ package be.vdab.web;
 import be.vdab.entities.Gebruiker;
 import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
+import be.vdab.factories.TestObjectsFactory;
 import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -23,24 +24,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/hoofdmenu") // Dit wordt "/" wanneer alles klaar is
 public class HoofdMenuController {
-    public static final Gebruiker TEST_GEBRUIKER = new Gebruiker("Jonathan", 
-            "Test", "johnny.test@nick.com", "J0n@than");
-    public static final Karakter TEST_KARAKTER = new Karakter(1, TEST_GEBRUIKER, 
-            "Testaenar", LokatieController.TEST_LOKATIE, new ArrayList<Item>());
     
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView hoofdmenu(HttpSession session){
         ModelAndView mav = new ModelAndView("hoofdmenu");
         
         Gebruiker gebruiker = (Gebruiker) session.getAttribute("gebruiker");
-        if(gebruiker != null){
-            mav.addObject("gebruiker", gebruiker);
+        if(gebruiker == null){
+            gebruiker = TestObjectsFactory.getGebruiker(true);
+            session.setAttribute("gebruiker", gebruiker);
         }
-        else {
-            LokatieController.TEST_LOKATIE.addKarakter(TEST_KARAKTER);
-            TEST_GEBRUIKER.addKarakter(TEST_KARAKTER);
-            mav.addObject("gebruiker", TEST_GEBRUIKER);
-        }
+        
+        mav.addObject("gebruiker", gebruiker);
         
         return mav;
     }

@@ -9,6 +9,7 @@ import be.vdab.entities.Gebruiker;
 import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
+import be.vdab.factories.TestObjectsFactory;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class LokatieController {
     public ModelAndView findKarakterLokatie(@RequestParam long karakterId){
         ModelAndView mav = new ModelAndView("lokatie");
 //        Karakter karakter = karakterService.read(karakterId);
-        Karakter karakter = HoofdMenuController.TEST_KARAKTER;
+        Karakter karakter = TestObjectsFactory.getKarakter();
         if(karakter.getLokatie() == null){
             karakter.setLokatie(lokatieService.read(1));
         }
