@@ -28,12 +28,6 @@ public class HoofdMenuController {
         this.gebruikerService = gebruikerService;
     }
     
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView hoofdmenu(){
-        ModelAndView mav = new ModelAndView("hoofdmenu");
-        return mav;
-    }
-    
     @RequestMapping(value = "aangemeld", method = RequestMethod.GET)
     public ModelAndView aangemeld(@RequestParam long gebruikerId){
         ModelAndView mav = new ModelAndView("hoofdmenu");
