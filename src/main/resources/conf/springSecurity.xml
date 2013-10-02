@@ -9,11 +9,19 @@
 	<sec:http pattern="/styles/*" security="none" />
 	<sec:http pattern="/images/*" security="none" />
 	<sec:http pattern="/scripts/*" security="none" />
-	<sec:http use-expressions="true">
+	<sec:http use-expressions="true" auto-config="true">
 		<sec:logout />
 		<sec:form-login login-page="/aanmelden"
-			default-target-url="/" authentication-failure-url="/aanmelden?fout=true" />
+			default-target-url="/"
+                        <!--authentication-success-handler-ref="authenticationSuccesHandler"-->
+                                authentication-failure-url="/aanmelden?fout=true" />
 	</sec:http>
+        
+        <!--bean id="authenticationSuccessHandler" 
+              class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+            <After login, stay on the same page>
+            <property name="useReferer" value="false"/>
+        </bean-->
 
 	<sec:authentication-manager>
 		<sec:authentication-provider>
