@@ -10,7 +10,9 @@ import javax.persistence.TypedQuery;
 import be.vdab.entities.Gebruiker;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class KarakterDAOImpl implements KarakterDAO {
 
 	private EntityManager entityManager;
