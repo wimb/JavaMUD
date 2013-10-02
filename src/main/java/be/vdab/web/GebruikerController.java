@@ -41,7 +41,7 @@ public class GebruikerController {
 		if (!bindingResult.hasErrors()) {
 			try {
 				gebruikerService.create(gebruiker);
-				return "redirect:/gebruikers/gebruiker";
+				return "redirect:/hoofdmenu";
 			} catch (EmailAdresAlInGebruikException e) {
 				bindingResult.rejectValue("emailAdres",
 						"EmailAdresAlInGebruikException");

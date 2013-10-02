@@ -135,7 +135,7 @@ public class Gebruiker implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Gebruiker)) {
+		if (!(obj instanceof Gebruiker) || emailAdres == null) {
 			return false;
 		}
 		return ((Gebruiker) obj).emailAdres.equals(this.emailAdres);
@@ -143,6 +143,9 @@ public class Gebruiker implements Serializable {
 
 	@Override
 	public int hashCode() {
+            if(emailAdres == null){
+                return 0;
+            }
 		return emailAdres.hashCode();
 	}
 

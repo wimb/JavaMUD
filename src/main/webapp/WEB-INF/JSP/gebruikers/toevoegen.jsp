@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>Gebruiker toevoegen</h1>
-	<c:url value="/gebruikers" var="url" />
+	<c:url value="/gebruiker" var="url" />
 	<form:form action="${url}" method="post" commandName="gebruiker">
 		<jsp:include page="gebruikerformfields.jsp" />
 		<input type="submit" value="Toevoegen" />
