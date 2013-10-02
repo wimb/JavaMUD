@@ -46,7 +46,7 @@ public class Gebruiker implements Serializable {
 	private String paswoord;
 
 	@OneToMany(mappedBy = "gebruiker")
-	private Set<Karakter> karakters = new LinkedHashSet<>();
+	private Set<Karakter> karakters;
 
 	public Set<Karakter> getKarakter() {
 		return Collections.unmodifiableSet(karakters);
@@ -90,28 +90,31 @@ public class Gebruiker implements Serializable {
 	}
 
 	public Gebruiker() {
-
+            karakters = new LinkedHashSet<>();
 	}
 
 	public Gebruiker(String voornaam, String familienaam, String emailAdres,
 			String paswoord) {
-		this.setVoornaam(voornaam);
-		this.setFamilienaam(familienaam);
+                this(voornaam, familienaam, paswoord);
 		this.setEmailAdres(emailAdres);
-		this.setPaswoord(paswoord);
 	}
 
 	public Gebruiker(String voornaam, String familienaam, String paswoord) {
+                this();
 		this.setVoornaam(voornaam);
 		this.setFamilienaam(familienaam);
 		this.setPaswoord(paswoord);
 	}
 
 	public Gebruiker(Gebruiker gebruiker) {
+                this();
 		this.voornaam = gebruiker.getVoornaam();
 		this.familienaam = gebruiker.getFamilienaam();
 		this.paswoord = gebruiker.getPaswoord();
 		this.emailAdres = gebruiker.getEmailAdres();
+                for(Karakter k : gebruiker.karakters){
+                    this.addKarakter(k);
+                }
 	}
 
 	@NotNull
