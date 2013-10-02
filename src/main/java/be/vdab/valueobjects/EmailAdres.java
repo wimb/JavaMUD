@@ -11,18 +11,22 @@ public class EmailAdres implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final String REG_EXPR = "^.+@.+\\.[a-z]+$";
 	@Column(name = "EmailAdres")
-	private final String emailAdres;
+	private String emailAdres;
 
 	public EmailAdres(String emailAdres){
-		if (!emailAdres.matches(REG_EXPR)) {
-			throw new VerkeerdeEmailAdresException();
-		}
-		this.emailAdres = emailAdres;
+            setEmailAdres(emailAdres);
 	}
 
 	protected EmailAdres() {
 		this.emailAdres = null;
 	}
+        
+        protected void setEmailAdres(String emailAdres){
+		if (!emailAdres.matches(REG_EXPR)) {
+			throw new VerkeerdeEmailAdresException();
+		}
+		this.emailAdres = emailAdres;
+        }
 
 	public String getEmailAdres() {
 		return emailAdres;

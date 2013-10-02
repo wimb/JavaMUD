@@ -18,6 +18,8 @@ import be.vdab.exceptions.GebruikerHeeftNogKaraktersException;
 import be.vdab.exceptions.VerkeerdeEmailAdresException;
 import be.vdab.services.GebruikerService;
 import be.vdab.valueobjects.EmailAdres;
+import org.springframework.validation.DataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 @Controller
 @RequestMapping("/gebruiker")
@@ -118,5 +120,16 @@ public class GebruikerController {
 		}
 		return modelAndView;
 	}
+        
+        @InitBinder("gebruiker")
+        public void initBinderGebruiker(DataBinder dataBinder){
+            Gebruiker gebruiker = (Gebruiker) dataBinder.getTarget();
+            if(gebruiker.getEmailAdres() == null){
+                gebruiker.setEmailAdres(new EmailAdresForm());
+            }
+            else {
+                gebruiker.setEmailAdres(new EmailAdresForm(gebruiker.getEmailAdres()));
+            }
+        }
 
 }

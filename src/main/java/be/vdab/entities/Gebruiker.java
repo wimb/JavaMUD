@@ -93,7 +93,7 @@ public class Gebruiker implements Serializable {
             karakters = new LinkedHashSet<>();
 	}
 
-	public Gebruiker(String voornaam, String familienaam, String emailAdres,
+	public Gebruiker(String voornaam, String familienaam, EmailAdres emailAdres,
 			String paswoord) {
                 this();
 		this.setVoornaam(voornaam);
@@ -129,16 +129,21 @@ public class Gebruiker implements Serializable {
 		return emailAdres;
 	}
 
-	public void setEmailAdres(String emailAdres) {
-		this.emailAdres = new EmailAdres(emailAdres);
+	public void setEmailAdres(EmailAdres emailAdres) {
+		this.emailAdres = emailAdres;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Gebruiker) || emailAdres == null) {
+		if (!(obj instanceof Gebruiker)) {
 			return false;
 		}
-		return ((Gebruiker) obj).emailAdres.equals(this.emailAdres);
+                else {
+                    if(emailAdres == null){
+                        return ((Gebruiker) obj).emailAdres == null;
+                    }
+                    return ((Gebruiker) obj).emailAdres.equals(this.emailAdres);
+                }
 	}
 
 	@Override
