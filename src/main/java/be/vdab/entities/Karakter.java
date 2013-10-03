@@ -146,17 +146,37 @@ public class Karakter implements Serializable {
                 return this.id == k.getId();
             }
             else {
+                boolean equal = true;
+                
                 if(this.lokatie == null){
-                    return this.gebruiker.equals(k.getGebruiker()) &&
-                            this.items.equals(k.getItems()) && 
-                            this.naam.equals(k.getNaam());
+                    equal = k.getLokatie() == null;
                 }
                 else {
-                    return this.gebruiker.equals(k.getGebruiker()) &&
-                            this.items.equals(k.getItems()) && 
-                            this.naam.equals(k.getNaam()) &&
-                            this.lokatie.equals(k.getLokatie());
+                    equal = this.lokatie.equals(k.getLokatie());
                 }
+                
+                if(this.gebruiker == null && equal){
+                    equal = k.getGebruiker() == null;
+                }
+                else if(equal){
+                    equal = this.gebruiker.equals(k.getGebruiker());
+                }
+                
+                if(this.naam == null && equal){
+                    equal = k.getNaam() == null;
+                }
+                else if(equal){
+                    equal = this.naam.equalsIgnoreCase(k.getNaam());
+                }
+                
+                if(this.items == null && equal){
+                    equal = k.getItems() == null;
+                }
+                else {
+                    equal = this.items.equals(k.getItems());
+                }
+                
+                return equal;
             }
         }
         return false;
