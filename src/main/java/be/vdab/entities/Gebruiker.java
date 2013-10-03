@@ -26,6 +26,7 @@ import javax.validation.constraints.Size;
 import be.vdab.util.Paswoord;
 import be.vdab.valueobjects.EmailAdres;
 import java.util.LinkedHashSet;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name = "gebruiker")
@@ -45,7 +46,7 @@ public class Gebruiker implements Serializable {
 	@Size(min = 1, max = 50, message = "{Size.tekst}")
 	private String paswoord;
 
-	@OneToMany(mappedBy = "gebruiker")
+	@OneToMany(mappedBy = "gebruiker", fetch = FetchType.EAGER)
 	private Set<Karakter> karakters;
 
 	public Set<Karakter> getKarakter() {

@@ -9,8 +9,10 @@ import be.vdab.dao.KarakterDAO;
 import be.vdab.entities.Gebruiker;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 public class KarakterServiceImpl implements KarakterService {
 	private final KarakterDAO karakterDAO;
 	
@@ -20,6 +22,7 @@ public class KarakterServiceImpl implements KarakterService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void create(Karakter karakter) {
 		karakterDAO.create(karakter);
 	}
@@ -30,11 +33,13 @@ public class KarakterServiceImpl implements KarakterService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void update(Karakter karakter) {
 		karakterDAO.update(karakter);
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void delete(long id) {
 		karakterDAO.delete(id);
 	}
