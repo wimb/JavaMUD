@@ -35,7 +35,7 @@ public class KarakterController {
             if(!bindingResult.hasErrors()){
                 try {
                     karakterService.create(karakter);
-                    return "redirect:/";
+                    return "redirect:/hoofdmenu";
                 }
                 catch(KarakterNaamAlInGebruikException knaige){
                     bindingResult.rejectValue("naam", "{KarakterNaamBestaatAlException}");
