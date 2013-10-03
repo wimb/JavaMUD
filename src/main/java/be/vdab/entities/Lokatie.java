@@ -7,7 +7,9 @@ package be.vdab.entities;
     
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -39,22 +41,22 @@ public class Lokatie implements Serializable {
     private String beschrijving;
     
     @OneToMany(mappedBy = "positie")
-    private List<Item> items;
+    private Set<Item> items;
     
     @OneToMany(mappedBy = "lokatie")
-    private List<Karakter> karakters;
+    private Set<Karakter> karakters;
     
     @ManyToMany
     @JoinTable(name = "lokatiebestemmingen", 
             joinColumns = @JoinColumn(name = "LokatieId"), 
             inverseJoinColumns = @JoinColumn(name = "BestemmingId"))
-    private List<Lokatie> bestemmingen;
+    private Set<Lokatie> bestemmingen;
     
     public Lokatie(){
         beschrijving = "";
-        items = new ArrayList<>();
-        karakters = new ArrayList<>();
-        bestemmingen = new ArrayList<>();
+        items = new LinkedHashSet<>();
+        karakters = new LinkedHashSet<>();
+        bestemmingen = new LinkedHashSet<>();
     }
     
     public Lokatie(String beschrijving){
@@ -62,14 +64,14 @@ public class Lokatie implements Serializable {
         setBeschrijving(beschrijving);
     }
     
-    public Lokatie(String beschrijving, List<Item> items, List<Karakter> karakters){
+    public Lokatie(String beschrijving, Set<Item> items, Set<Karakter> karakters){
         this(beschrijving);
         setItems(items);
         setKarakters(karakters);
     }
     
-    public Lokatie(long id, String beschrijving, List<Item> items, 
-            List<Karakter> karakters){
+    public Lokatie(long id, String beschrijving, Set<Item> items, 
+            Set<Karakter> karakters){
         this(beschrijving, items, karakters);
         setId(id);
     }
@@ -82,15 +84,15 @@ public class Lokatie implements Serializable {
         this.beschrijving = beschrijving;
     }
     
-    public void setItems(List<Item> items){
+    public void setItems(Set<Item> items){
         this.items = items;
     }
     
-    public void setKarakters(List<Karakter> karakters){
+    public void setKarakters(Set<Karakter> karakters){
         this.karakters = karakters;
     }
     
-    public void setBestemmingen(List<Lokatie> bestemmingen){
+    public void setBestemmingen(Set<Lokatie> bestemmingen){
         this.bestemmingen = bestemmingen;
     }
     
@@ -102,15 +104,15 @@ public class Lokatie implements Serializable {
         return beschrijving;
     }
     
-    public List<Item> getItems(){
+    public Set<Item> getItems(){
         return items;
     }
     
-    public List<Karakter> getKarakters(){
+    public Set<Karakter> getKarakters(){
         return karakters;
     }
     
-    public List<Lokatie> getBestemmingen(){
+    public Set<Lokatie> getBestemmingen(){
         return bestemmingen;
     }
     
@@ -188,9 +190,37 @@ public class Lokatie implements Serializable {
                 return this.id == lok.getId();
             }
             else {
-                return this.beschrijving.equals(lok.getBeschrijving()) && 
-                        this.items.equals(lok.getItems()) && 
-                        this.karakters.equals(lok.getKarakters());
+                boolean equals;
+                
+                if(this.beschrijving == null){
+                    equals = lok.getBeschrijving() == null;
+                }
+                else {
+                    equals = this.beschrijving.equalsIgnoreCase(lok.getBeschrijving());
+                }
+                
+                if(this.karakters == null && equals){
+                    equals = lok.getKarakters() == null;
+                }
+                else if(equals){
+                    equals = this.karakters.equals(lok.getKarakters());
+                }
+                
+                if(this.items == null && equals){
+                    equals = lok.getItems() == null;
+                }
+                else if(equals) {
+                    equals = this.items.equals(lok.getItems());
+                }
+                
+                if(this.bestemmingen == null && equals){
+                    equals = lok.getBestemmingen() == null;
+                }
+                else if(equals){
+                    equals = this.bestemmingen.equals(lok.getBestemmingen());
+                }
+                
+                return equals;
             }
         }
         return false;

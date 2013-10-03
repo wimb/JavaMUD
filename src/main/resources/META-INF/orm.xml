@@ -12,18 +12,24 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
 	</named-query>
 	
         <!-- findKaraktersByGebruiker meervoud Karakters -->
-	<named-query name="findKarakterByGebruiker">
+	<named-query name="findKaraktersByGebruiker">
 		<query>
-			select k from Karakter k
+			select k from Karakter k where k.gebruiker = :gebruiker
 		</query>
 	</named-query>
 	
          <!-- findKaraktersByLocatie meervoud Karakters -->
-	<named-query name="findKarakterByLokatie">
+	<named-query name="findKaraktersByLokatie">
 		<query>
-			select k from Karakter k
+			select k from Karakter k where k.lokatie = :lokatie
 		</query>
 	</named-query>
+        
+        <named-query name="findAllLokaties">
+            <query>
+                select l from Lokatie l order by l.id
+            </query>
+        </named-query>
         
         <!-- Waartoe dient dit? -->                        
         <named-query name="findLokatiesByBestemming">

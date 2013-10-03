@@ -7,8 +7,10 @@ package be.vdab.entities;
     
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -42,7 +44,7 @@ public class Karakter implements Serializable {
     private Lokatie lokatie;
     
     @OneToMany(mappedBy = "eigenaar")
-    private List<Item> items;
+    private Set<Item> items;
     
     @NotNull
     @Size(min = 1, max = 50, message = "{Size.tekst}")
@@ -52,7 +54,7 @@ public class Karakter implements Serializable {
         gebruiker = null;
         naam = "";
         lokatie = null;
-        items = new ArrayList<>();
+        items = new LinkedHashSet<>();
     }
     
     public Karakter(Gebruiker gebruiker, String naam){
@@ -62,7 +64,7 @@ public class Karakter implements Serializable {
     }
     
     public Karakter(long id, Gebruiker gebruiker, String naam, 
-            Lokatie lokatie, List<Item> items){
+            Lokatie lokatie, Set<Item> items){
         this(gebruiker, naam);
         setId(id);
         setLokatie(lokatie);
@@ -92,7 +94,7 @@ public class Karakter implements Serializable {
         }
     }
     
-    public void setItems(List<Item> items){
+    public void setItems(Set<Item> items){
         this.items = items;
     }
     
@@ -112,7 +114,7 @@ public class Karakter implements Serializable {
         return lokatie;
     }
     
-    public List<Item> getItems(){
+    public Set<Item> getItems(){
         return items;
     }
     

@@ -8,6 +8,7 @@ package be.vdab.services;
 import be.vdab.dao.LokatieDAO;
 import be.vdab.entities.Lokatie;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +48,7 @@ public class LokatieServiceImpl implements LokatieService {
     @Transactional(readOnly = false)
     public void delete(long id){
         Lokatie lokatie = read(id);
-        List<Lokatie> lokaties = lokatie.getBestemmingen();
+        Set<Lokatie> lokaties = lokatie.getBestemmingen();
         for(Lokatie bestemming : lokaties){
             bestemming.removeBestemming(lokatie);
             update(bestemming);
@@ -55,6 +56,15 @@ public class LokatieServiceImpl implements LokatieService {
         lokatieDAO.delete(id);
     }
     
+    @Override
+    public List<Lokatie> findAllLokaties(){
+        return lokatieDAO.findAllLokaties();
+    }
+    
+    @Override
+    public Lokatie findEenLokatie(){
+        return lokatieDAO.findEenLokatie();
+    }
     
     /* Waartoe dient dit? */
     @Override

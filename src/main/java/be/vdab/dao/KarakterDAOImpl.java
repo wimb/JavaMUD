@@ -63,8 +63,8 @@ public class KarakterDAOImpl implements KarakterDAO {
 	@Override
 	public List<Karakter> findByGebruiker(Gebruiker gebruiker) {
 		TypedQuery<Karakter> query = entityManager.createNamedQuery(
-				"findKarakterByGebruiker", Karakter.class);
-		query.setParameter("id", gebruiker.getId());
+				"findKaraktersByGebruiker", Karakter.class);
+		query.setParameter("gebruiker", gebruiker);
 		try {
 			return query.getResultList();
 		} catch (NoResultException e) {
@@ -75,8 +75,8 @@ public class KarakterDAOImpl implements KarakterDAO {
 	@Override
 	public List<Karakter> findByLokatie(Lokatie lok) {
 		TypedQuery<Karakter> query = entityManager.createNamedQuery(
-				"findKarakterByLokatie", Karakter.class);
-		query.setParameter("lokatieId", lok.getId());
+				"findKaraktersByLokatie", Karakter.class);
+		query.setParameter("lokatieId", lok);
 		try {
 			return query.getResultList();
 		} catch (NoResultException e) {
