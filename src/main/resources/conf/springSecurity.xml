@@ -12,7 +12,7 @@
 	<sec:http use-expressions="true" auto-config="true">
 		<sec:logout logout-url="/afmelden" />
 		<sec:form-login login-page="/aanmelden"
-			default-target-url="/" 
+			default-target-url="/hoofdmenu" 
                         authentication-failure-url="/aanmelden?fout=true" />
 	</sec:http>
 
