@@ -53,11 +53,11 @@ public class KarakterController {
                 return new ModelAndView("redirect:/hoofdmenu");
             }
             
-            k.setGebruiker(g);
-            
             if(g.getKarakter().size() >= 1){
                 return new ModelAndView("redirect:/hoofdmenu");
             }
+            
+            k.setGebruiker(g);
             
             return new ModelAndView("karakters/karaktergeneratie", 
                     "karakter", k);
