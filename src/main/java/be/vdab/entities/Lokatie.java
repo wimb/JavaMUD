@@ -6,11 +6,10 @@
 package be.vdab.entities;
     
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -40,10 +39,10 @@ public class Lokatie implements Serializable {
     @Size(min = 1, max = 140, message = "{Size.tekst}")
     private String beschrijving;
     
-    @OneToMany(mappedBy = "positie")
+    @OneToMany(mappedBy = "positie", fetch = FetchType.EAGER)
     private Set<Item> items;
     
-    @OneToMany(mappedBy = "lokatie")
+    @OneToMany(mappedBy = "lokatie", fetch = FetchType.EAGER)
     private Set<Karakter> karakters;
     
     @ManyToMany

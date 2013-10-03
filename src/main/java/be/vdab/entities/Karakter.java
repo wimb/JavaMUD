@@ -6,9 +6,7 @@
 package be.vdab.entities;
     
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -89,7 +87,7 @@ public class Karakter implements Serializable {
             this.lokatie.removeKarakter(this);
         }
         this.lokatie = lokatie;
-        if(lokatie != null & !lokatie.hasKarakter(this)){
+        if(lokatie != null && !lokatie.hasKarakter(this)){
             lokatie.addKarakter(this);
         }
     }
