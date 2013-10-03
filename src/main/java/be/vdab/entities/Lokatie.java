@@ -28,7 +28,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "lokatie")
-public class Lokatie implements Serializable {
+public class Lokatie extends HeeftItems {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -49,6 +49,7 @@ public class Lokatie implements Serializable {
     private Set<Lokatie> bestemmingen;
     
     public Lokatie(){
+        super();
         beschrijving = "";
         karakters = new LinkedHashSet<>();
         bestemmingen = new LinkedHashSet<>();
@@ -64,11 +65,14 @@ public class Lokatie implements Serializable {
         setKarakters(karakters);
     }
     
-    public Lokatie(long id, String beschrijving, Set<Karakter> karakters){
-        this(beschrijving, karakters);
+    public Lokatie(long id, String beschrijving, Set<Karakter> karakters, Set<Item> items){
+        super(items);
         setId(id);
+        setBeschrijving(beschrijving);
+        setKarakters(karakters);
     }
     
+    @Override
     public void setId(long id){
         this.id = id;
     }
@@ -85,6 +89,7 @@ public class Lokatie implements Serializable {
         this.bestemmingen = bestemmingen;
     }
     
+    @Override
     public long getId(){
         return id;
     }

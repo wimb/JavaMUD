@@ -7,6 +7,7 @@ package be.vdab.entities;
     
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "karakter")
-public class Karakter implements Serializable {
+public class Karakter extends HeeftItems {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -43,6 +44,7 @@ public class Karakter implements Serializable {
     private String naam;
     
     public Karakter(){
+        super();
         gebruiker = null;
         naam = "";
         lokatie = null;
@@ -55,12 +57,15 @@ public class Karakter implements Serializable {
     }
     
     public Karakter(long id, Gebruiker gebruiker, String naam, 
-            Lokatie lokatie){
-        this(gebruiker, naam);
+            Lokatie lokatie, Set<Item> items){
+        super(items);
         setId(id);
+        setGebruiker(gebruiker);
+        setNaam(naam);
         setLokatie(lokatie);
     }
     
+    @Override
     public void setId(long id){
         this.id = id;
     }
@@ -84,6 +89,7 @@ public class Karakter implements Serializable {
         }
     }
     
+    @Override
     public long getId(){
         return id;
     }
