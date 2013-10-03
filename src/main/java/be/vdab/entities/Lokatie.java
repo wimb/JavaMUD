@@ -5,13 +5,10 @@
     
 package be.vdab.entities;
     
-import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -30,10 +27,6 @@ import javax.validation.constraints.Size;
 @Table(name = "lokatie")
 public class Lokatie extends HeeftItems {
     private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue
-    private long id;
     
     @NotNull
     @Size(min = 1, max = 140, message = "{Size.tekst}")
@@ -72,11 +65,6 @@ public class Lokatie extends HeeftItems {
         setKarakters(karakters);
     }
     
-    @Override
-    public void setId(long id){
-        this.id = id;
-    }
-    
     public void setBeschrijving(String beschrijving){
         this.beschrijving = beschrijving;
     }
@@ -87,11 +75,6 @@ public class Lokatie extends HeeftItems {
     
     public void setBestemmingen(Set<Lokatie> bestemmingen){
         this.bestemmingen = bestemmingen;
-    }
-    
-    @Override
-    public long getId(){
-        return id;
     }
     
     public String getBeschrijving(){
@@ -154,8 +137,8 @@ public class Lokatie extends HeeftItems {
     public boolean equals(Object o){
         if(o instanceof Lokatie){
             Lokatie lok = (Lokatie) o;
-            if(this.id > 0){
-                return this.id == lok.getId();
+            if(this.getId() > 0){
+                return this.getId() == lok.getId();
             }
             else {
                 boolean equals;
@@ -189,8 +172,8 @@ public class Lokatie extends HeeftItems {
     
     @Override
     public int hashCode(){
-        if(id > 0){
-            return (int) id;
+        if(getId() > 0){
+            return (int) getId();
         }
         else {
             String hashString = beschrijving +  karakters.toString();

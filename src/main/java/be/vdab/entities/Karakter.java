@@ -5,12 +5,9 @@
     
 package be.vdab.entities;
     
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -26,10 +23,6 @@ import javax.validation.constraints.Size;
 @Table(name = "karakter")
 public class Karakter extends HeeftItems {
     private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue
-    private long id;
     
     @ManyToOne
     @JoinColumn(name = "GebruikerId")
@@ -65,11 +58,6 @@ public class Karakter extends HeeftItems {
         setLokatie(lokatie);
     }
     
-    @Override
-    public void setId(long id){
-        this.id = id;
-    }
-    
     public void setGebruiker(Gebruiker gebruiker){
         this.gebruiker = gebruiker;
         gebruiker.addKarakter(this);
@@ -89,11 +77,6 @@ public class Karakter extends HeeftItems {
         }
     }
     
-    @Override
-    public long getId(){
-        return id;
-    }
-    
     public Gebruiker getGebruiker(){
         return gebruiker;
     }
@@ -110,8 +93,8 @@ public class Karakter extends HeeftItems {
     public boolean equals(Object obj){
         if(obj instanceof Karakter){
             Karakter k = (Karakter) obj;
-            if(this.id != 0){
-                return this.id == k.getId();
+            if(this.getId() != 0){
+                return this.getId() == k.getId();
             }
             else {
                 boolean equal;
@@ -146,7 +129,7 @@ public class Karakter extends HeeftItems {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 73 * hash + (int) (this.getId() ^ (this.getId() >>> 32));
         hash = 73 * hash + Objects.hashCode(this.gebruiker);
         hash = 73 * hash + Objects.hashCode(this.lokatie);
         hash = 73 * hash + Objects.hashCode(this.naam);
