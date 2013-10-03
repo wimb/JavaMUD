@@ -40,14 +40,7 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
                 
         <named-query name="findItemsByEigenaar">
             <query>
-                select i from Item i where i.eigenaar = :eigenaar
-            </query>
-        </named-query>
-        
-        <!-- findItemsByLokatie? -->
-        <named-query name="findItemsByPositie">
-            <query>
-                select i from Item i where i.positie = :positie
+                select distinct i from Item i join i.eigenaars e where e = :eigenaar
             </query>
         </named-query>
 
