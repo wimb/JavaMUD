@@ -67,7 +67,12 @@ INSERT INTO `heeftitems` (`Id`) VALUES
  (4),
  (5),
  (6),
- (7);
+ (7),
+ (10),
+ (11),
+ (12),
+ (13),
+ (14);
 /*!40000 ALTER TABLE `heeftitems` ENABLE KEYS */;
 
 
@@ -80,7 +85,7 @@ CREATE TABLE `iseigenaarvan` (
   `eigenaarID` int(10) unsigned NOT NULL,
   `itemID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`eigenaarID`,`itemID`),
-  CONSTRAINT `EigenaarHeeftItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `heeftitems` (`Id`),
+  CONSTRAINT `EigenaarHeeftItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `EigenaarItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `item` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -144,7 +149,7 @@ CREATE TABLE `karakter` (
   CONSTRAINT `KarakterGebruikerFK` FOREIGN KEY (`gebruikerId`) REFERENCES `gebruiker` (`Id`),
   CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`),
   CONSTRAINT `KarakterItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `karakter`
@@ -152,7 +157,8 @@ CREATE TABLE `karakter` (
 
 /*!40000 ALTER TABLE `karakter` DISABLE KEYS */;
 INSERT INTO `karakter` (`Id`,`gebruikerId`,`lokatieId`,`naam`) VALUES 
- (7,1,1,'Testaenar');
+ (7,1,1,'Testaenar'),
+ (12,1,1,'Test');
 /*!40000 ALTER TABLE `karakter` ENABLE KEYS */;
 
 
@@ -166,7 +172,7 @@ CREATE TABLE `lokatie` (
   `Beschrijving` varchar(140) NOT NULL DEFAULT 'geen omschrijving',
   PRIMARY KEY (`Id`),
   CONSTRAINT `LokatieItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `lokatie`
@@ -179,7 +185,8 @@ INSERT INTO `lokatie` (`Id`,`Beschrijving`) VALUES
  (3,'Straat'),
  (4,'Keuken'),
  (5,'Slaapkamer'),
- (6,'Tuin');
+ (6,'Tuin'),
+ (14,'Zolder');
 /*!40000 ALTER TABLE `lokatie` ENABLE KEYS */;
 
 
@@ -218,6 +225,45 @@ INSERT INTO `lokatiebestemmingen` (`LokatieId`,`BestemmingId`,`Omschrijving`) VA
  (6,4,'Naar de keuken');
 /*!40000 ALTER TABLE `lokatiebestemmingen` ENABLE KEYS */;
 
+
+--
+-- Definition of procedure `KarakterToevoegen`
+--
+
+DROP PROCEDURE IF EXISTS `KarakterToevoegen`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `KarakterToevoegen`(IN gebruikerId INT(10), IN naam VARCHAR(50))
+BEGIN
+  INSERT INTO heeftitems VALUES ((SELECT MAX(b.id) FROM heeftitems b) + 1);
+
+  INSERT INTO karakter VALUES ((SELECT MAX(id) FROM heeftitems), gebruikerID, 1, naam);
+
+END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
+
+--
+-- Definition of procedure `LokatieToevoegen`
+--
+
+DROP PROCEDURE IF EXISTS `LokatieToevoegen`;
+
+DELIMITER $$
+
+/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LokatieToevoegen`(IN beschrijving VARCHAR(140))
+BEGIN
+   INSERT INTO heeftitems VALUES ((SELECT MAX(b.id) FROM heeftitems b) + 1);
+
+  INSERT INTO lokatie VALUES ((SELECT MAX(id) FROM heeftitems), beschrijving);
+END $$
+/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
+
+DELIMITER ;
 
 
 
