@@ -12,6 +12,8 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -24,6 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "heeftitems")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class HeeftItems implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -32,7 +35,7 @@ public abstract class HeeftItems implements Serializable {
     private long id;
     
     @ManyToMany
-    @JoinTable(name = "iseigenaarvar", 
+    @JoinTable(name = "iseigenaarvan", 
             joinColumns = @JoinColumn(name = "itemID"), 
             inverseJoinColumns = @JoinColumn(name = "eigenaarID"))
     private Set<Item> items;

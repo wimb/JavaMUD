@@ -5,9 +5,14 @@
     
 package be.vdab.entities;
     
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,15 +26,16 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "karakter")
+
 public class Karakter extends HeeftItems {
     private static final long serialVersionUID = 1L;
     
     @ManyToOne
-    @JoinColumn(name = "GebruikerId")
+    @JoinColumn(name = "gebruikerId")
     private Gebruiker gebruiker;
     
     @ManyToOne
-    @JoinColumn(name = "LokatieId")
+    @JoinColumn(name = "lokatieId")
     private Lokatie lokatie;
     
     @NotNull

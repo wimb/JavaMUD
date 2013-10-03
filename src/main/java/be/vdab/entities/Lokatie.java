@@ -5,10 +5,13 @@
     
 package be.vdab.entities;
     
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;

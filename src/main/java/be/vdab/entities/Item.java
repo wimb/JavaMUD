@@ -42,7 +42,7 @@ public class Item implements Serializable /*, HeeftActies*/ {
      *  Dit wordt dus een ManyToOne naar IHeeftItems (wat een Karakter of een Locatie kan zijn
      */    
     @ManyToMany
-    @JoinTable(name = "iseigenaarvar", 
+    @JoinTable(name = "iseigenaarvan", 
             joinColumns = @JoinColumn(name = "itemID"), 
             inverseJoinColumns = @JoinColumn(name = "eigenaarID"))
     private Set<HeeftItems> eigenaars;
