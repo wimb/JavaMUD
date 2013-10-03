@@ -2,7 +2,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:if test="${not empty gebruiker.karakter}">
     <c:forEach var="karakter" items="${gebruiker.karakter}">
-        <c:if test="${not empty karakter}">
+        <c:if test="${not empty karakter.naam}">
             <ul class="zonderbolletjes">
                 <li>
                     <c:url var="karakterURL" value="/lokatie">
