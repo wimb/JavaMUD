@@ -52,6 +52,7 @@ public class KarakterController {
         public ModelAndView createForm(HttpSession session){
             Karakter k = new Karakter();
             Gebruiker g = (Gebruiker) session.getAttribute("gebruiker");
+            k.setLokatie(lokatieService.findEenLokatie());
             
             if(g == null){
                 return new ModelAndView("redirect:/hoofdmenu");
