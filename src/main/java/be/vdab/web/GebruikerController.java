@@ -135,13 +135,19 @@ public class GebruikerController {
             }
         }
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/aanmelden", method = RequestMethod.GET)
     public String doLogin(HttpSession session){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         
         Gebruiker g = gebruikerService.findByEmail(new EmailAdres(email));
         session.setAttribute("gebruiker", g);
+        
+        return "redirect:/hoofdmenu";
+    }
+    @RequestMapping(value = "/afmelden", method = RequestMethod.GET)
+    public String doLogout(HttpSession session){
+        session.removeAttribute("gebruiker");
         
         return "redirect:/hoofdmenu";
     }
