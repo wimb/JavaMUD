@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.6.13
+-- Server version	5.1.44-community
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -33,7 +33,7 @@ CREATE TABLE `gebruiker` (
   `familienaam` varchar(50) NOT NULL,
   `paswoord` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `gebruiker`
@@ -41,7 +41,8 @@ CREATE TABLE `gebruiker` (
 
 /*!40000 ALTER TABLE `gebruiker` DISABLE KEYS */;
 INSERT INTO `gebruiker` (`Id`,`emailadres`,`voornaam`,`familienaam`,`paswoord`) VALUES 
- (1,'johnny.test@nick.com','Jonathan','Test','J0n@than');
+ (1,'johnny.test@nick.com','Jonathan','Test','J0n@than'),
+ (2,'test@test.test','test','test','b3872a330a7b142f3fda8697673a123d4bb2f514');
 /*!40000 ALTER TABLE `gebruiker` ENABLE KEYS */;
 
 
@@ -136,14 +137,14 @@ DROP TABLE IF EXISTS `karakter`;
 CREATE TABLE `karakter` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gebruikerId` int(10) unsigned NOT NULL,
-  `lokatieId` int(10) unsigned NOT NULL,
+  `lokatieId` int(10) unsigned DEFAULT NULL,
   `naam` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `KarakterGebruiker` (`gebruikerId`),
   KEY `KarakterLokatie` (`lokatieId`),
   CONSTRAINT `KarakterGebruikerFK` FOREIGN KEY (`gebruikerId`) REFERENCES `gebruiker` (`Id`),
-  CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`),
-  CONSTRAINT `KarakterItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `KarakterItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
