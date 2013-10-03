@@ -134,5 +134,16 @@ public class GebruikerController {
                 gebruiker.setEmailAdres(new EmailAdresForm(gebruiker.getEmailAdres()));
             }
         }
+    
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String doLogin(HttpSession session){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        
+        Gebruiker g = gebruikerService.findByEmail(new EmailAdres(email));
+        session.setAttribute("gebruiker", g);
+        
+        return "redirect:/hoofdmenu";
+    }
 
 }

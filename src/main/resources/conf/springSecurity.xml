@@ -14,7 +14,7 @@
 		<sec:form-login login-page="/aanmelden"
 			default-target-url="/" 
                         authentication-failure-url="/aanmelden?fout=true" 
-                        login-processing-url="/hoofdmenu/login"/>
+                        login-processing-url="/gebruiker/login"/>
 	</sec:http>
 
 	<sec:authentication-manager>
