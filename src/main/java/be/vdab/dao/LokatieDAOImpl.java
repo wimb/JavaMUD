@@ -64,6 +64,20 @@ public class LokatieDAOImpl implements LokatieDAO {
     }
     
     @Override
+    public List<Lokatie> findAllLokaties(){
+        TypedQuery<Lokatie> query = 
+                entityManager.createNamedQuery("findAllLokaties", Lokatie.class);
+        return query.getResultList();
+    }
+    
+    @Override
+    public Lokatie findEenLokatie(){
+        TypedQuery<Lokatie> query = 
+                entityManager.createNamedQuery("findAllLokaties", Lokatie.class);
+        return query.getSingleResult();
+    }
+    
+    @Override
     public List<Lokatie> findByBestemming(Lokatie bestemming){
         TypedQuery<Lokatie> query = 
                 entityManager.createNamedQuery("findLokatiesByBestemming", Lokatie.class);

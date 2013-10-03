@@ -17,7 +17,7 @@
 </form:label>
 <form:input path="voornaam" />
 
-<form:label path="naam">familienaam:
-<form:errors path="naam" cssClass="fout" />
+<form:label path="familienaam">familienaam:
+<form:errors path="familienaam" cssClass="fout" />
 </form:label>
-<form:input path="naam" />
+<form:input path="familienaam" />

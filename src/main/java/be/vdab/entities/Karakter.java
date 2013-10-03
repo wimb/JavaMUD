@@ -6,15 +6,13 @@
 package be.vdab.entities;
     
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,7 +24,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "karakter")
-public class Karakter implements Serializable {
+public class Karakter extends HeeftItems {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -41,18 +39,15 @@ public class Karakter implements Serializable {
     @JoinColumn(name = "LokatieId")
     private Lokatie lokatie;
     
-    @OneToMany(mappedBy = "eigenaar")
-    private List<Item> items;
-    
     @NotNull
     @Size(min = 1, max = 50, message = "{Size.tekst}")
     private String naam;
     
     public Karakter(){
+        super();
         gebruiker = null;
         naam = "";
         lokatie = null;
-        items = new ArrayList<>();
     }
     
     public Karakter(Gebruiker gebruiker, String naam){
@@ -62,13 +57,15 @@ public class Karakter implements Serializable {
     }
     
     public Karakter(long id, Gebruiker gebruiker, String naam, 
-            Lokatie lokatie, List<Item> items){
-        this(gebruiker, naam);
+            Lokatie lokatie, Set<Item> items){
+        super(items);
         setId(id);
+        setGebruiker(gebruiker);
+        setNaam(naam);
         setLokatie(lokatie);
-        setItems(items);
     }
     
+    @Override
     public void setId(long id){
         this.id = id;
     }
@@ -87,15 +84,12 @@ public class Karakter implements Serializable {
             this.lokatie.removeKarakter(this);
         }
         this.lokatie = lokatie;
-        if(lokatie != null & !lokatie.hasKarakter(this)){
+        if(lokatie != null && !lokatie.hasKarakter(this)){
             lokatie.addKarakter(this);
         }
     }
     
-    public void setItems(List<Item> items){
-        this.items = items;
-    }
-    
+    @Override
     public long getId(){
         return id;
     }
@@ -110,32 +104,6 @@ public class Karakter implements Serializable {
     
     public Lokatie getLokatie(){
         return lokatie;
-    }
-    
-    public List<Item> getItems(){
-        return items;
-    }
-    
-    public void addItem(Item item){
-        items.add(item);
-        if(item != null && !equals(item.getEigenaar())){
-            item.setEigenaar(this);
-        }
-    }
-    
-    public void removeItem(Item item){
-        items.remove(item);
-        if(item != null && equals(item.getEigenaar())){
-            item.setEigenaar(null);
-        }
-    }
-    
-    public boolean hasItem(Item item){
-        return items.contains(item);
-    }
-    
-    public int getItemCount(){
-        return items.size();
     }
     
     @Override
@@ -169,13 +137,6 @@ public class Karakter implements Serializable {
                     equal = this.naam.equalsIgnoreCase(k.getNaam());
                 }
                 
-                if(this.items == null && equal){
-                    equal = k.getItems() == null;
-                }
-                else {
-                    equal = this.items.equals(k.getItems());
-                }
-                
                 return equal;
             }
         }
@@ -188,7 +149,6 @@ public class Karakter implements Serializable {
         hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
         hash = 73 * hash + Objects.hashCode(this.gebruiker);
         hash = 73 * hash + Objects.hashCode(this.lokatie);
-        hash = 73 * hash + Objects.hashCode(this.items);
         hash = 73 * hash + Objects.hashCode(this.naam);
         return hash;
     }

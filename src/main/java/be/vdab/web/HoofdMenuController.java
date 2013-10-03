@@ -6,8 +6,11 @@
 package be.vdab.web;
     
 import be.vdab.entities.Gebruiker;
+import be.vdab.entities.Karakter;
 import be.vdab.services.GebruikerService;
+import be.vdab.services.KarakterService;
 import be.vdab.valueobjects.EmailAdres;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

@@ -35,19 +35,13 @@ public class KarakterController {
                 HttpSession session){
             if(!bindingResult.hasErrors()){
                 Gebruiker g = (Gebruiker) session.getAttribute("gebruiker");
-                Lokatie l = lokatieService.read(1);
                 try {
-                    l.addKarakter(karakter);
                     karakter.setGebruiker(g);
-                    karakter.setLokatie(l);
+                    karakter.setLokatie(null);
                     karakterService.create(karakter);
-                    lokatieService.update(l);
                     return "redirect:/hoofdmenu";
                 }
                 catch(KarakterNaamAlInGebruikException knaige){
-                    if(l.hasKarakter(karakter)){
-                        l.removeKarakter(karakter);
-                    }
                     bindingResult.rejectValue("naam", "{KarakterNaamBestaatAlException}");
                 }
             }

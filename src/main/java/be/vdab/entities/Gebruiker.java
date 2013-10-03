@@ -47,7 +47,7 @@ public class Gebruiker implements Serializable {
 	private String paswoord;
 
 	@OneToMany(mappedBy = "gebruiker", fetch = FetchType.EAGER)
-	private Set<Karakter> karakters;
+	private Set<Karakter> karakters = new LinkedHashSet<>();
 
 	public Set<Karakter> getKarakter() {
 		return Collections.unmodifiableSet(karakters);
@@ -91,7 +91,7 @@ public class Gebruiker implements Serializable {
 	}
 
 	public Gebruiker() {
-            karakters = new LinkedHashSet<>();
+            
 	}
 
 	public Gebruiker(String voornaam, String familienaam, EmailAdres emailAdres,
