@@ -10,11 +10,10 @@
 	<sec:http pattern="/images/*" security="none" />
 	<sec:http pattern="/scripts/*" security="none" />
 	<sec:http use-expressions="true" auto-config="true">
-		<sec:logout logout-url="/afmelden" logout-success-url="/gebruiker/afmelden" />
+		<sec:logout logout-url="/afmelden" />
 		<sec:form-login login-page="/aanmelden"
 			default-target-url="/" 
-                        authentication-failure-url="/aanmelden?fout=true" 
-                        login-processing-url="/gebruiker/aanmelden"/>
+                        authentication-failure-url="/aanmelden?fout=true" />
 	</sec:http>
 
 	<sec:authentication-manager>
