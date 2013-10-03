@@ -29,7 +29,7 @@
                 </div>
                 
                 <div id="afmelden">
-                    <a href="<c:url value='gebruiker/afmelden'/>">Afmelden</a>
+                    <a href="<c:url value='j_spring_security_logout'/>">Afmelden</a>
                 </div>
             </c:when>
             <c:otherwise>

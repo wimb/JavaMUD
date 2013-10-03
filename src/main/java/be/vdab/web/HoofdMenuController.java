@@ -7,6 +7,7 @@ package be.vdab.web;
     
 import be.vdab.entities.Gebruiker;
 import be.vdab.entities.Karakter;
+import be.vdab.exceptions.VerkeerdeEmailAdresException;
 import be.vdab.services.GebruikerService;
 import be.vdab.services.KarakterService;
 import be.vdab.valueobjects.EmailAdres;
@@ -47,11 +48,16 @@ public class HoofdMenuController {
         else {
             String email = getAuthenticationName();
             if(email != null && !email.isEmpty()){
-                EmailAdres emailAdres = new EmailAdres(email);
-                Gebruiker g = gebruikerService.findByEmail(emailAdres);
-                if(g != null){
-                    session.setAttribute("gebruiker", g);
-                    mav.addObject("gebruiker", g);
+                try {
+                    EmailAdres emailAdres = new EmailAdres(email);
+                    Gebruiker g = gebruikerService.findByEmail(emailAdres);
+                    if(g != null){
+                        session.setAttribute("gebruiker", g);
+                        mav.addObject("gebruiker", g);
+                    }
+                }
+                catch(VerkeerdeEmailAdresException veae){
+                    
                 }
             }
         }
@@ -68,6 +74,12 @@ public class HoofdMenuController {
         }
         
         return null;
+    }
+    
+    @RequestMapping(value = "/afmelden", method = RequestMethod.GET)
+    public static String afmelden(HttpSession session){
+        session.removeAttribute("gebruiker");
+        return "redirect:/hoofdmenu";
     }
     
 }
