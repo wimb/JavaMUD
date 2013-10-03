@@ -61,11 +61,6 @@ public class LokatieServiceImpl implements LokatieService {
         return lokatieDAO.findAllLokaties();
     }
     
-    @Override
-    public Lokatie findEenLokatie(){
-        return lokatieDAO.findEenLokatie();
-    }
-    
     /* Waartoe dient dit? */
     @Override
     public List<Lokatie> findByBestemming(Lokatie bestemming){

@@ -52,9 +52,9 @@ INSERT INTO `gebruiker` (`Id`,`emailadres`,`voornaam`,`familienaam`,`paswoord`) 
 
 DROP TABLE IF EXISTS `heeftitems`;
 CREATE TABLE `heeftitems` (
-  `Id` int(10) unsigned NOT NULL,
+  `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `heeftitems`
@@ -73,7 +73,8 @@ INSERT INTO `heeftitems` (`Id`) VALUES
  (11),
  (12),
  (13),
- (14);
+ (14),
+ (15);
 /*!40000 ALTER TABLE `heeftitems` ENABLE KEYS */;
 
 
@@ -150,7 +151,7 @@ CREATE TABLE `karakter` (
   CONSTRAINT `KarakterGebruikerFK` FOREIGN KEY (`gebruikerId`) REFERENCES `gebruiker` (`Id`),
   CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`),
   CONSTRAINT `KarakterItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `karakter`
@@ -159,7 +160,8 @@ CREATE TABLE `karakter` (
 /*!40000 ALTER TABLE `karakter` DISABLE KEYS */;
 INSERT INTO `karakter` (`Id`,`gebruikerId`,`lokatieId`,`naam`) VALUES 
  (7,1,1,'Testaenar'),
- (12,1,1,'Test');
+ (12,1,1,'Test'),
+ (15,2,NULL,'Tim');
 /*!40000 ALTER TABLE `karakter` ENABLE KEYS */;
 
 

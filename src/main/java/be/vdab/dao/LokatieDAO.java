@@ -19,6 +19,5 @@ public interface LokatieDAO {
     void update(Lokatie lokatie);
     void delete(long id);
     List<Lokatie> findAllLokaties();
-    Lokatie findEenLokatie();
     List<Lokatie> findByBestemming(Lokatie bestemming);
 }
