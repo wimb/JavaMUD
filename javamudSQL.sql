@@ -41,7 +41,7 @@ CREATE TABLE `gebruiker` (
 
 /*!40000 ALTER TABLE `gebruiker` DISABLE KEYS */;
 INSERT INTO `gebruiker` (`Id`,`emailadres`,`voornaam`,`familienaam`,`paswoord`) VALUES 
- (1,'johnny.test@nick.com','Jonathan','Test','J0n@than'),
+ (1,'johnny.test@nick.com','Jonathan','Test','3b2fddbf99578c473ad43f0e8059bf066084638a'),
  (2,'test@test.test','test','test','b3872a330a7b142f3fda8697673a123d4bb2f514');
 /*!40000 ALTER TABLE `gebruiker` ENABLE KEYS */;
 
