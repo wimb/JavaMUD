@@ -79,7 +79,6 @@ public class KarakterController {
             k.setGebruiker(null);
             g.removeKarakter(k);
             karakterService.delete(karakterId);
-            gebruikerService.update(g);
             session.setAttribute("gebruiker", g);
             return "redirect:/hoofdmenu";
         }

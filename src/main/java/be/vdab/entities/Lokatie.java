@@ -5,13 +5,10 @@
     
 package be.vdab.entities;
     
-import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -38,7 +35,7 @@ public class Lokatie extends HeeftItems {
     @OneToMany(mappedBy = "lokatie", fetch = FetchType.EAGER)
     private Set<Karakter> karakters;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "lokatiebestemmingen", 
             joinColumns = @JoinColumn(name = "LokatieId"), 
             inverseJoinColumns = @JoinColumn(name = "BestemmingId"))
