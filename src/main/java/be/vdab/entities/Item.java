@@ -6,15 +6,16 @@
 package be.vdab.entities;
     
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 //import be.vdab.commands.Actie;
@@ -40,29 +41,16 @@ public class Item implements Serializable /*, HeeftActies*/ {
     /*
      *  Dit wordt dus een ManyToOne naar IHeeftItems (wat een Karakter of een Locatie kan zijn
      */    
-    @ManyToOne
-    @JoinColumn(name = "EigenaarId")
-    private Karakter eigenaar;
-    
-    @ManyToOne
-    @JoinColumn(name = "PositieId")
-    private Lokatie positie;
+    @ManyToMany
+    @JoinTable(name = "iseigenaarvar", 
+            joinColumns = @JoinColumn(name = "itemID"), 
+            inverseJoinColumns = @JoinColumn(name = "eigenaarID"))
+    private Set<HeeftItems> eigenaars;
     
 //    private Map<Long, Actie> acties = new HashMap<>();
     
     public Item(){
-        eigenaar = null;
-        positie = null;
-    }
-    
-    public Item(Lokatie positie){
-        this();
-        setPositie(positie);
-    }
-    
-    public Item(Karakter eigenaar){
-        this();
-        setEigenaar(eigenaar);
+        eigenaars = new LinkedHashSet<>();
     }
     
     /*
@@ -74,36 +62,17 @@ public class Item implements Serializable /*, HeeftActies*/ {
      *     Item( ..., Lokatie k)
      *  Nu reken je erop dat de gebruiker van je klasse 1 van beide leeg laat, maar je dwingt dit neit af!
      */
-    public Item(long id, Karakter eigenaar, Lokatie positie){
+    public Item(long id, Set<HeeftItems> eigenaars){
         setId(id);
-        setEigenaar(eigenaar);
-        setPositie(positie);
+        setEigenaars(eigenaars);
     }
     
     public void setId(long id){
         this.id = id;
     }
     
-    public void setEigenaar(Karakter eigenaar){
-        if(this.eigenaar != null && this.eigenaar.hasItem(this)){
-            this.eigenaar.removeItem(this);
-        }
-        this.eigenaar = eigenaar;
-        if(eigenaar != null && !eigenaar.hasItem(this)){
-            eigenaar.addItem(this);
-            setPositie(null);
-        }
-    }
-    
-    public void setPositie(Lokatie positie){
-        if(this.positie != null && this.positie.hasItem(this)){
-            this.positie.removeItem(this);
-        }
-        this.positie = positie;
-        if(positie != null && !positie.hasItem(this)){
-            positie.addItem(this);
-            setEigenaar(null);
-        }
+    public void setEigenaars(Set<HeeftItems> eigenaars){
+        this.eigenaars = eigenaars;
     }
     
 //    public void setActies() {
@@ -115,16 +84,34 @@ public class Item implements Serializable /*, HeeftActies*/ {
         return id;
     }
     
-    public Karakter getEigenaar(){
-        return eigenaar;
-    }
-    
-    public Lokatie getPositie(){
-        return positie;
+    public Set<HeeftItems> getEigenaars(){
+        return eigenaars;
     }
     
     public String getBeschrijving() {
     	return "Beschrijving item";
+    }
+    
+    public void addEigenaar(HeeftItems eigenaar){
+        eigenaars.add(eigenaar);
+        if(!eigenaar.hasItem(this)){
+            eigenaar.addItem(this);
+        }
+    }
+    
+    public void removeEigenaar(HeeftItems eigenaar){
+        eigenaars.remove(eigenaar);
+        if(eigenaar.hasItem(this)){
+            eigenaar.removeItem(this);
+        }
+    }
+    
+    public int getEigenaarCount(){
+        return eigenaars.size();
+    }
+    
+    public boolean hasEigenaar(HeeftItems eigenaar){
+        return eigenaars.contains(eigenaar);
     }
     
 
@@ -145,14 +132,11 @@ public class Item implements Serializable /*, HeeftActies*/ {
                 return item.getId() == this.id;
             }
             else {
-                if(this.eigenaar != null){
-                    return this.eigenaar.equals(item.getEigenaar());
-                }
-                else if(this.positie != null){
-                    return this.positie.equals(item.getPositie());
+                if(this.eigenaars == null){
+                    return item.getEigenaars() == null;
                 }
                 else {
-                    return item.getEigenaar() == null && item.getPositie() == null;
+                    return this.eigenaars.equals(item.getEigenaars());
                 }
             }
         }
@@ -163,8 +147,7 @@ public class Item implements Serializable /*, HeeftActies*/ {
     public int hashCode() {
         int hash = 5;
         hash = 83 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 83 * hash + Objects.hashCode(this.eigenaar);
-        hash = 83 * hash + Objects.hashCode(this.positie);
+        hash = 83 * hash + Objects.hashCode(this.eigenaars);
         return hash;
     }
 

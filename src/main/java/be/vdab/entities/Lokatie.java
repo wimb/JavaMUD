@@ -39,9 +39,6 @@ public class Lokatie implements Serializable {
     @Size(min = 1, max = 140, message = "{Size.tekst}")
     private String beschrijving;
     
-    @OneToMany(mappedBy = "positie", fetch = FetchType.EAGER)
-    private Set<Item> items;
-    
     @OneToMany(mappedBy = "lokatie", fetch = FetchType.EAGER)
     private Set<Karakter> karakters;
     
@@ -53,7 +50,6 @@ public class Lokatie implements Serializable {
     
     public Lokatie(){
         beschrijving = "";
-        items = new LinkedHashSet<>();
         karakters = new LinkedHashSet<>();
         bestemmingen = new LinkedHashSet<>();
     }
@@ -63,15 +59,13 @@ public class Lokatie implements Serializable {
         setBeschrijving(beschrijving);
     }
     
-    public Lokatie(String beschrijving, Set<Item> items, Set<Karakter> karakters){
+    public Lokatie(String beschrijving, Set<Karakter> karakters){
         this(beschrijving);
-        setItems(items);
         setKarakters(karakters);
     }
     
-    public Lokatie(long id, String beschrijving, Set<Item> items, 
-            Set<Karakter> karakters){
-        this(beschrijving, items, karakters);
+    public Lokatie(long id, String beschrijving, Set<Karakter> karakters){
+        this(beschrijving, karakters);
         setId(id);
     }
     
@@ -81,10 +75,6 @@ public class Lokatie implements Serializable {
     
     public void setBeschrijving(String beschrijving){
         this.beschrijving = beschrijving;
-    }
-    
-    public void setItems(Set<Item> items){
-        this.items = items;
     }
     
     public void setKarakters(Set<Karakter> karakters){
@@ -103,38 +93,12 @@ public class Lokatie implements Serializable {
         return beschrijving;
     }
     
-    public Set<Item> getItems(){
-        return items;
-    }
-    
     public Set<Karakter> getKarakters(){
         return karakters;
     }
     
     public Set<Lokatie> getBestemmingen(){
         return bestemmingen;
-    }
-    
-    public void addItem(Item item){
-        items.add(item);
-        if(!equals(item.getPositie())){
-            item.setPositie(this);
-        }
-    }
-    
-    public void removeItem(Item item){
-        items.remove(item);
-        if(equals(item.getPositie())){
-            item.setPositie(null);
-        }
-    }
-    
-    public boolean hasItem(Item item){
-        return items.contains(item);
-    }
-    
-    public int getItemCount(){
-        return items.size();
     }
     
     public void addKarakter(Karakter karakter){
@@ -205,13 +169,6 @@ public class Lokatie implements Serializable {
                     equals = this.karakters.equals(lok.getKarakters());
                 }
                 
-                if(this.items == null && equals){
-                    equals = lok.getItems() == null;
-                }
-                else if(equals) {
-                    equals = this.items.equals(lok.getItems());
-                }
-                
                 if(this.bestemmingen == null && equals){
                     equals = lok.getBestemmingen() == null;
                 }
@@ -231,7 +188,7 @@ public class Lokatie implements Serializable {
             return (int) id;
         }
         else {
-            String hashString = beschrijving + items.toString() + karakters.toString();
+            String hashString = beschrijving +  karakters.toString();
             return hashString.hashCode();
         }
     }

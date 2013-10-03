@@ -6,15 +6,12 @@
 package be.vdab.entities;
     
 import java.io.Serializable;
-import java.util.LinkedHashSet;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,9 +38,6 @@ public class Karakter implements Serializable {
     @JoinColumn(name = "LokatieId")
     private Lokatie lokatie;
     
-    @OneToMany(mappedBy = "eigenaar")
-    private Set<Item> items;
-    
     @NotNull
     @Size(min = 1, max = 50, message = "{Size.tekst}")
     private String naam;
@@ -52,7 +46,6 @@ public class Karakter implements Serializable {
         gebruiker = null;
         naam = "";
         lokatie = null;
-        items = new LinkedHashSet<>();
     }
     
     public Karakter(Gebruiker gebruiker, String naam){
@@ -62,11 +55,10 @@ public class Karakter implements Serializable {
     }
     
     public Karakter(long id, Gebruiker gebruiker, String naam, 
-            Lokatie lokatie, Set<Item> items){
+            Lokatie lokatie){
         this(gebruiker, naam);
         setId(id);
         setLokatie(lokatie);
-        setItems(items);
     }
     
     public void setId(long id){
@@ -92,10 +84,6 @@ public class Karakter implements Serializable {
         }
     }
     
-    public void setItems(Set<Item> items){
-        this.items = items;
-    }
-    
     public long getId(){
         return id;
     }
@@ -110,32 +98,6 @@ public class Karakter implements Serializable {
     
     public Lokatie getLokatie(){
         return lokatie;
-    }
-    
-    public Set<Item> getItems(){
-        return items;
-    }
-    
-    public void addItem(Item item){
-        items.add(item);
-        if(item != null && !equals(item.getEigenaar())){
-            item.setEigenaar(this);
-        }
-    }
-    
-    public void removeItem(Item item){
-        items.remove(item);
-        if(item != null && equals(item.getEigenaar())){
-            item.setEigenaar(null);
-        }
-    }
-    
-    public boolean hasItem(Item item){
-        return items.contains(item);
-    }
-    
-    public int getItemCount(){
-        return items.size();
     }
     
     @Override
@@ -169,13 +131,6 @@ public class Karakter implements Serializable {
                     equal = this.naam.equalsIgnoreCase(k.getNaam());
                 }
                 
-                if(this.items == null && equal){
-                    equal = k.getItems() == null;
-                }
-                else {
-                    equal = this.items.equals(k.getItems());
-                }
-                
                 return equal;
             }
         }
@@ -188,7 +143,6 @@ public class Karakter implements Serializable {
         hash = 73 * hash + (int) (this.id ^ (this.id >>> 32));
         hash = 73 * hash + Objects.hashCode(this.gebruiker);
         hash = 73 * hash + Objects.hashCode(this.lokatie);
-        hash = 73 * hash + Objects.hashCode(this.items);
         hash = 73 * hash + Objects.hashCode(this.naam);
         return hash;
     }

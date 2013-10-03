@@ -5,7 +5,7 @@
     
 package be.vdab.entities;
     
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -14,5 +14,9 @@ import java.util.List;
  */
 public interface HeeftItems {
     public long getId();
-    public List<Item> getItems();
+    public Set<Item> getItems();
+    public void addItem(Item item);
+    public void removeItem(Item item);
+    public int getItemCount();
+    public boolean hasItem(Item item);
 }
