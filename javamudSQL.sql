@@ -1,7 +1,7 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
--- Server version	5.1.44-community
+-- Server version	5.6.13
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -52,12 +52,7 @@ INSERT INTO `gebruiker` (`Id`,`emailadres`,`voornaam`,`familienaam`,`paswoord`) 
 DROP TABLE IF EXISTS `heeftitems`;
 CREATE TABLE `heeftitems` (
   `Id` int(10) unsigned NOT NULL,
-  `ItemID` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`ItemID`,`Id`),
-  KEY `ItemLokatieFK` (`Id`),
-  CONSTRAINT `ItemFK` FOREIGN KEY (`Id`) REFERENCES `item` (`Id`),
-  CONSTRAINT `ItemKarakterFK` FOREIGN KEY (`Id`) REFERENCES `karakter` (`Id`),
-  CONSTRAINT `ItemLokatieFK` FOREIGN KEY (`Id`) REFERENCES `lokatie` (`Id`)
+  PRIMARY KEY (`Id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -65,7 +60,44 @@ CREATE TABLE `heeftitems` (
 --
 
 /*!40000 ALTER TABLE `heeftitems` DISABLE KEYS */;
+INSERT INTO `heeftitems` (`Id`) VALUES 
+ (1),
+ (2),
+ (3),
+ (4),
+ (5),
+ (6),
+ (7);
 /*!40000 ALTER TABLE `heeftitems` ENABLE KEYS */;
+
+
+--
+-- Definition of table `iseigenaarvan`
+--
+
+DROP TABLE IF EXISTS `iseigenaarvan`;
+CREATE TABLE `iseigenaarvan` (
+  `eigenaarID` int(10) unsigned NOT NULL,
+  `itemID` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`eigenaarID`,`itemID`),
+  CONSTRAINT `EigenaarHeeftItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `heeftitems` (`Id`),
+  CONSTRAINT `EigenaarItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `item` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `iseigenaarvan`
+--
+
+/*!40000 ALTER TABLE `iseigenaarvan` DISABLE KEYS */;
+INSERT INTO `iseigenaarvan` (`eigenaarID`,`itemID`) VALUES 
+ (1,7),
+ (2,2),
+ (3,3),
+ (4,4),
+ (5,5),
+ (6,6),
+ (7,1);
+/*!40000 ALTER TABLE `iseigenaarvan` ENABLE KEYS */;
 
 
 --
@@ -77,13 +109,22 @@ CREATE TABLE `item` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Omschrijving` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `item`
 --
 
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` (`Id`,`Omschrijving`) VALUES 
+ (1,'Zakdoek'),
+ (2,'Plant'),
+ (3,'Plant'),
+ (4,'Plant'),
+ (5,'Plant'),
+ (6,'Plant'),
+ (7,'Plant'),
+ (8,'Zakdoek');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 
@@ -101,8 +142,9 @@ CREATE TABLE `karakter` (
   KEY `KarakterGebruiker` (`gebruikerId`),
   KEY `KarakterLokatie` (`lokatieId`),
   CONSTRAINT `KarakterGebruikerFK` FOREIGN KEY (`gebruikerId`) REFERENCES `gebruiker` (`Id`),
-  CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`),
+  CONSTRAINT `KarakterItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `karakter`
@@ -110,7 +152,7 @@ CREATE TABLE `karakter` (
 
 /*!40000 ALTER TABLE `karakter` DISABLE KEYS */;
 INSERT INTO `karakter` (`Id`,`gebruikerId`,`lokatieId`,`naam`) VALUES 
- (1,1,1,'Testaenar');
+ (7,1,1,'Testaenar');
 /*!40000 ALTER TABLE `karakter` ENABLE KEYS */;
 
 
@@ -122,7 +164,8 @@ DROP TABLE IF EXISTS `lokatie`;
 CREATE TABLE `lokatie` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Beschrijving` varchar(140) NOT NULL DEFAULT 'geen omschrijving',
-  PRIMARY KEY (`Id`)
+  PRIMARY KEY (`Id`),
+  CONSTRAINT `LokatieItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
