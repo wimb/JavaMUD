@@ -31,13 +31,23 @@ public class KarakterController {
 	}
 	
         @RequestMapping(method = RequestMethod.POST)
-        public String create(@Valid Karakter karakter, BindingResult bindingResult){
+        public String create(@Valid Karakter karakter, BindingResult bindingResult, 
+                HttpSession session){
             if(!bindingResult.hasErrors()){
+                Gebruiker g = (Gebruiker) session.getAttribute("gebruiker");
+                Lokatie l = lokatieService.read(1);
                 try {
+                    l.addKarakter(karakter);
+                    karakter.setGebruiker(g);
+                    karakter.setLokatie(l);
                     karakterService.create(karakter);
+                    lokatieService.update(l);
                     return "redirect:/hoofdmenu";
                 }
                 catch(KarakterNaamAlInGebruikException knaige){
+                    if(l.hasKarakter(karakter)){
+                        l.removeKarakter(karakter);
+                    }
                     bindingResult.rejectValue("naam", "{KarakterNaamBestaatAlException}");
                 }
             }

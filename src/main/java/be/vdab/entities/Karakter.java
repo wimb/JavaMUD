@@ -146,7 +146,7 @@ public class Karakter implements Serializable {
                 return this.id == k.getId();
             }
             else {
-                boolean equal = true;
+                boolean equal;
                 
                 if(this.lokatie == null){
                     equal = k.getLokatie() == null;
