@@ -52,10 +52,7 @@ INSERT INTO `gebruiker` (`Id`,`emailadres`,`voornaam`,`familienaam`,`paswoord`) 
 DROP TABLE IF EXISTS `heeftitems`;
 CREATE TABLE `heeftitems` (
   `Id` int(10) unsigned NOT NULL,
-  `ItemID` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`ItemID`,`Id`),
-  KEY `ItemFK` (`Id`),
-  CONSTRAINT `ItemFK` FOREIGN KEY (`Id`) REFERENCES `item` (`Id`)
+  PRIMARY KEY (`Id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -63,7 +60,36 @@ CREATE TABLE `heeftitems` (
 --
 
 /*!40000 ALTER TABLE `heeftitems` DISABLE KEYS */;
-INSERT INTO `heeftitems` (`Id`,`ItemID`) VALUES 
+INSERT INTO `heeftitems` (`Id`) VALUES 
+ (1),
+ (2),
+ (3),
+ (4),
+ (5),
+ (6),
+ (7);
+/*!40000 ALTER TABLE `heeftitems` ENABLE KEYS */;
+
+
+--
+-- Definition of table `iseigenaarvan`
+--
+
+DROP TABLE IF EXISTS `iseigenaarvan`;
+CREATE TABLE `iseigenaarvan` (
+  `eigenaarID` int(10) unsigned NOT NULL,
+  `itemID` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`eigenaarID`,`itemID`),
+  CONSTRAINT `EigenaarHeeftItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `heeftitems` (`Id`),
+  CONSTRAINT `EigenaarItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `item` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `iseigenaarvan`
+--
+
+/*!40000 ALTER TABLE `iseigenaarvan` DISABLE KEYS */;
+INSERT INTO `iseigenaarvan` (`eigenaarID`,`itemID`) VALUES 
  (1,7),
  (2,2),
  (3,3),
@@ -71,7 +97,7 @@ INSERT INTO `heeftitems` (`Id`,`ItemID`) VALUES
  (5,5),
  (6,6),
  (7,1);
-/*!40000 ALTER TABLE `heeftitems` ENABLE KEYS */;
+/*!40000 ALTER TABLE `iseigenaarvan` ENABLE KEYS */;
 
 
 --
@@ -83,7 +109,7 @@ CREATE TABLE `item` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Omschrijving` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `item`
@@ -97,7 +123,8 @@ INSERT INTO `item` (`Id`,`Omschrijving`) VALUES
  (4,'Plant'),
  (5,'Plant'),
  (6,'Plant'),
- (7,'Plant');
+ (7,'Plant'),
+ (8,'Zakdoek');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 
