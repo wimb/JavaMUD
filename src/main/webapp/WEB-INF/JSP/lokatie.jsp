@@ -19,17 +19,19 @@
     <a href="<c:url value='lokatie/hoofdmenu'/>">Hoofdmenu</a>
     <h1>Lokatie ${lokatie.id}</h1>
     <div id="lokatieBescrijving">${lokatie.beschrijving}</div>
-    <p>items</p>
-    <c:if test="${not empty lokatie.items}">
-        <c:set var="items" value="${lokatie.items}"/>
-        <%@include file="/WEB-INF/JSP/items/itemlijst.jsp"%>
-    </c:if>
+    <div class="red">
+        <p>items</p>
+        <c:if test="${not empty lokatie.items}">
+            <c:set var="items" value="${lokatie.items}"/>
+            <%@include file="/WEB-INF/JSP/items/itemlijst.jsp"%>
+        </c:if>
+    </div>
     <p>lokaties</p>
     <c:if test="${not empty lokatie.karakters}">
         <c:set var="karakters" value="${lokatie.karakters}"/>
         <%@include file="/WEB-INF/JSP/karakters/karakterlijstlokatie.jsp"%>
     </c:if>
-    <div id="acties">
+    <div id="acties" class="red">
 		<c:if test="${not empty lokatie.acties}">
 			<c:set var="acties" value="lokatie.acties" />
 			<%@include file="/WEB-INF/JSP/acties.jsp" %>
