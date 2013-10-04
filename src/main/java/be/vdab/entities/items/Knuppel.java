@@ -6,6 +6,7 @@
 package be.vdab.entities.items;
     
 import be.vdab.entities.Item;
+import be.vdab.entities.acties.RaapOp;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -18,6 +19,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "knuppel")
 public class Knuppel extends Item {
+    
+    public Knuppel(){
+        this.addActie(new RaapOp(this));
+    }
     
     @Override
     public String getOmschrijving() {

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:forEach var="actie" items="acties">
+<c:forEach var="actie" items="${acties}">
     <c:url var="actieURL" value="/lokatie/actie">
         <c:param name="actieId" value="${actie.id}"/>
     </c:url>

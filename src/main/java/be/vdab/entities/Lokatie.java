@@ -5,7 +5,11 @@
     
 package be.vdab.entities;
     
+import be.vdab.entities.acties.RaapOp;
+import be.vdab.entities.items.Knuppel;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -185,5 +189,22 @@ public class Lokatie extends HeeftItems {
             return hashString.hashCode();
         }
     }
+    
+    //TODO: QuickFix
+    @Override
+    public List<Actie> getActies(){
+        List<Actie> list = new LinkedList<>();
+        list.add(new RaapOp(this));
+        return list;
+    }
+    
+    @Override
+    public Set<Item> getItems(){
+        Set<Item> items = new LinkedHashSet<Item>();
+        Knuppel knuppel = new Knuppel();        
+        items.add(knuppel);        
+        return items;
+    }
+    
     
 }
