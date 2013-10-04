@@ -149,8 +149,8 @@ CREATE TABLE `karakter` (
   KEY `KarakterGebruiker` (`gebruikerId`),
   KEY `KarakterLokatie` (`lokatieId`),
   CONSTRAINT `KarakterGebruikerFK` FOREIGN KEY (`gebruikerId`) REFERENCES `gebruiker` (`Id`),
-  CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`),
-  CONSTRAINT `KarakterItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `KarakterItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
@@ -161,8 +161,29 @@ CREATE TABLE `karakter` (
 INSERT INTO `karakter` (`Id`,`gebruikerId`,`lokatieId`,`naam`) VALUES 
  (7,1,1,'Testaenar'),
  (12,1,1,'Test'),
- (15,2,NULL,'Tim');
+ (15,2,1,'Azer');
 /*!40000 ALTER TABLE `karakter` ENABLE KEYS */;
+
+
+--
+-- Definition of table `knuppel`
+--
+
+DROP TABLE IF EXISTS `knuppel`;
+CREATE TABLE `knuppel` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `knuppelitemidfk` FOREIGN KEY (`id`) REFERENCES `item` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `knuppel`
+--
+
+/*!40000 ALTER TABLE `knuppel` DISABLE KEYS */;
+INSERT INTO `knuppel` (`id`) VALUES 
+ (7);
+/*!40000 ALTER TABLE `knuppel` ENABLE KEYS */;
 
 
 --

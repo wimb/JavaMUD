@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "knuppel")
 public class Knuppel extends Item {
-
+    
     @Override
     public String getOmschrijving() {
         return "een knuppel";

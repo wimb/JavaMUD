@@ -32,7 +32,7 @@ public abstract class HeeftActies implements Serializable {
     
     protected void addActie(Actie actie){
         acties.add(actie);
-        if(this.equals(actie.getParent())){
+        if(!this.equals(actie.getParent())){
             actie.setParent(this);
         }
     }
@@ -52,9 +52,9 @@ public abstract class HeeftActies implements Serializable {
         return acties.size();
     }
     
+    @Transient
     public abstract String getOmschrijving();
     
-      
     @Override
     public boolean equals(Object o){
         if(o instanceof HeeftActies){

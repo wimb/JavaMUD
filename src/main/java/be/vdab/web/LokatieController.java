@@ -5,7 +5,14 @@
     
 package be.vdab.web;
     
+import be.vdab.entities.Actie;
+import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
+import be.vdab.entities.Lokatie;
+import be.vdab.entities.acties.RaapOp;
+import be.vdab.entities.items.Knuppel;
+import be.vdab.services.ActieService;
+import be.vdab.services.ItemService;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +37,16 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/lokatie")
 @SessionAttributes("karakter")
 public class LokatieController {
+    private final ActieService actieService;
+    private final ItemService itemService;
     private final LokatieService lokatieService;
     private final KarakterService karakterService;
     
     @Autowired
-    public LokatieController(LokatieService lokatieService, 
+    public LokatieController(ActieService actieService, ItemService itemService, LokatieService lokatieService, 
             KarakterService karakterService){
+        this.actieService = actieService;
+        this.itemService = itemService;
         this.lokatieService = lokatieService;
         this.karakterService = karakterService;
     }
@@ -46,6 +57,12 @@ public class LokatieController {
         Karakter karakter = karakterService.read(karakterId);
         
         if(karakter != null){
+            Lokatie lok = karakter.getLokatie();
+            for(Item item : lok.getItems()){
+                Actie a = new RaapOp(item);
+                actieService.create(a);
+            }
+            
             mav.addObject("lokatie", karakter.getLokatie());
             mav.addObject("karakter", karakter);
         }
@@ -71,7 +88,7 @@ public class LokatieController {
         karakterService.update(karakter);
         lokatieService.update(karakter.getLokatie());
         sessionStatus.setComplete();
-        return "redirect:/afmelden";
+        return "redirect:/j_spring_security_logout";
     }
     
     @RequestMapping(value = "/actie", method = RequestMethod.POST)
