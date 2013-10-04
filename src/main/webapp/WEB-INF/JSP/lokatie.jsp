@@ -33,7 +33,7 @@
 			<c:set var="acties" value="lokatie.acties" />
 			<jsp:include page="/WEB-INF/JSP/acties.jsp" />
 		</c:if>
-		<c:if test="${not empty item.acties}">
+		<c:if test="${not empty karakter.acties}">
 			<c:set var="acties" value="lokatie.acties" />
 			<jsp:include page="/WEB-INF/JSP/acties.jsp" />
 		</c:if>
