@@ -16,16 +16,31 @@
 <link rel="stylesheet" href="${contextPath}/styles/default.css" />
 </head>
 <body>
-    <a href="<c:url value='lokatie/hoofdmenu'/>">Hoofdmenu</a>
-    <h1>Lokatie ${lokatie.id}</h1>
-    <div id="lokatieBescrijving">${lokatie.beschrijving}</div>
-    <c:if test="${not empty lokatie.items}">
-        <c:set var="items" value="${lokatie.items}"/>
-        <jsp:include page="/WEB-INF/JSP/items/itemlijst"/>
-    </c:if>
-    <c:if test="${not empty lokatie.karakters}">
-        <c:set var="karakters" value="lokatie.karakters"/>
-        <jsp:include page="/WEB-INF/JSP/karakters/karakterlijstlokatie"/>
-    </c:if>
+	<a href="<c:url value='lokatie/hoofdmenu'/>">Hoofdmenu</a>
+	<h1>Lokatie ${lokatie.id}</h1>
+	<div id="lokatieBescrijving">${lokatie.beschrijving}</div>
+	<c:if test="${not empty lokatie.items}">
+		<c:set var="items" value="${lokatie.items}" />
+		<jsp:include page="/WEB-INF/JSP/items/itemlijst.jsp" />
+	</c:if>
+	<c:if test="${not empty lokatie.karakters}">
+		<c:set var="karakters" value="lokatie.karakters" />
+		<jsp:include page="/WEB-INF/JSP/karakters/karakterlijstlokatie.jsp" />
+	</c:if>
+
+	<div id="acties">
+		<c:if test="${not empty lokatie.acties}">
+			<c:set var="acties" value="lokatie.acties" />
+			<jsp:include page="/WEB-INF/JSP/acties.jsp" />
+		</c:if>
+		<c:if test="${not empty item.acties}">
+			<c:set var="acties" value="lokatie.acties" />
+			<jsp:include page="/WEB-INF/JSP/acties.jsp" />
+		</c:if>
+	</div>
+
+	<c:if test="${not empty actieResultaat}">
+		<jsp:include page="/WEB-INF/JSP/actieResultaat.jsp" />
+	</c:if>
 </body>
 </html>
