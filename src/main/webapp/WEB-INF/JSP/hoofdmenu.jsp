@@ -13,9 +13,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JavaMUD - Hoofdmenu</title>
         <link rel="stylesheet" href="${contextPath}/styles/default.css"/>
+        <script type="text/javascript" src="${contextPath}/scripts/noscript.js"/>
     </head>
     <body>
         <c:import url="/WEB-INF/JSP/menu.jsp" />
+        <div id="noscript">
+            Deze website gebruikt JavaScript voor een goede werking.
+            Op het moment is JavaScript niet actief op uw browser.
+            Dit kan problemen geven, waar wij ons voor verontschuldigen.
+        </div>
         <c:choose>
             <c:when test="${not empty gebruiker}">
                 <div id="nieuwKarakter">
