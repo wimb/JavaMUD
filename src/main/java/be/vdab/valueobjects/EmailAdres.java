@@ -37,12 +37,13 @@ public class EmailAdres implements Serializable {
 		if (!(obj instanceof EmailAdres)) {
 			return false;
 		}
-		return ((EmailAdres) obj).emailAdres.equalsIgnoreCase(this.emailAdres);
+		return emailAdres == null ? ((EmailAdres) obj).getEmailAdres() == null : 
+                        ((EmailAdres) obj).emailAdres.equalsIgnoreCase(this.emailAdres);
 	}
 
 	@Override
 	public int hashCode() {
-		return emailAdres.toUpperCase().hashCode();
+		return emailAdres == null ? 0 : emailAdres.toUpperCase().hashCode();
 	}
 
 	@Override
