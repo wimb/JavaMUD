@@ -29,5 +29,19 @@
         <c:set var="karakters" value="${lokatie.karakters}"/>
         <%@include file="/WEB-INF/JSP/karakters/karakterlijstlokatie.jsp"%>
     </c:if>
+    <div id="acties">
+		<c:if test="${not empty lokatie.acties}">
+			<c:set var="acties" value="lokatie.acties" />
+			<%@include file="/WEB-INF/JSP/acties.jsp" %>
+		</c:if>
+		<c:if test="${not empty karakter.acties}">
+			<c:set var="acties" value="lokatie.acties" />
+			<%@include file="/WEB-INF/JSP/acties.jsp" %>
+		</c:if>
+	</div>
+
+	<c:if test="${not empty actieResultaat}">
+		<jsp:include page="/WEB-INF/JSP/actieResultaat.jsp" />
+	</c:if>
 </body>
 </html>

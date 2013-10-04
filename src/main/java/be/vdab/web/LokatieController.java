@@ -74,4 +74,10 @@ public class LokatieController {
         return "redirect:/afmelden";
     }
     
+    @RequestMapping(value = "/actie", method = RequestMethod.POST)
+    public ModelAndView actie(@RequestParam long actieId){
+        
+        return new ModelAndView("lokatie");
+    }
+    
 }
