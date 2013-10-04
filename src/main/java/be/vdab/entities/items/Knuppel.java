@@ -6,12 +6,17 @@
 package be.vdab.entities.items;
     
 import be.vdab.entities.Item;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
- *
- * @author tim.vandenlangenberg
+ * 
+ * @author tim.vandenlangenberg (tmtvl) 
+ * @author stijnva
  * @version 
  */
+@Entity
+@Table(name = "knuppel")
 public class Knuppel extends Item {
 
     @Override

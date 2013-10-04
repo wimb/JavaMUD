@@ -20,11 +20,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-//import be.vdab.commands.Actie;
-//import be.vdab.commands.HeeftActies;
-//import be.vdab.commands.HerlaadActie;
-//import be.vdab.commands.SchietActie;
-
 /**
  *
  * @author Tim Van den Langenbergh (tmtvl)
@@ -41,30 +36,16 @@ public abstract class Item extends HeeftActies implements Serializable {
     @GeneratedValue
     private long id;
     
-    /*
-     *  Dit wordt dus een ManyToOne naar IHeeftItems (wat een Karakter of een Locatie kan zijn
-     */    
     @ManyToMany
     @JoinTable(name = "iseigenaarvan", 
             joinColumns = @JoinColumn(name = "itemID"), 
             inverseJoinColumns = @JoinColumn(name = "eigenaarID"))
     private Set<HeeftItems> eigenaars;
     
-//    private Map<Long, Actie> acties = new HashMap<>();
-    
     public Item(){
         eigenaars = new LinkedHashSet<>();
     }
     
-    /*
-     *  Dit wordt dus Item( ..., IHeeftItems) 
-     *  
-     *  Maar zowiso, indien je niet met een gemeenschappelijke basiklasse werkt, 
-     *  Maak je beter 2 constructors
-     *     Item( ..., Karakter k)
-     *     Item( ..., Lokatie k)
-     *  Nu reken je erop dat de gebruiker van je klasse 1 van beide leeg laat, maar je dwingt dit neit af!
-     */
     public Item(long id, Set<HeeftItems> eigenaars){
         setId(id);
         setEigenaars(eigenaars);
@@ -78,11 +59,6 @@ public abstract class Item extends HeeftActies implements Serializable {
     public void setEigenaars(Set<HeeftItems> eigenaars){
         this.eigenaars = eigenaars;
     }
-    
-//    public void setActies() {
-//    	acties.put(1L, new SchietActie());
-//    	acties.put(2L, new HerlaadActie(this));
-//    }
     
     public long getId(){
         return id;
@@ -117,16 +93,6 @@ public abstract class Item extends HeeftActies implements Serializable {
     public boolean hasEigenaar(HeeftItems eigenaar){
         return eigenaars.contains(eigenaar);
     }
-    
-
-//	@Override
-//	public Map<Long, Actie> getActies() {
-//		return acties;
-//	}
-//	
-//	public Actie getActie(long actieId) {
-//	 return	acties.get(actieId);
-//	}
     
     @Override
     public boolean equals(Object obj){
