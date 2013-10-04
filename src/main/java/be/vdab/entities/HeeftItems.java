@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -28,7 +29,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "heeftitems")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class HeeftItems implements Serializable {
+public abstract class HeeftItems extends HeeftActies {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -39,6 +40,8 @@ public abstract class HeeftItems implements Serializable {
     @JoinTable(name = "iseigenaarvan", 
             joinColumns = @JoinColumn(name = "itemID"), 
             inverseJoinColumns = @JoinColumn(name = "eigenaarID"))
+    
+    @Transient
     private Set<Item> items;
     
     protected HeeftItems(){
@@ -53,13 +56,13 @@ public abstract class HeeftItems implements Serializable {
         this(items);
         setId(id);
     }
-    
-    public void setId(long id){
-        this.id = id;
-    }
-    
-    public long getId(){
+
+    public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
     
     public void setItems(Set<Item> items){
@@ -96,8 +99,8 @@ public abstract class HeeftItems implements Serializable {
     public boolean equals(Object o){
         if(o instanceof HeeftItems){
             HeeftItems hi = (HeeftItems) o;
-            if(id != 0){
-                return this.id == hi.getId();
+            if(getId() != 0){
+                return this.getId() == hi.getId();
             }
             else {
                 if(this.items == null){
@@ -114,7 +117,7 @@ public abstract class HeeftItems implements Serializable {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 11 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 11 * hash + super.hashCode();
         hash = 11 * hash + Objects.hashCode(this.items);
         return hash;
     }

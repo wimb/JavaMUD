@@ -95,6 +95,11 @@ public class Karakter extends HeeftItems {
     }
     
     @Override
+    public String getOmschrijving(){
+        return naam;
+    }
+    
+    @Override
     public boolean equals(Object obj){
         if(obj instanceof Karakter){
             Karakter k = (Karakter) obj;

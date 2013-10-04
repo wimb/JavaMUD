@@ -13,6 +13,8 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -31,7 +33,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "item")
-public class Item implements Serializable /*, HeeftActies*/ {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Item extends HeeftActies implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -66,6 +69,7 @@ public class Item implements Serializable /*, HeeftActies*/ {
         setId(id);
         setEigenaars(eigenaars);
     }
+    
     
     public void setId(long id){
         this.id = id;

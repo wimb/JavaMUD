@@ -134,6 +134,11 @@ public class Lokatie extends HeeftItems {
     }
     
     @Override
+    public String getOmschrijving(){
+        return beschrijving;
+    }
+    
+    @Override
     public boolean equals(Object o){
         if(o instanceof Lokatie){
             Lokatie lok = (Lokatie) o;
