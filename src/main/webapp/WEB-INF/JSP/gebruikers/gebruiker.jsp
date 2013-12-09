@@ -32,7 +32,7 @@ form {
 				<dt>Voornaam</dt>
 				<dd>${gebruiker.voornaam}</dd>
 				<dt>FamilieNaam</dt>
-				<dd>${gebruiker.naam}</dd>
+				<dd>${gebruiker.familienaam}</dd>
 				<dt>paswoord</dt>
 				<dd>${gebruiker.paswoord}</dd>
 			</dl>
