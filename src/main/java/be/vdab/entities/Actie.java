@@ -54,25 +54,5 @@ public abstract class Actie {
     abstract public ActionResult doe();
     abstract public String getOmschrijving();
     
-    @Override
-    public boolean equals(Object o){
-        if(o instanceof Actie){
-            Actie actie = (Actie) o;
-                if(this.parent == null && this.id == actie.getId()){
-                    return actie.getParent() == null;
-                }
-                else if(this.id == actie.getId()) {
-                    return this.parent.equals(actie.getParent());
-                }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.parent);
-        return hash;
-    }
-    
+   
 }
