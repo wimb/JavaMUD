@@ -55,25 +55,6 @@ public abstract class HeeftActies implements Serializable {
     @Transient
     public abstract String getOmschrijving();
     
-    @Override
-    public boolean equals(Object o){
-        if(o instanceof HeeftActies){
-            HeeftActies ha = (HeeftActies) o;
-            if(this.acties == null){
-                return ha.getActies() == null;
-            }
-            else {
-                return this.acties.equals(ha.getActies());
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.acties);
-        return hash;
-    }
+  
     
 }
