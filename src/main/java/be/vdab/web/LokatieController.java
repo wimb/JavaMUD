@@ -57,11 +57,7 @@ public class LokatieController {
         Karakter karakter = karakterService.read(karakterId);
         
         if(karakter != null){
-            Lokatie lok = karakter.getLokatie();
-            for(Item item : lok.getItems()){
-                Actie a = new RaapOp(item);
-                actieService.create(a);
-            }
+            
             
             mav.addObject("lokatie", karakter.getLokatie());
             mav.addObject("karakter", karakter);
