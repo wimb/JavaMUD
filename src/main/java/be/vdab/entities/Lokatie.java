@@ -190,13 +190,6 @@ public class Lokatie extends HeeftItems {
         }
     }
     
-    //TODO: QuickFix
-    @Override
-    public List<Actie> getActies(){
-        List<Actie> list = new LinkedList<>();
-        list.add(new RaapOp(this));
-        return list;
-    }
     
     
     
