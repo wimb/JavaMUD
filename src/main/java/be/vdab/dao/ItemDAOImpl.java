@@ -72,7 +72,5 @@ public class ItemDAOImpl implements ItemDAO {
                 entityManager.createNamedQuery("findItemsByEigenaar", Item.class);
         query.setParameter("eigenaar", eigenaar);
         return query.getResultList();
-    }    
-   
-    
+    }
 }

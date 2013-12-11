@@ -5,11 +5,8 @@
     
 package be.vdab.services;
     
-import be.vdab.entities.HeeftActies;
 import be.vdab.entities.HeeftItems;
 import be.vdab.entities.Item;
-import be.vdab.entities.Karakter;
-import be.vdab.entities.Lokatie;
 import java.util.List;
 
 /**

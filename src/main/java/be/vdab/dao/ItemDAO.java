@@ -3,8 +3,6 @@ package be.vdab.dao;
     
 import be.vdab.entities.HeeftItems;
 import be.vdab.entities.Item;
-import be.vdab.entities.Karakter;
-import be.vdab.entities.Lokatie;
 import java.util.List;
 
 /**
