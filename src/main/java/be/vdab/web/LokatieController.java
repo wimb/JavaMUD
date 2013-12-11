@@ -10,11 +10,14 @@ import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
 import be.vdab.entities.acties.RaapOp;
+import be.vdab.entities.items.Boek;
 import be.vdab.entities.items.Knuppel;
 import be.vdab.services.ActieService;
 import be.vdab.services.ItemService;
 import be.vdab.services.KarakterService;
 import be.vdab.services.LokatieService;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -57,8 +60,11 @@ public class LokatieController {
         Karakter karakter = karakterService.read(karakterId);
         
         if(karakter != null){
+            Lokatie lok = karakter.getLokatie();
+            List<Item> items = itemService.findByEigenaar(lok);
+                    
             
-            
+            mav.addObject("items", items);
             mav.addObject("lokatie", karakter.getLokatie());
             mav.addObject("karakter", karakter);
         }
@@ -68,6 +74,7 @@ public class LokatieController {
         
         return mav;
     }
+
     
     @RequestMapping(value = "/hoofdmenu", method = RequestMethod.GET)
     public String stopSpel(SessionStatus sessionStatus, 
@@ -88,9 +95,14 @@ public class LokatieController {
     }
     
     @RequestMapping(value = "/actie", method = RequestMethod.POST)
-    public ModelAndView actie(@RequestParam long actieId){
+    public ModelAndView actie(@RequestParam long itemId, String actie) throws Exception{
+        ModelAndView mav = new ModelAndView("lokatie");
+        Actie deActie = actieService.read(itemId,actie);
+        String actieomschrijving = deActie.getOmschrijving();
         
-        return new ModelAndView("lokatie");
+       mav.addObject("message", actieomschrijving);
+        
+        return mav;
     }
     
 }
