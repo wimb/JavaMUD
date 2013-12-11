@@ -42,8 +42,10 @@ public abstract class Item extends HeeftActies implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "eigenaarID"))
     private Set<HeeftItems> eigenaars;
     
+    private String omschrijving;
+    
     public Item(){
-        eigenaars = new LinkedHashSet<>();
+        eigenaars = new LinkedHashSet<>();     
     }
     
     public Item(long id, Set<HeeftItems> eigenaars){
@@ -68,7 +70,7 @@ public abstract class Item extends HeeftActies implements Serializable {
         return eigenaars;
     }
     
-    public String getOmschrijving() {
+    public String getBeschrijving() {
     	return "Beschrijving item";
     }
     

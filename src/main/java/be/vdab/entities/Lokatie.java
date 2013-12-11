@@ -190,13 +190,7 @@ public class Lokatie extends HeeftItems {
         }
     }
     
-   
     
-    @Override
-    public Set<Item> getItems(){
-        Set<Item> items = new LinkedHashSet<Item>();
-        Knuppel knuppel = new Knuppel();        
-        items.add(knuppel);        
-        return items;
-    }   
+    
+    
 }

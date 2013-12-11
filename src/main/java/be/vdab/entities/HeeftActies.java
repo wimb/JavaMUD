@@ -30,7 +30,7 @@ public abstract class HeeftActies implements Serializable {
         return acties;
     }
     
-    protected void addActie(Actie actie){
+    public void addActie(Actie actie){
         acties.add(actie);
         if(!this.equals(actie.getParent())){
             actie.setParent(this);
@@ -55,6 +55,12 @@ public abstract class HeeftActies implements Serializable {
     @Transient
     public abstract String getOmschrijving();
     
-  
-    
+     public Actie getActieByName(String readableIdentifier) throws Exception {
+         for(Actie a : acties){
+             if((a.getReadableIdentifier().equals(readableIdentifier))){
+                 return a;
+             }
+         }        
+         throw new Exception("Action not found.");
+     }
 }
