@@ -55,8 +55,5 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<Item> findByEigenaar(HeeftItems eigenaar){
         return itemDAO.findByEigenaar(eigenaar);
-    }
-    
-    
-    
+    }     
 }

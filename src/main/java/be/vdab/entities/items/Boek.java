@@ -1,26 +1,27 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package be.vdab.entities.items;
 
 import be.vdab.entities.Item;
+import be.vdab.entities.acties.LegNeer;
 import be.vdab.entities.acties.RaapOp;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
  *
- * @author Chi.Ng
+ * @author jens.bouwen
  */
 @Entity
 @Table(name = "boek")
-public class Boek extends Item{
+public class Boek extends Item {
     
     public Boek(){
-      new RaapOp(this);
+       //When creating an action, the parrent will be bound to the action. 
+       new RaapOp(this);
+       new LegNeer(this);
     }
     
     @Override
