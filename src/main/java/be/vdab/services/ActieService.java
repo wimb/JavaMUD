@@ -14,9 +14,9 @@ import java.util.List;
  * @version 0.1
  */
 public interface ActieService {
-    void create(Actie actie);
-    Actie read(long id);
-    void update(Actie actie);
-    void delete(long id);
-    List<Actie> getAll();
+    //void create(Actie actie);
+    Actie read(long id, String s) throws Exception;
+    //void update(Actie actie);
+    //void delete(long id);
+    //List<Actie> getAll();
 }
