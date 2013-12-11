@@ -5,6 +5,7 @@
     
 package be.vdab.dao;
     
+import be.vdab.entities.HeeftItems;
 import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
@@ -66,19 +67,12 @@ public class ItemDAOImpl implements ItemDAO {
     }
     
     @Override
-    public List<Item> findByEigenaar(Karakter eigenaar){
+    public List<Item> findByEigenaar(HeeftItems eigenaar){
         TypedQuery<Item> query = 
                 entityManager.createNamedQuery("findItemsByEigenaar", Item.class);
         query.setParameter("eigenaar", eigenaar);
         return query.getResultList();
-    }
-    
-    @Override
-    public List<Item> findByPositie(Lokatie positie){
-        TypedQuery<Item> query = 
-                entityManager.createNamedQuery("findItemsByPositie", Item.class);
-        query.setParameter("positie", positie);
-        return query.getResultList();
-    }
+    }    
+   
     
 }

@@ -3,11 +3,11 @@
 <c:forEach var="item" items="${items}">    
     <li>
     <div class="item">
-        ${item.omschrijving}
-        <c:if test="${not empty item.acties}">
+        ${item.omschrijving}1
+        <c:if test="${not empty item.acties}">2
             <ul>
             <c:forEach var="actie" items="${item.acties}">
-                <li>${actie.omschrijving}</li>
+                <li>${actie.omschrijving}</li>3
             </c:forEach>
              </ul>
         </c:if>

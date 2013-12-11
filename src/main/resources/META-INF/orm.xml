@@ -43,6 +43,8 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
                 select distinct i from Item i join i.eigenaars e where e = :eigenaar
             </query>
         </named-query>
+        
+       
 
 </entity-mappings>
 
