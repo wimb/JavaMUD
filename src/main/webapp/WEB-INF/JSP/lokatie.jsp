@@ -20,7 +20,17 @@
     <h1 class="lokatieTitel">Lokatie ${lokatie.id}</h1>
     <div class="lokatieBescrijving">Omschrijving van lokatie: ${lokatie.beschrijving}</div>
     <div class="lokatieItem">
-        <h2>items</h2>
+        <h2>Items</h2>
+        <c:forEach var="item" items = "${items}">
+            <h3>${item.omschrijving}</h3>
+            <c:if test="${not empty item.acties}">
+            <ul>
+            <c:forEach var="actie" items="${item.acties}">
+                <li>${actie.omschrijving}</li>
+            </c:forEach>
+             </ul>
+        </c:if>
+        </c:forEach>
         <c:if test="${not empty lokatie.items}">
             <c:set var="items" value="${lokatie.items}"/>
             <%@include file="/WEB-INF/JSP/items/itemlijst.jsp"%>
