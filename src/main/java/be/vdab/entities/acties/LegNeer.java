@@ -20,6 +20,8 @@ public class LegNeer extends Actie {
 
      public LegNeer(HeeftActies parent){
         super(parent);
+       
+        
     }
     
     @Override

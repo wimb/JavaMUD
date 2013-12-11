@@ -17,7 +17,7 @@ import be.vdab.entities.HeeftActies;
 public class RaapOp extends Actie {
     
     public RaapOp(HeeftActies parent){
-        super(parent);
+        super(parent);       
     }
     
     @Override

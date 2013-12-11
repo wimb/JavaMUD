@@ -3,11 +3,22 @@
 <c:forEach var="item" items="${items}">    
     <li>
     <div class="item">
-        ${item.omschrijving}1
-        <c:if test="${not empty item.acties}">2
+        ${item.omschrijving}
+        <c:if test="${not empty item.acties}">
             <ul>
+                
             <c:forEach var="actie" items="${item.acties}">
-                <li>${actie.omschrijving}</li>3
+                <li>${actie.omschrijving}</li>
+                
+                <c:url var="actieURL" value="/lokatie/actie">
+                  <c:param name="itemId" value="${item.id}"/>
+                  <c:param name="actie" value="${actie.readableIdentifier}"/>                  
+                </c:url>
+                  ${item.id}
+                <form action="${actieURL}" method="post">
+                <input type="submit" value="${actie}"/>
+                </form>
+                
             </c:forEach>
              </ul>
         </c:if>
