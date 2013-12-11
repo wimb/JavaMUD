@@ -1,36 +1,36 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-    
 package be.vdab.entities.acties;
-    
+
 import be.vdab.entities.Actie;
 import be.vdab.entities.ActionResult;
 import be.vdab.entities.HeeftActies;
 
+
+
+
 /**
  *
- * @author tim.vandenlangenberg
- * @version 
+ * @author Kamil.Laga
  */
-public class RaapOp extends Actie {
-    
-    public RaapOp(HeeftActies parent){
+public class LegNeer extends Actie {
+
+     public LegNeer(HeeftActies parent){
         super(parent);
     }
     
     @Override
     public ActionResult doe() {
         //TODO Implements het effectief veranderen van eigenaar
-        return new ActionResult("Het object is opgeraapt");
+        return new ActionResult("Het object is neergelegd");
     }
 
     @Override
     public String getOmschrijving() {
-        return "Het oprapen van " + getParent().getOmschrijving();
+        return "Het neerleggen van " + getParent().getOmschrijving();
     }
-    
-    
     
 }
