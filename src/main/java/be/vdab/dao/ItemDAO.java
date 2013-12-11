@@ -1,6 +1,7 @@
 
 package be.vdab.dao;
     
+import be.vdab.entities.HeeftItems;
 import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
@@ -16,6 +17,5 @@ public interface ItemDAO {
     Item read(long id);
     void update(Item item);
     void delete(long id);
-    List<Item> findByEigenaar(Karakter eigenaar);
-    List<Item> findByPositie(Lokatie positie);
+    List<Item> findByEigenaar(HeeftItems eigenaar);
 }
