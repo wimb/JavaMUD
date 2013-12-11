@@ -23,6 +23,13 @@
         <h2>Items</h2>
         <c:forEach var="item" items = "${items}">
             <h3>${item.omschrijving}</h3>
+            <c:if test="${not empty item.acties}">
+            <ul>
+            <c:forEach var="actie" items="${item.acties}">
+                <li>${actie.omschrijving}</li>
+            </c:forEach>
+             </ul>
+        </c:if>
         </c:forEach>
         <c:if test="${not empty lokatie.items}">
             <c:set var="items" value="${lokatie.items}"/>
