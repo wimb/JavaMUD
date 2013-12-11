@@ -198,7 +198,5 @@ public class Lokatie extends HeeftItems {
         Knuppel knuppel = new Knuppel();        
         items.add(knuppel);        
         return items;
-    }
-    
-    
+    }   
 }

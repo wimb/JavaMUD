@@ -68,7 +68,7 @@ public abstract class Item extends HeeftActies implements Serializable {
         return eigenaars;
     }
     
-    public String getBeschrijving() {
+    public String getOmschrijving() {
     	return "Beschrijving item";
     }
     
