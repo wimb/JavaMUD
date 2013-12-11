@@ -6,6 +6,7 @@
 package be.vdab.services;
     
 import be.vdab.dao.ItemDAO;
+import be.vdab.entities.HeeftItems;
 import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
@@ -52,13 +53,7 @@ public class ItemServiceImpl implements ItemService {
     }
     
     @Override
-    public List<Item> findByEigenaar(Karakter eigenaar){
+    public List<Item> findByEigenaar(HeeftItems eigenaar){
         return itemDAO.findByEigenaar(eigenaar);
-    }
-    
-    @Override
-    public List<Item> findByPositie(Lokatie positie){
-        return itemDAO.findByPositie(positie);
-    }
-    
+    }     
 }
