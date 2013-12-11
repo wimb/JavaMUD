@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Boek extends Item{
     
     public Boek(){
-        this.addActie(new RaapOp(this));
+      new RaapOp(this);
     }
     
     @Override

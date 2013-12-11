@@ -96,10 +96,13 @@ public class LokatieController {
     
     @RequestMapping(value = "/actie", method = RequestMethod.POST)
     public ModelAndView actie(@RequestParam long itemId, String actie) throws Exception{
+        ModelAndView mav = new ModelAndView("lokatie");
         Actie deActie = actieService.read(itemId,actie);
-        deActie.getOmschrijving();
+        String actieomschrijving = deActie.getOmschrijving();
         
-        return new ModelAndView("lokatie");
+       mav.addObject("message", actieomschrijving);
+        
+        return mav;
     }
     
 }

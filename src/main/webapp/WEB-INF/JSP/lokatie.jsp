@@ -27,14 +27,23 @@
             <ul>
             <c:forEach var="actie" items="${item.acties}">
                 <li>${actie.omschrijving}</li>
+                    <c:url var="actieURL" value="/lokatie/actie">
+                  <c:param name="itemId" value="${item.id}"/>
+                  <c:param name="actie" value="${actie.readableIdentifier}"/>                  
+                </c:url>
+                <form action="${actieURL}" method="post">
+                <input type="submit" value="${actie}"/>
+                </form>
             </c:forEach>
              </ul>
         </c:if>
         </c:forEach>
+            
         <c:if test="${not empty lokatie.items}">
             <c:set var="items" value="${lokatie.items}"/>
             <%@include file="/WEB-INF/JSP/items/itemlijst.jsp"%>
         </c:if>
+            
     </div>
     <h2>Alle karakters op locatie</h2>
   
@@ -56,6 +65,10 @@
 
 	<c:if test="${not empty actieResultaat}">
 		<jsp:include page="/WEB-INF/JSP/actieResultaat.jsp" />
+	</c:if>
+    
+    <c:if test="${not empty message}">
+        <p>Actie omschrijving: ${message}</p>
 	</c:if>
         
 </body>
