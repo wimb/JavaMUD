@@ -6,6 +6,7 @@
 package be.vdab.entities.items;
     
 import be.vdab.entities.Item;
+import be.vdab.entities.acties.LegNeer;
 import be.vdab.entities.acties.RaapOp;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -21,7 +22,9 @@ import javax.persistence.Table;
 public class Knuppel extends Item {
     
     public Knuppel(){
-        this.addActie(new RaapOp(this));
+       //When creating an action, the parrent will be bound to the action. 
+       new RaapOp(this);
+       new LegNeer(this);
     }
     
     @Override
