@@ -19,10 +19,6 @@
 	<c:import url="/WEB-INF/JSP/menu.jsp" />
 
 	<h1>JAVA!</h1>
-	<c:url var="lokatieURL" value="/lokatie">
-		<c:param name="lokatieId" value="1" />
-	</c:url>
-	<a href="${lokatieURL}">Lokatie</a>
 	<c:url var="aanmeldenURL" value="/aanmelden">
 	</c:url>
 	<a href="${aanmeldenURL}">Aanmelden Gebruiker</a>

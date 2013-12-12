@@ -23,7 +23,7 @@ public class RaapOp extends Actie {
     @Override
     public ActionResult doe() {
         //TODO Implements het effectief veranderen van eigenaar
-        return new ActionResult("Het object is opgeraapt");
+        return new ActionResult(getParent().getOmschrijving() + " is opgeraapt");
     }
 
     @Override

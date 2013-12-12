@@ -6,6 +6,7 @@
 package be.vdab.web;
     
 import be.vdab.entities.Actie;
+import be.vdab.entities.ActionResult;
 import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
 import be.vdab.entities.Lokatie;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 /**
  * LokatieController.java.
@@ -95,12 +97,17 @@ public class LokatieController {
     }
     
     @RequestMapping(value = "/actie", method = RequestMethod.POST)
-    public ModelAndView actie(@RequestParam long itemId, String actie) throws Exception{
-        ModelAndView mav = new ModelAndView("lokatie");
+    public ModelAndView actie(@RequestParam long karakterid,long itemId, String actie) throws Exception{
+         //op welke item (itemid) wordt welke actie (actie) gedaan
+        //Zoek de juiste actie en voer ze uit:
         Actie deActie = actieService.read(itemId,actie);
-        String actieomschrijving = deActie.getOmschrijving();
+        ActionResult actieomschrijving = deActie.doe();
         
-       mav.addObject("message", actieomschrijving);
+        //laad vernieuwde mav met meegegeven karakterid
+        ModelAndView mav = findKarakterLokatie(karakterid); 
+        
+        //toon de boodschap van de actie:
+        mav.addObject("message", actieomschrijving.toString());
         
         return mav;
     }

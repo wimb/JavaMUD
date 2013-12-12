@@ -50,9 +50,11 @@
                 <configuration>
                     <driver>com.mysql.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost:3306/</url>
+                    <!--hardcoded login, disabled
                     <username>root</username>
                     <password>vdab</password>
-                    <!-- no transaction -->
+                    -->
+                    <settingsKey>1</settingsKey>
                     <delimiter>;</delimiter>
                     <delimiterType>normal</delimiterType>
                     <autocommit>true</autocommit>
@@ -80,8 +82,10 @@
                         <goal>run</goal>
                     </goals> 
                   </execution>    
-                   
-                </executions>             
+                </executions>  
+                <configuration>
+                    <port>8081</port>
+                </configuration>           
             </plugin>
             
         </plugins>
