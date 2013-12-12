@@ -3,12 +3,9 @@
 <header>
 	<div class="menu">
 		<nav>
-		<img
-		src="${pageContext.servletContext.contextPath}/images/logo.png"alt="logo" 
-		/>
 			<ul class="hoofdmenu">
-				<c:url value="/" var="rootURL" />
-				<li><a href="${rootURL}">Hoofdmenu</a></li>
+				<c:url value="/hoofdmenu" var="hoofdmenuURL" />
+				<li><a href="${hoofdmenuURL}">Hoofdmenu</a></li>
 			</ul>
 		</nav>
 	</div>
