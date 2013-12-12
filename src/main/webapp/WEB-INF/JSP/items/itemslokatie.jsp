@@ -8,9 +8,7 @@
             <ul>
                 
             <c:forEach var="actie" items="${item.acties}">
-                <li>${actie.omschrijving}</li>
-<<<<<<< HEAD:src/main/webapp/WEB-INF/JSP/items/itemlijst.jsp
-                
+                <li>${actie.omschrijving}</li>  
                 <c:url var="actieURL" value="/lokatie/actie">
                   <c:param name="itemId" value="${item.id}"/>
                   <c:param name="actie" value="${actie.readableIdentifier}"/>                  
@@ -18,10 +16,7 @@
                   ${item.id}
                 <form action="${actieURL}" method="post">
                 <input type="submit" value="${actie}"/>
-                </form>
-                
-=======
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:src/main/webapp/WEB-INF/JSP/items/itemslokatie.jsp
+                </form> 
             </c:forEach>
              </ul>
         </c:if>

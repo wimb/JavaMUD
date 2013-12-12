@@ -1,11 +1,9 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
+
 -- Server version	5.6.13
-=======
--- Server version	5.6.14-log
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
+
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -34,22 +32,16 @@ CREATE TABLE `boek` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   CONSTRAINT `boekitemidfk` FOREIGN KEY (`id`) REFERENCES `item` (`Id`)
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
 
 --
 -- Dumping data for table `boek`
 --
 
 /*!40000 ALTER TABLE `boek` DISABLE KEYS */;
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
-=======
+
 INSERT INTO `boek` (`id`) VALUES 
  (2);
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
 /*!40000 ALTER TABLE `boek` ENABLE KEYS */;
 
 
@@ -129,13 +121,9 @@ CREATE TABLE `iseigenaarvan` (
 
 /*!40000 ALTER TABLE `iseigenaarvan` DISABLE KEYS */;
 INSERT INTO `iseigenaarvan` (`eigenaarID`,`itemID`) VALUES 
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
- (1,9);
-=======
  (1,1),
  (1,2),
  (1,100);
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
 /*!40000 ALTER TABLE `iseigenaarvan` ENABLE KEYS */;
 
 
@@ -148,11 +136,9 @@ CREATE TABLE `item` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Omschrijving` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-=======
+
 ) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
+
 
 --
 -- Dumping data for table `item`
@@ -160,16 +146,9 @@ CREATE TABLE `item` (
 
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
 INSERT INTO `item` (`Id`,`Omschrijving`) VALUES 
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
- (1,'Boek'),
- (2,'Knuppel'),
- (3,'Ladder'),
- (9,'Knuppel');
-=======
  (1,'Knuppel'),
  (2,'Ladder'),
  (100,'Boek');
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 
@@ -212,11 +191,9 @@ CREATE TABLE `knuppel` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   CONSTRAINT `knuppelitemidfk` FOREIGN KEY (`id`) REFERENCES `item` (`Id`)
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-=======
+
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
+
 
 --
 -- Dumping data for table `knuppel`
@@ -224,11 +201,7 @@ CREATE TABLE `knuppel` (
 
 /*!40000 ALTER TABLE `knuppel` DISABLE KEYS */;
 INSERT INTO `knuppel` (`id`) VALUES 
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
- (9);
-=======
  (1);
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
 /*!40000 ALTER TABLE `knuppel` ENABLE KEYS */;
 
 
@@ -240,22 +213,15 @@ DROP TABLE IF EXISTS `ladder`;
 CREATE TABLE `ladder` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
-=======
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
 
 --
 -- Dumping data for table `ladder`
 --
 
 /*!40000 ALTER TABLE `ladder` DISABLE KEYS */;
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
-=======
 INSERT INTO `ladder` (`id`) VALUES 
  (100);
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
 /*!40000 ALTER TABLE `ladder` ENABLE KEYS */;
 
 
@@ -321,50 +287,6 @@ INSERT INTO `lokatiebestemmingen` (`LokatieId`,`BestemmingId`,`Omschrijving`) VA
  (6,3,'Naar de straat'),
  (6,4,'Naar de keuken');
 /*!40000 ALTER TABLE `lokatiebestemmingen` ENABLE KEYS */;
-
-
-<<<<<<< HEAD:src/main/resources/conf/javamudSQL.sql
-=======
---
--- Definition of procedure `KarakterToevoegen`
---
-
-DROP PROCEDURE IF EXISTS `KarakterToevoegen`;
-
-DELIMITER $$
-
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `KarakterToevoegen`(IN gebruikerId INT(10), IN naam VARCHAR(50))
-BEGIN
-  INSERT INTO heeftitems VALUES ((SELECT MAX(b.id) FROM heeftitems b) + 1);
-
-  INSERT INTO karakter VALUES ((SELECT MAX(id) FROM heeftitems), gebruikerID, 1, naam);
-
-END $$
-/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
-
-DELIMITER ;
-
---
--- Definition of procedure `LokatieToevoegen`
---
-
-DROP PROCEDURE IF EXISTS `LokatieToevoegen`;
-
-DELIMITER $$
-
-/*!50003 SET @TEMP_SQL_MODE=@@SQL_MODE, SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `LokatieToevoegen`(IN beschrijving VARCHAR(140))
-BEGIN
-   INSERT INTO heeftitems VALUES ((SELECT MAX(b.id) FROM heeftitems b) + 1);
-
-  INSERT INTO lokatie VALUES ((SELECT MAX(id) FROM heeftitems), beschrijving);
-END $$
-/*!50003 SET SESSION SQL_MODE=@TEMP_SQL_MODE */  $$
-
-DELIMITER ;
-
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111:javamudSQL.sql
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

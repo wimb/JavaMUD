@@ -41,6 +41,7 @@
 				</c:forEach>
 				 </ul>
 			</c:if>
+			<!--
 =======
         <h2>Alle karakters op locatie</h2>
   
@@ -90,6 +91,7 @@
              </ul>
         </c:if>
 >>>>>>> 401fba2b095623530793011ae96c0aab09e70111
+-->
         </c:forEach>
             
         <c:if test="${not empty lokatie.items}">
@@ -121,18 +123,11 @@
 	<c:if test="${not empty actieResultaat}">
 		<jsp:include page="/WEB-INF/JSP/actieResultaat.jsp" />
 	</c:if>
-<<<<<<< HEAD
     <div class="actieRes">
 		<c:if test="${not empty message}">
 			<p>Actie omschrijving: ${message}</p>
 		</c:if>
 	</div>
-=======
-    
-    <c:if test="${not empty message}">
-        <b>Actie omschrijving: ${message}</b>
-	</c:if>
->>>>>>> 401fba2b095623530793011ae96c0aab09e70111
         
 </body>
 </html>
