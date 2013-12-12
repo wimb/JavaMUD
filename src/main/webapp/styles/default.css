@@ -37,7 +37,7 @@ input {
 	width: 422px;
 	height: 317px;
 	color: #FFF;
-	background: transparent url(kelder.jpg) 0 0 no-repeat;
+	background: transparent url(../images/kelder.jpg) 0 0 no-repeat;
 	background-position: 0% 50px;
 
 }
@@ -52,7 +52,6 @@ input {
 }
 
 .lokatieItem {
-	position: absolute;
 	top: 650px;
 	width: 25%;
 	font-size: 0.75em;
@@ -60,7 +59,6 @@ input {
 
 .karakterItem {
 	margin-left: 25%;
-	position: absolute;
 	top: 650px;
 	width: 25%;
 	font-size: 0.75em;
