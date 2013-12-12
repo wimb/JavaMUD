@@ -38,55 +38,6 @@ input {
 	margin-bottom: 0.5em;
 }
 
-.lokatieTitel {
-	width: 422px;
-	height: 317px;
-	color: #FFF;
-	background: transparent url(kelder.jpg) 0 0 no-repeat;
-	background-position: 0% 50px;
-
-}
-
-.lokatieBeschrijving {
-	/*position: relative;*/
-/*	float: left; */
-	width: 422px;
-}
-
-.lokatieItem {
-	position: absolute;
-	top: 650px;
-	width: 25%;
-	font-size: 0.75em;
-}
-
-.karakterItem {
-	margin-left: 25%;
-	position: absolute;
-	top: 650px;
-	width: 25%;
-	font-size: 0.75em;
-}
-
-.karakterNaam {
-	position: absolute;
-	top: 310px;
-	margin-left: 470px; 
-	width: 200px;
-	height: 200px;
-	color:#FF0000;
-	background: transparent url(javaguy.gif) 0 0 no-repeat;
-	background-position: 10% 0;
-
-}
-.acties {
-	margin-left: 50%;
-	position: absolute;
-	top: 650px;
-	width: 25%;
-	font-size: 0.75em;
-}
-
 .fout {
 	color: #f00;
 	margin-left: 5px;
@@ -95,12 +46,12 @@ input {
 .zonderbolletjes {
 	list-style: none;
 	padding: 0;
-	margin-bottom: 0.2em;
 }
 
-.zonderbolletjes li {
-	display: inline;
-	margin-right: 0.2em;
+.characterlist{
+width:500px;
+margin-left:auto;
+margin-right:auto;
 }
 
 div.rij input {
@@ -116,7 +67,16 @@ ul.hoofdmenu li {
 	display: block;
 }
 
-
+.karakterNaam {
+	position: absolute;
+	top: 310px;
+	margin-left: 470px; 
+	width: 200px;
+	height: 200px;
+	color:#FF0000;
+	background: transparent url(javaguy.gif) 0 0 no-repeat;
+	background-position: 10% 0;
+}
 
 a:link , a:visited{
 	color: #f00;

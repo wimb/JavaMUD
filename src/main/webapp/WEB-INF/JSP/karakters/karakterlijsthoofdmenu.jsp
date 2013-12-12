@@ -8,16 +8,17 @@
                     <c:url var="karakterURL" value="/lokatie">
                         <c:param name="karakterId" value="${karakter.id}"/>
                     </c:url>
-                    <a href="${karakterURL}">${karakter.naam}</a>
-                </li>
+                    
 
-                <li>
                     <c:url var="deleteURL" value="/karakter">
                         <c:param name="karakterId" value="${karakter.id}"/>
                     </c:url>
-                    <form:form action="${deleteURL}" method="delete">
-                        <input type="submit" value="[X]"/>
-                    </form:form>
+					<div>
+						<form:form action="${deleteURL}" method="delete" >
+							<a href="${karakterURL}">${karakter.naam}</a>
+							<input  class="characterdelete" type="submit" value="delete"/>
+						</form:form>
+					</div>
                 </li>
             </ul>
         </c:if>

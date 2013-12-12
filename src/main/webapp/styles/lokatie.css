@@ -1,0 +1,56 @@
+.lokatieTitel {
+	width: 422px;
+	height: 317px;
+	color: #FFF;
+	background-position: 0% 50px;
+	background-image:url(../images/kelder.jpg);
+	/*^ dient in code aangepast te worden*/
+	background-repeat: no-repeat;
+	display:inline-block;
+
+}
+
+.lokatieBeschrijving {
+	/*position: relative;*/
+/*	float: left; */
+}
+
+.lokatieItem {
+	width: 50%;
+	float:left;
+}
+
+.lokatieKarakter{
+	display:inline;
+	width:50%;
+}
+
+.lokatieItem li {
+	list-style:none;
+}
+
+.itemOmschrijving{
+	text-align:left;
+	margin-left: 50px;
+}
+
+.actieButton{
+	width:50px;
+	display:inline;
+}
+
+.karakterItem {
+	margin-left: 25%;
+	position: absolute;
+	top: 650px;
+	width: 25%;
+	font-size: 0.75em;
+}
+
+.acties {
+	margin-left: 50%;
+	position: absolute;
+	top: 650px;
+	width: 25%;
+	font-size: 0.75em;
+}
