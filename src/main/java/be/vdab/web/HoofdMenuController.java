@@ -37,23 +37,20 @@ public class HoofdMenuController {
         this.gebruikerService = gebruikerService;
     }
     
-    @RequestMapping(method = RequestMethod.GET)
+@RequestMapping(method = RequestMethod.GET)
     public ModelAndView hoofdmenu(HttpSession session){
-        ModelAndView mav = new ModelAndView("hoofdmenu");
+        ModelAndView mav;
+        
         
         Gebruiker gebruiker = (Gebruiker) session.getAttribute("gebruiker");
-        if(gebruiker != null){
-            mav.addObject("gebruiker", gebruiker);
-        }
-        else {
+        if(gebruiker == null){           
             String email = getAuthenticationName();
             if(email != null && !email.isEmpty()){
                 try {
                     EmailAdres emailAdres = new EmailAdres(email);
-                    Gebruiker g = gebruikerService.findByEmail(emailAdres);
-                    if(g != null){
-                        session.setAttribute("gebruiker", g);
-                        mav.addObject("gebruiker", g);
+                    gebruiker = gebruikerService.findByEmail(emailAdres);
+                    if(gebruiker != null){
+                        session.setAttribute("gebruiker", gebruiker);
                     }
                 }
                 catch(VerkeerdeEmailAdresException veae){
@@ -61,6 +58,12 @@ public class HoofdMenuController {
                 }
             }
         }
+        if(gebruiker != null && gebruiker.isAdmin()){
+            mav = new ModelAndView("adminpagina");
+        }else{
+            mav = new ModelAndView("hoofdmenu");
+        }
+        mav.addObject("gebruiker", gebruiker);
         
         return mav;
     }
