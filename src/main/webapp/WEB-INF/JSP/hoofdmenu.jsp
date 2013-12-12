@@ -28,6 +28,9 @@
         
         <c:choose>
             <c:when test="${not empty gebruiker}">
+                <c:url var="gebruikerURL" value="/gebruiker">
+                </c:url>
+                <a href="${gebruikerURL}">Gegevens Gebruiker</a>
                 <div id="nieuwKarakter">
                     <a href="<c:url value='karakter/nieuw'/>">Nieuw karakter</a>
                 </div>
