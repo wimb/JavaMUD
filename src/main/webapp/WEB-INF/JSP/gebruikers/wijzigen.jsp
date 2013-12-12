@@ -13,10 +13,13 @@
 <body>
 	<c:import url="/WEB-INF/JSP/menu.jsp" />
 	<h1>${gebruiker.emailAdres} wijzigen</h1>
-<%-- 	<spring:url value="/{id}/wijzigen" var="wijzigURL"> --%>
-	<spring:url value="/gebruiker/wijzigen" var="wijzigURL">
+ 	<spring:url value="wijzigen" var="wijzigURL" /> 
+	
+<%--
+        <spring:url value="/gebruiker/wijzigen" var="wijzigURL">
 		<spring:param name="id" value="${gebruiker.id}" />
 	</spring:url>
+--%>
 	<form:form action="${wijzigURL}" method="put" commandName="gebruiker">
 		<jsp:include page="gebruikerformfields.jsp" />
 		<input type="submit" value="wijzigen" />

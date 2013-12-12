@@ -8,6 +8,12 @@
 	href="${pageContext.servletContext.contextPath}/styles/default.css" />
 </head>
 <body>
-	<div>De gebruiker ${param.emailAdres} (${param.id}) is verwijderd.</div>
+	<div>De gebruiker ${emailAdres} (${id}) is verwijderd.</div>
+        <nav>
+            <ul class="menu">
+		<c:url value="/" var="rootURL" />
+		<li><a href="${rootURL}">Ga terug naar beginpagina</a></li>
+            </ul>
+	</nav
 </body>
 </html>
