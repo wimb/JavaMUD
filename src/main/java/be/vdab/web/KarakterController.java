@@ -62,9 +62,6 @@ public class KarakterController {
                 return new ModelAndView("redirect:/hoofdmenu");
             }
             
-            if(g.getKarakter().size() >= 1){
-                return new ModelAndView("redirect:/hoofdmenu");
-            }
             
             k.setGebruiker(g);
             
