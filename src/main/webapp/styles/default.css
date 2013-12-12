@@ -38,6 +38,16 @@ input {
 	margin-bottom: 0.5em;
 }
 
+.karakterNaam {
+	position: absolute;
+	top: 310px;
+	margin-left: 470px; 
+	width: 200px;
+	height: 200px;
+	color:#FF0000;
+	background: transparent url(javaguy.gif) 0 0 no-repeat;
+	background-position: 10% 0;
+
 .fout {
 	color: #f00;
 	margin-left: 5px;
