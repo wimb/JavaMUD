@@ -84,4 +84,17 @@ public class KarakterDAOImpl implements KarakterDAO {
 		}
 	}
 
+    @Override
+    public List<Karakter> findAllKarakters() {
+        TypedQuery<Karakter> query = entityManager.createNamedQuery("findAllKarakters", Karakter.class);
+        try {
+            return query.getResultList();
+        } catch (NoResultException e){
+            System.out.println(e);
+            return null;
+        }
+    }
+        
+        
+
 }

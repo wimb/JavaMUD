@@ -53,5 +53,10 @@ public class KarakterServiceImpl implements KarakterService {
 	public List<Karakter> findByLokatie(Lokatie lokatie) {
 		return karakterDAO.findByLokatie(lokatie);
 	}
+        
+        @Override
+        public List<Karakter> findAllKarakters(){
+            return karakterDAO.findAllKarakters();
+        }
 
 }

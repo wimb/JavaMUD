@@ -25,11 +25,9 @@ public class Knuppel extends Item {
        //When creating an action, the parrent will be bound to the action. 
        new RaapOp(this);
        new LegNeer(this);
+       super.setOmschrijving("Knuppel");
     }
     
-    @Override
-    public String getOmschrijving() {
-        return "een knuppel";
-    }
+    
     
 }

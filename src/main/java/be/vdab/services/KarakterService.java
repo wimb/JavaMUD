@@ -18,4 +18,6 @@ public interface KarakterService {
 	List<Karakter> findByGebruiker(Gebruiker gebruiker);
 
 	List<Karakter> findByLokatie(Lokatie lokatie);
+        
+        List<Karakter> findAllKarakters();
 }
