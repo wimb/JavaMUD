@@ -69,9 +69,15 @@ public abstract class Item extends HeeftActies implements Serializable {
     public Set<HeeftItems> getEigenaars(){
         return eigenaars;
     }
+
+    @Override
+    public String getOmschrijving() {
+        return omschrijving;
+    }   
     
-    public String getBeschrijving() {
-    	return "Beschrijving item";
+
+    public void setOmschrijving(String omschrijving) {
+        this.omschrijving = omschrijving;
     }
     
     public void addEigenaar(HeeftItems eigenaar){

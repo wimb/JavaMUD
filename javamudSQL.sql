@@ -109,7 +109,7 @@ CREATE TABLE `iseigenaarvan` (
   `itemID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`eigenaarID`,`itemID`),
   CONSTRAINT `EigenaarHeeftItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `EigenaarItemFK` FOREIGN KEY (`eigenaarID`) REFERENCES `item` (`Id`)
+  CONSTRAINT `EigenaarItemFK` FOREIGN KEY (`itemID`) REFERENCES `item` (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

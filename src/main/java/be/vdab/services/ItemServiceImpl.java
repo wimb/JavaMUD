@@ -8,8 +8,6 @@ package be.vdab.services;
 import be.vdab.dao.ItemDAO;
 import be.vdab.entities.HeeftItems;
 import be.vdab.entities.Item;
-import be.vdab.entities.Karakter;
-import be.vdab.entities.Lokatie;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,4 +54,9 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> findByEigenaar(HeeftItems eigenaar){
         return itemDAO.findByEigenaar(eigenaar);
     }     
+
+    @Override
+    public List<String> findAllDifferentItems() {
+        return itemDAO.findAllDifferentItems();
+    }
 }

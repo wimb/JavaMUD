@@ -19,8 +19,7 @@ import be.vdab.entities.HeeftActies;
 public class LegNeer extends Actie {
 
      public LegNeer(HeeftActies parent){
-        super(parent);
-       
+        super(parent);     
         
     }
     
