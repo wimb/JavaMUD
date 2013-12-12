@@ -28,6 +28,7 @@
             <c:forEach var="actie" items="${item.acties}">
                 <li>${actie.omschrijving}</li>
                     <c:url var="actieURL" value="/lokatie/actie">
+                    <c:param name="karakterid" value="${karakter.id}"/>
                   <c:param name="itemId" value="${item.id}"/>
                   <c:param name="actie" value="${actie.readableIdentifier}"/>                  
                 </c:url>
@@ -68,7 +69,7 @@
 	</c:if>
     
     <c:if test="${not empty message}">
-        <p>Actie omschrijving: ${message}</p>
+        <b>Actie omschrijving: ${message}</b>
 	</c:if>
         
 </body>
