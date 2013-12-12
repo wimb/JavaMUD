@@ -31,7 +31,7 @@
 
 .itemOmschrijving{
 	text-align:left;
-	margin-left: 50px;
+	margin-left: 100px;
 }
 
 .actieButton{
@@ -53,4 +53,17 @@
 	top: 650px;
 	width: 25%;
 	font-size: 0.75em;
+}
+
+.actieRes{
+display:block;
+ text-align: left;
+ width: 600px;
+ margin-left:auto;
+ margin-right:auto;
+ margin-top: 50px;
+}
+.actieRes p{
+	margin-left:auto;
+	margin-right:auto;
 }

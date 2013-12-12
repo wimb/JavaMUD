@@ -66,14 +66,15 @@
 			<%@include file="/WEB-INF/JSP/acties.jsp" %>
 		</c:if>
 	</div>
-
+	
 	<c:if test="${not empty actieResultaat}">
 		<jsp:include page="/WEB-INF/JSP/actieResultaat.jsp" />
 	</c:if>
-    
-    <c:if test="${not empty message}">
-        <b>Actie omschrijving: ${message}</b>
-	</c:if>
+    <div class="actieRes">
+		<c:if test="${not empty message}">
+			<p>Actie omschrijving: ${message}</p>
+		</c:if>
+	</div>
         
 </body>
 </html>
