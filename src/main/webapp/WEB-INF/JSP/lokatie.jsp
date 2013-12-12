@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="${contextPath}/styles/default.css" />
 </head>
 <body>
-    <a href="<c:url value='lokatie/hoofdmenu'/>">Hoofdmenu</a>
+    <c:import url="/WEB-INF/JSP/menu.jsp" />
     <h1 class="lokatieTitel">Lokatie ${lokatie.id}</h1>
     <div class="lokatieBescrijving">Omschrijving van lokatie: ${lokatie.beschrijving}</div>
     <div class="lokatieItem">
@@ -28,6 +28,7 @@
             <c:forEach var="actie" items="${item.acties}">
                 <li>${actie.omschrijving}</li>
                     <c:url var="actieURL" value="/lokatie/actie">
+                    <c:param name="karakterid" value="${karakter.id}"/>
                   <c:param name="itemId" value="${item.id}"/>
                   <c:param name="actie" value="${actie.readableIdentifier}"/>                  
                 </c:url>
@@ -68,7 +69,7 @@
 	</c:if>
     
     <c:if test="${not empty message}">
-        <p>Actie omschrijving: ${message}</p>
+        <b>Actie omschrijving: ${message}</b>
 	</c:if>
         
 </body>

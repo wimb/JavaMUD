@@ -18,7 +18,7 @@
             <form method='post' action='${adminpaginaURL}'>
                 <select name="itemsCombo" id="itemsCombo">
                     <c:forEach var='item' items='${items}'>
-                        <option value='${item.omschrijving}'>${item.omschrijving}</option>
+                        <option value='${item}'>${item}</option>
                     </c:forEach>            
                 </select>
                 <select name="lokatiesCombo" id="itemsCombo">

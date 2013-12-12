@@ -26,7 +26,7 @@ public class LegNeer extends Actie {
     @Override
     public ActionResult doe() {
         //TODO Implements het effectief veranderen van eigenaar
-        return new ActionResult("Het object is neergelegd");
+        return new ActionResult(getParent().getOmschrijving() + " is neergelegd");
     }
 
     @Override
