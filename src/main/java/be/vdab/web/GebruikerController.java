@@ -45,8 +45,8 @@ public class GebruikerController {
 		if (!bindingResult.hasErrors()) {
 			try {
 				gebruikerService.create(gebruiker);
-                                session.setAttribute("gebruiker", gebruiker);
-				return "redirect:/hoofdmenu";
+                                //session.setAttribute("gebruiker", gebruiker);
+				return "redirect:/aanmelden";
 			} catch (EmailAdresAlInGebruikException e) {
 				bindingResult.rejectValue("emailAdres",
 						"EmailAdresAlInGebruikException");
