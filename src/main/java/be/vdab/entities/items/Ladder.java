@@ -17,10 +17,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ladder")
 public class Ladder extends Item {
-    
-    @Override
-    public String getOmschrijving(){
-        return "een ladder";
+
+    public Ladder() {
+        setOmschrijving("Ladder");
     }
+    
+       
     
 }

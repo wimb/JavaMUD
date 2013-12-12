@@ -181,10 +181,10 @@ public class Gebruiker implements Serializable {
 		return emailAdres.hashCode();
 	}
 
-	public boolean isAdmin() {
+
+    public boolean isAdmin() {
+
         //TODO: make a real implementation with roles and stuff
         return this.voornaam.equals("admin");
     }
-
-	
 }

@@ -22,11 +22,6 @@ public class Boek extends Item {
        //When creating an action, the parrent will be bound to the action. 
        new RaapOp(this);
        new LegNeer(this);
-    }
-    
-    @Override
-    public String getOmschrijving() {
-        return "een boek";
-    }
-    
+       super.setOmschrijving("Boek");
+    }     
 }

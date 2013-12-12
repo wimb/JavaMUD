@@ -28,16 +28,14 @@
         
         <c:choose>
             <c:when test="${not empty gebruiker}">
+                <c:url var="gebruikerURL" value="/gebruiker">
+                </c:url>
+                <a href="${gebruikerURL}">Gegevens Gebruiker</a>
                 <div id="nieuwKarakter">
                     <a href="<c:url value='karakter/nieuw'/>">Nieuw karakter</a>
-                </div>
                 
                 <c:import url="/WEB-INF/JSP/fouten.jsp"/>
-
-                <div id="karakterLijst">
-                    <jsp:include page="karakters/karakterlijsthoofdmenu.jsp"/>
-                </div>
-                
+                <jsp:include page="karakters/karakterlijsthoofdmenu.jsp"/>               
                 <div id="afmelden">
                     <a href="<c:url value='j_spring_security_logout'/>">Afmelden</a>
                 </div>

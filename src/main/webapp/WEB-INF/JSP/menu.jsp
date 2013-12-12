@@ -3,13 +3,11 @@
 <header>
 	<div class="menu">
 		<nav>
-			<ul class="menu">
-				<c:url value="/" var="rootURL" />
-				<li><a href="${rootURL}">Hoofdmenu</a></li>
+			<img src="${pageContext.request.contextPath}/images/logo.png" alt="logo">
+			<ul class="zonderbolletjes">
+				<c:url value="/hoofdmenu" var="hoofdmenuURL" />
+				<li><a href="${hoofdmenuURL}">Hoofdmenu</a></li>
 			</ul>
 		</nav>
-		<img
-			src="${pageContext.servletContext.contextPath}/images/mudlogo.jpg"
-			alt="logo" />
 	</div>
 </header>

@@ -18,14 +18,11 @@
 <body>
 	<c:import url="/WEB-INF/JSP/menu.jsp" />
 
-	<h1>JAVA!</h1>
+	<h1>Welkom in onze Multi User Dungeon</h1>
 	<c:url var="aanmeldenURL" value="/aanmelden">
 	</c:url>
 	<a href="${aanmeldenURL}">Aanmelden Gebruiker</a>
-	<c:url var="gebruikerURL" value="/gebruiker">
-	</c:url>
-	<a href="${gebruikerURL}">Gegevens Gebruiker</a>
-
+	
 </body>
 </html>
 

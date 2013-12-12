@@ -68,7 +68,7 @@ public class HoofdMenuController {
         return mav;
     }
     
-    public static String getAuthenticationName(){
+        public static String getAuthenticationName(){
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication auth = securityContext.getAuthentication();
         

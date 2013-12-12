@@ -18,4 +18,5 @@ public interface KarakterDAO {
     void delete(long id);
     List<Karakter> findByGebruiker(Gebruiker gebruiker);
     List<Karakter> findByLokatie(Lokatie lok);
+    List<Karakter> findAllKarakters();
 }
