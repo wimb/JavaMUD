@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="${contextPath}/styles/default.css" />
 </head>
 <body>
-    <a href="<c:url value='lokatie/hoofdmenu'/>">Hoofdmenu</a>
+    <c:import url="/WEB-INF/JSP/menu.jsp" />
     <h1 class="lokatieTitel">Lokatie ${lokatie.id}</h1>
     <div class="lokatieBescrijving">Omschrijving van lokatie: ${lokatie.beschrijving}</div>
     <div class="lokatieItem">
