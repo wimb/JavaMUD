@@ -3,6 +3,7 @@
 <header>
 	<div class="menu">
 		<nav>
+			<img src="./images/logo.png" alt="logo">
 			<ul class="hoofdmenu">
 				<c:url value="/hoofdmenu" var="hoofdmenuURL" />
 				<li><a href="${hoofdmenuURL}">Hoofdmenu</a></li>
