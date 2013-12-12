@@ -47,8 +47,9 @@ input {
 	color:#FF0000;
 	background: transparent url(javaguy.gif) 0 0 no-repeat;
 	background-position: 10% 0;
-
-.fout {
+}
+	
+.fout{
 	color: #f00;
 	margin-left: 5px;
 }
@@ -77,7 +78,7 @@ ul.hoofdmenu li {
 	display: block;
 }
 
-.karakterNaam {
+.karakterNaam{
 	position: absolute;
 	top: 310px;
 	margin-left: 470px; 
