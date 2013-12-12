@@ -4,8 +4,8 @@
 	<div class="menu">
 		<nav>
 			<ul class="menu">
-				<c:url value="/" var="rootURL" />
-				<li><a href="${rootURL}">Hoofdmenu</a></li>
+				<c:url value="/hoofdmenu" var="hoofdmenuURL" />
+				<li><a href="${hoofdmenuURL}">Hoofdmenu</a></li>
 			</ul>
 		</nav>
 		<img
