@@ -40,7 +40,7 @@ public abstract class Item extends HeeftActies implements Serializable {
     @JoinTable(name = "iseigenaarvan", 
             joinColumns = @JoinColumn(name = "itemID"), 
             inverseJoinColumns = @JoinColumn(name = "eigenaarID"))
-    private Set<HeeftItems> eigenaars;
+    public Set<HeeftItems> eigenaars;
     
     private String omschrijving;
     

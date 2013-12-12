@@ -22,6 +22,7 @@
 	<img class="lokatieAfbeelding" src="${pageContext.servletContext.contextPath}/images/${lokatie.beschrijving}.jpg" />
     <div class="lokatieBescrijving">Omschrijving van lokatie: ${lokatie.beschrijving}</div>
     <div class="lokatieItem">
+<<<<<<< HEAD
 		<h2>Items</h2>
 			<c:forEach var="item" items = "${items}">
 				<h3>${item.omschrijving}</h3>
@@ -40,11 +41,60 @@
 				</c:forEach>
 				 </ul>
 			</c:if>
+=======
+        <h2>Alle karakters op locatie</h2>
+  
+    <c:if test="${not empty lokatie.karakters}">
+        <c:set var="karakters" value="${lokatie.karakters}"/>
+        <%@include file="/WEB-INF/JSP/karakters/karakterlijstlokatie.jsp"%>
+    </c:if>     
+        <h2>Rugzak</h2>
+        <c:forEach var="heeftitem" items = "${heeftitems}">
+            <h3>${item.omschrijving}</h3>
+            <c:if test="${not empty item.acties}">
+            <ul>
+                <c:forEach var="actie" items="${item.acties}">
+                    <li>${actie.omschrijving}</li>
+                    <c:url var="actieURL" value="/lokatie/actie">
+                    <c:param name="gebruikerid" value="${gebruiker.id}"/>
+                  <c:param name="itemId" value="${item.id}"/>
+                  <c:param name="actie" value="${actie.readableIdentifier}"/>                  
+                </c:url>
+                <form action="${actieURL}" method="post">
+                <input type="submit" value="${actie}"/>
+                </form>
+                </c:forEach>
+            </ul>
+        </c:if>
+    </c:forEach> 
+        <c:if test="${not empty gebruiker.items}">
+            <c:set var="items" value="${gebruiker.items}"/>
+            <%@include file="/WEB-INF/JSP/items/itemskarakter.jsp"%>
+        </c:if>
+        <h2>Items</h2>
+        <c:forEach var="item" items = "${items}">
+            <h3>${item.omschrijving}</h3>
+            <c:if test="${not empty item.acties}">
+            <ul>
+            <c:forEach var="actie" items="${item.acties}">
+                <li>${actie.omschrijving}</li>
+                    <c:url var="actieURL" value="/lokatie/actie">
+                    <c:param name="karakterid" value="${karakter.id}"/>
+                  <c:param name="itemId" value="${item.id}"/>
+                  <c:param name="actie" value="${actie.readableIdentifier}"/>                  
+                </c:url>
+                <form action="${actieURL}" method="post">
+                <input type="submit" value="${actie}"/>
+                </form>
+            </c:forEach>
+             </ul>
+        </c:if>
+>>>>>>> 401fba2b095623530793011ae96c0aab09e70111
         </c:forEach>
             
         <c:if test="${not empty lokatie.items}">
             <c:set var="items" value="${lokatie.items}"/>
-            <%@include file="/WEB-INF/JSP/items/itemlijst.jsp"%>
+            <%@include file="/WEB-INF/JSP/items/itemslokatie.jsp"%>
         </c:if>
             
     </div>
@@ -71,11 +121,18 @@
 	<c:if test="${not empty actieResultaat}">
 		<jsp:include page="/WEB-INF/JSP/actieResultaat.jsp" />
 	</c:if>
+<<<<<<< HEAD
     <div class="actieRes">
 		<c:if test="${not empty message}">
 			<p>Actie omschrijving: ${message}</p>
 		</c:if>
 	</div>
+=======
+    
+    <c:if test="${not empty message}">
+        <b>Actie omschrijving: ${message}</b>
+	</c:if>
+>>>>>>> 401fba2b095623530793011ae96c0aab09e70111
         
 </body>
 </html>

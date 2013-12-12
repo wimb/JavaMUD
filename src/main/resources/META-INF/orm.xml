@@ -44,6 +44,7 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
             </query>
         </named-query>
         
+<<<<<<< HEAD
         <named-query name="findAllKarakters">
             <query>
                 select k from Karakter k order by k.id
@@ -55,6 +56,10 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
                 select distinct i.omschrijving from Item i order by i.omschrijving                
             </query>
         </named-query>  
+=======
+        
+       
+>>>>>>> 401fba2b095623530793011ae96c0aab09e70111
 
 </entity-mappings>
 
