@@ -28,9 +28,7 @@
         
         <c:choose>
             <c:when test="${not empty gebruiker}">
-                <div id="nieuwKarakter">
                     <a href="<c:url value='karakter/nieuw'/>">Nieuw karakter</a>
-                </div>
                 
                 <c:import url="/WEB-INF/JSP/fouten.jsp"/>
 
