@@ -35,11 +35,7 @@
                     <a href="<c:url value='karakter/nieuw'/>">Nieuw karakter</a>
                 
                 <c:import url="/WEB-INF/JSP/fouten.jsp"/>
-
-                <div id="karakterLijst">
-                    <jsp:include page="karakters/karakterlijsthoofdmenu.jsp"/>
-                </div>
-                
+                <jsp:include page="karakters/karakterlijsthoofdmenu.jsp"/>               
                 <div id="afmelden">
                     <a href="<c:url value='j_spring_security_logout'/>">Afmelden</a>
                 </div>

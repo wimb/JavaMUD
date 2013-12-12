@@ -19,15 +19,16 @@
 <body>
     <c:import url="/WEB-INF/JSP/menu.jsp" />
     <h1 class="lokatieTitel">Lokatie ${lokatie.id}</h1>
+	<img class="lokatieAfbeelding" src="${pageContext.servletContext.contextPath}/images/${lokatie.beschrijving}.jpg" />
     <div class="lokatieBescrijving">Omschrijving van lokatie: ${lokatie.beschrijving}</div>
     <div class="lokatieItem">
 		<h2>Items</h2>
 			<c:forEach var="item" items = "${items}">
-				<h3 class="itemOmschrijving">${item.omschrijving}</h3>
+				<h3>${item.omschrijving}</h3>
 				<c:if test="${not empty item.acties}">
 				<ul>
 				<c:forEach var="actie" items="${item.acties}">
-					<li class="actiePerItem">${actie.omschrijving}</li>
+					<li class="zonderbolletjes">${actie.omschrijving}</li>
 						<c:url var="actieURL" value="/lokatie/actie">
 						<c:param name="karakterid" value="${karakter.id}"/>
 					  <c:param name="itemId" value="${item.id}"/>
@@ -56,7 +57,7 @@
 			<%@include file="/WEB-INF/JSP/karakters/karakterlijstlokatie.jsp"%>
 		</c:if>
     </div>    
-    <div id="acties" class="acties">
+    <div id="acties">
 		<c:if test="${not empty lokatie.acties}">
 			<c:set var="acties" value="${lokatie.acties}" />
 			<%@include file="/WEB-INF/JSP/acties.jsp" %>

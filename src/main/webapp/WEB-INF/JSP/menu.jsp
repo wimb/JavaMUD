@@ -4,7 +4,7 @@
 	<div class="menu">
 		<nav>
 			<img src="${pageContext.request.contextPath}/images/logo.png" alt="logo">
-			<ul class="hoofdmenu">
+			<ul class="zonderbolletjes">
 				<c:url value="/hoofdmenu" var="hoofdmenuURL" />
 				<li><a href="${hoofdmenuURL}">Hoofdmenu</a></li>
 			</ul>
