@@ -28,6 +28,9 @@ public class Knuppel extends Item {
        super.setOmschrijving("Knuppel");
     }
     
-    
-    
+    @Override
+    public String getOmschrijving() {
+        return "knuppel";
+    }
+
 }

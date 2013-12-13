@@ -37,9 +37,9 @@ public class HoofdMenuController {
         this.gebruikerService = gebruikerService;
     }
     
-@RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView hoofdmenu(HttpSession session){
-        ModelAndView mav;
+        ModelAndView mav = new ModelAndView("hoofdmenu");
         
         
         Gebruiker gebruiker = (Gebruiker) session.getAttribute("gebruiker");
@@ -58,17 +58,15 @@ public class HoofdMenuController {
                 }
             }
         }
-        if(gebruiker != null && gebruiker.isAdmin()){
-            mav = new ModelAndView("adminpagina");
-        }else{
-            mav = new ModelAndView("hoofdmenu");
-        }
+        boolean isAdmin = (gebruiker != null && gebruiker.isAdmin());
+        
+        mav.addObject("isAdmin", isAdmin);
         mav.addObject("gebruiker", gebruiker);
         
         return mav;
     }
     
-        public static String getAuthenticationName(){
+    public static String getAuthenticationName(){
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication auth = securityContext.getAuthentication();
         

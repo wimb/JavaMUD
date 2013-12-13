@@ -17,7 +17,6 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/JSP/menu.jsp" />
-
 	<h1>Welkom in onze Multi User Dungeon</h1>
 	<c:url var="aanmeldenURL" value="/aanmelden">
 	</c:url>

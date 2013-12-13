@@ -1,7 +1,9 @@
 -- MySQL Administrator dump 1.4
 --
 -- ------------------------------------------------------
+
 -- Server version	5.6.13
+
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,7 +19,7 @@
 --
 -- Create schema javamud
 --
-
+DROP DATABASE IF EXISTS javamud;
 CREATE DATABASE IF NOT EXISTS javamud;
 USE javamud;
 
@@ -30,13 +32,16 @@ CREATE TABLE `boek` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   CONSTRAINT `boekitemidfk` FOREIGN KEY (`id`) REFERENCES `item` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `boek`
 --
 
 /*!40000 ALTER TABLE `boek` DISABLE KEYS */;
+
+INSERT INTO `boek` (`id`) VALUES 
+ (2);
 /*!40000 ALTER TABLE `boek` ENABLE KEYS */;
 
 
@@ -73,7 +78,7 @@ DROP TABLE IF EXISTS `heeftitems`;
 CREATE TABLE `heeftitems` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `heeftitems`
@@ -93,7 +98,7 @@ INSERT INTO `heeftitems` (`Id`) VALUES
  (12),
  (13),
  (14),
- (15);
+ (16);
 /*!40000 ALTER TABLE `heeftitems` ENABLE KEYS */;
 
 
@@ -116,7 +121,9 @@ CREATE TABLE `iseigenaarvan` (
 
 /*!40000 ALTER TABLE `iseigenaarvan` DISABLE KEYS */;
 INSERT INTO `iseigenaarvan` (`eigenaarID`,`itemID`) VALUES 
- (1,9);
+ (1,1),
+ (1,2),
+ (1,100);
 /*!40000 ALTER TABLE `iseigenaarvan` ENABLE KEYS */;
 
 
@@ -129,7 +136,9 @@ CREATE TABLE `item` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Omschrijving` varchar(50) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+
 
 --
 -- Dumping data for table `item`
@@ -137,10 +146,9 @@ CREATE TABLE `item` (
 
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
 INSERT INTO `item` (`Id`,`Omschrijving`) VALUES 
- (1,'Boek'),
- (2,'Knuppel'),
- (3,'Ladder'),
- (9,'Knuppel');
+ (1,'Knuppel'),
+ (2,'Ladder'),
+ (100,'Boek');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 
 
@@ -160,7 +168,7 @@ CREATE TABLE `karakter` (
   CONSTRAINT `KarakterGebruikerFK` FOREIGN KEY (`gebruikerId`) REFERENCES `gebruiker` (`Id`),
   CONSTRAINT `KarakterItemFK` FOREIGN KEY (`Id`) REFERENCES `heeftitems` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `KarakterLokatieFK` FOREIGN KEY (`lokatieId`) REFERENCES `lokatie` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `karakter`
@@ -170,7 +178,7 @@ CREATE TABLE `karakter` (
 INSERT INTO `karakter` (`Id`,`gebruikerId`,`lokatieId`,`naam`) VALUES 
  (7,1,1,'Testaenar'),
  (12,1,1,'Test'),
- (15,2,1,'Azer');
+ (16,2,1,'test');
 /*!40000 ALTER TABLE `karakter` ENABLE KEYS */;
 
 
@@ -183,7 +191,9 @@ CREATE TABLE `knuppel` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   CONSTRAINT `knuppelitemidfk` FOREIGN KEY (`id`) REFERENCES `item` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
 
 --
 -- Dumping data for table `knuppel`
@@ -191,7 +201,7 @@ CREATE TABLE `knuppel` (
 
 /*!40000 ALTER TABLE `knuppel` DISABLE KEYS */;
 INSERT INTO `knuppel` (`id`) VALUES 
- (9);
+ (1);
 /*!40000 ALTER TABLE `knuppel` ENABLE KEYS */;
 
 
@@ -203,13 +213,15 @@ DROP TABLE IF EXISTS `ladder`;
 CREATE TABLE `ladder` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ladder`
 --
 
 /*!40000 ALTER TABLE `ladder` DISABLE KEYS */;
+INSERT INTO `ladder` (`id`) VALUES 
+ (100);
 /*!40000 ALTER TABLE `ladder` ENABLE KEYS */;
 
 
@@ -275,8 +287,6 @@ INSERT INTO `lokatiebestemmingen` (`LokatieId`,`BestemmingId`,`Omschrijving`) VA
  (6,3,'Naar de straat'),
  (6,4,'Naar de keuken');
 /*!40000 ALTER TABLE `lokatiebestemmingen` ENABLE KEYS */;
-
-
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

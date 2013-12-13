@@ -19,8 +19,7 @@ import be.vdab.entities.HeeftActies;
 public class LegNeer extends Actie {
 
      public LegNeer(HeeftActies parent){
-        super(parent);     
-        
+        super(parent);          
     }
     
     @Override
@@ -31,7 +30,8 @@ public class LegNeer extends Actie {
 
     @Override
     public String getOmschrijving() {
-        return "Het neerleggen van " + getParent().getOmschrijving();
+        return getParent().getOmschrijving() + " neerleggen";
     }
+
     
 }

@@ -2,12 +2,14 @@
 	width: 422px;
 	height: 317px;
 }
+
 /*Opdeling 50/50*/
 .lokatieItem {
 	width: 50%;
 	float:left;
 }
 
+/*idem*/
 .lokatieKarakter{
 	display:inline;
 	width:50%;
