@@ -28,9 +28,8 @@ public class RaapOp extends Actie {
 
     @Override
     public String getOmschrijving() {
-        return "Het oprapen van " + getParent().getOmschrijving();
+        return getParent().getOmschrijving() + " oprapen";
     }
-    
-    
+   
     
 }

@@ -37,7 +37,7 @@ public class HoofdMenuController {
         this.gebruikerService = gebruikerService;
     }
     
-@RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView hoofdmenu(HttpSession session){
         ModelAndView mav;
         
@@ -68,7 +68,7 @@ public class HoofdMenuController {
         return mav;
     }
     
-        public static String getAuthenticationName(){
+    public static String getAuthenticationName(){
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication auth = securityContext.getAuthentication();
         
