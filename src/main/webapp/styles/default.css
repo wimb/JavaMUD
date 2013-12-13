@@ -1,7 +1,5 @@
 /*site-wide opmaak*/
-root {
-	display: block;
-}
+
 
 body {
 	display: block;
@@ -57,8 +55,8 @@ a:active {
 	padding: 0;
 }
 
-/*Buttons inline zetten voor lijsten verwijder en voeruit*/
-#nieuwKarakter input, .acties input {
+/*Buttons inline zetten in lijsten*/
+#nieuwKarakter input, .acties input, .adminpaneel {
 	display:inline;
 }
 
