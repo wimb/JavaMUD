@@ -46,5 +46,8 @@
                 </div>
             </c:otherwise>
         </c:choose>
+                <c:if test="${isAdmin}">
+                    <a href="<c:url value='adminpagina'/>">Adminpagina</a>
+                </c:if>
     </body>
 </html>

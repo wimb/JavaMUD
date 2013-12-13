@@ -23,6 +23,7 @@ public class Verplaats extends Actie{
     
     @Override
     public ActionResult doe(ActionContext ac) {
+
         //TODO Implements het effectief veranderen van locatie
         return new ActionResult("U heeft de ladder genomen");
     }
