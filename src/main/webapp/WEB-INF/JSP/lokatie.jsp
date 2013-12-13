@@ -22,7 +22,7 @@
 	<img class="lokatieAfbeelding" src="${pageContext.servletContext.contextPath}/images/${lokatie.beschrijving}.jpg" />
     <div class="lokatieBescrijving">Omschrijving van lokatie: ${lokatie.beschrijving}</div>
     <div class="lokatieItem">
-<<<<<<< HEAD
+<!--<<<<<<< HEAD-->
 		<h2>Items</h2>
 			<c:forEach var="item" items = "${items}">
 				<h3>${item.omschrijving}</h3>
@@ -41,6 +41,7 @@
 				</c:forEach>
 				 </ul>
 			</c:if>
+			
 			<!--
 =======
         <h2>Alle karakters op locatie</h2>
