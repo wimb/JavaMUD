@@ -7,6 +7,7 @@
 package be.vdab.entities.items;
 
 import be.vdab.entities.Item;
+import be.vdab.entities.acties.Verplaats;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -17,9 +18,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ladder")
 public class Ladder extends Item {
-
-    public Ladder() {
-        setOmschrijving("Ladder");
+   
+    public Ladder(){
+        new Verplaats(this);
+    }
+    
+    @Override
+    public String getOmschrijving(){
+        return "ladder";
     }
     
        

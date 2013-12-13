@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"
@@ -29,6 +30,10 @@
                 <input type="submit" value="Toevoegen"/>
             </form>
         </div>
+		
+		<div id="afmelden">
+            <a href="<c:url value='j_spring_security_logout'/>">Afmelden</a>
+        </div>
                 
         <c:url var="karakterVerplaatsenURL" value="/adminpagina/karakterVerplaatsen"/>
         <div id="karakterVerplaatsen" >
@@ -48,4 +53,3 @@
         </div>
     </body>
 </html>
-
