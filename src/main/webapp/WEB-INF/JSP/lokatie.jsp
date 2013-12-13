@@ -52,7 +52,27 @@
         <c:set var="karakters" value="${lokatie.karakters}"/>
         <%@include file="/WEB-INF/JSP/karakters/karakterlijstlokatie.jsp"%>
     </c:if>
-        
+    
+    <h2>Rugzak</h2>
+        <c:forEach var="karItem" items = "${karItems}">
+            <h3>${karItem.omschrijving}</h3>
+            <c:if test="${not empty karItem.acties}">
+            <ul>
+            <c:forEach var="karItemActie" items="${karItem.acties}">
+                <li>${karItemActie.omschrijving}</li>
+                    <c:url var="actieURL" value="/lokatie/actie">
+                    <c:param name="karakterid" value="${karakter.id}"/>
+                  <c:param name="itemId" value="${karItem.id}"/>
+                  <c:param name="actie" value="${karItemActie.readableIdentifier}"/>                  
+                </c:url>
+                <form action="${actieURL}" method="post">
+                <input type="submit" value="${actie}"/>
+                </form>
+            </c:forEach>
+             </ul>
+        </c:if>
+        </c:forEach>
+            
     <div id="acties" class="acties">
 		<c:if test="${not empty lokatie.acties}">
 			<c:set var="acties" value="${lokatie.acties}" />

@@ -16,4 +16,5 @@ public interface ItemDAO {
     void update(Item item);
     void delete(long id);
     List<Item> findByEigenaar(HeeftItems eigenaar);
+    List<String> findAllDifferentItems();
 }

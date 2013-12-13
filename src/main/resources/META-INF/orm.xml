@@ -32,7 +32,7 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
         </named-query>
         
         <!-- Waartoe dient dit? -->                        
-        <named-query name="findLokatiesByBestemming">
+        <named-query name="findBestemming">
             <query>
                 select l from Lokatie l
             </query>
@@ -44,7 +44,19 @@ http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
             </query>
         </named-query>
         
-       
+
+        <named-query name="findAllKarakters">
+            <query>
+                select k from Karakter k order by k.id
+            </query>
+        </named-query>    
+        
+          <named-query name="findAllDifferentItems">
+            <query>
+                select distinct i.omschrijving from Item i order by i.omschrijving                
+            </query>
+        </named-query>  
+
 
 </entity-mappings>
 
