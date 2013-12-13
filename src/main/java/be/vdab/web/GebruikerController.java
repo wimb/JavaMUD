@@ -106,8 +106,10 @@ public class GebruikerController {
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "{id}/verwijderen")
-	public ModelAndView delete(@PathVariable long id) {
+	public ModelAndView delete(@PathVariable long id, HttpSession session) {
 		Gebruiker gebruiker = gebruikerService.read(id);
+                //gebruiker uit sessie verwijderen
+                session.invalidate();
 		if (gebruiker == null) {
 			return new ModelAndView("redirect:/");
 		}
