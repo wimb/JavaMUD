@@ -11,6 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -36,7 +37,7 @@ public abstract class Item extends HeeftActies implements Serializable {
     @GeneratedValue
     private long id;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "iseigenaarvan", 
             joinColumns = @JoinColumn(name = "itemID"), 
             inverseJoinColumns = @JoinColumn(name = "eigenaarID"))
