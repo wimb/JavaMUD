@@ -59,4 +59,5 @@ public class ItemServiceImpl implements ItemService {
     public List<String> findAllDifferentItems() {
         return itemDAO.findAllDifferentItems();
     }
+
 }

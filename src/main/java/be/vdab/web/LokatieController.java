@@ -6,6 +6,7 @@
 package be.vdab.web;
     
 import be.vdab.entities.Actie;
+import be.vdab.entities.ActionContext;
 import be.vdab.entities.ActionResult;
 import be.vdab.entities.Item;
 import be.vdab.entities.Karakter;
@@ -64,8 +65,9 @@ public class LokatieController {
         if(karakter != null){
             Lokatie lok = karakter.getLokatie();
             List<Item> items = itemService.findByEigenaar(lok);
+            List<Item> karItems = itemService.findByEigenaar(karakter);
                     
-            
+            mav.addObject("karItems", karItems);
             mav.addObject("items", items);
             mav.addObject("lokatie", karakter.getLokatie());
             mav.addObject("karakter", karakter);
@@ -101,7 +103,12 @@ public class LokatieController {
          //op welke item (itemid) wordt welke actie (actie) gedaan
         //Zoek de juiste actie en voer ze uit:
         Actie deActie = actieService.read(itemId,actie);
-        ActionResult actieomschrijving = deActie.doe();
+        ActionContext ac = new ActionContext();
+        ac.setUitvoerder(karakterService.read(karakterid));
+        ac.setHuidigeLokatie(ac.getUitvoerder().getLokatie());
+        ac.setItemService(itemService);
+        
+        ActionResult actieomschrijving = deActie.doe(ac);
         
         //laad vernieuwde mav met meegegeven karakterid
         ModelAndView mav = findKarakterLokatie(karakterid); 

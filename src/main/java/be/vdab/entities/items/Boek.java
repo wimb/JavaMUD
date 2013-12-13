@@ -4,9 +4,11 @@
  */
 package be.vdab.entities.items;
 
+import be.vdab.entities.HeeftItems;
 import be.vdab.entities.Item;
 import be.vdab.entities.acties.LegNeer;
 import be.vdab.entities.acties.RaapOp;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -24,4 +26,11 @@ public class Boek extends Item {
        new LegNeer(this);
        super.setOmschrijving("Boek");
     }     
+
+    
+    @Override
+    public String getOmschrijving() {
+        return "boek";
+    }
+   
 }

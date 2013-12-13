@@ -45,8 +45,8 @@ public class GebruikerController {
 		if (!bindingResult.hasErrors()) {
 			try {
 				gebruikerService.create(gebruiker);
-                                session.setAttribute("gebruiker", gebruiker);
-				return "redirect:/hoofdmenu";
+                                //session.setAttribute("gebruiker", gebruiker);
+				return "redirect:/aanmelden";
 			} catch (EmailAdresAlInGebruikException e) {
 				bindingResult.rejectValue("emailAdres",
 						"EmailAdresAlInGebruikException");
@@ -82,15 +82,16 @@ public class GebruikerController {
 		return new ModelAndView("gebruikers/wijzigen", "gebruiker", gebruiker);
 	}
 
-	@RequestMapping(value = "/wijzigen", method = RequestMethod.PUT)
-	public String update(@Valid Gebruiker gebruiker,
-			BindingResult bindingResult, @PathVariable long id) {
+	@RequestMapping(value = "{id}/wijzigen", method = RequestMethod.PUT)
+	public String update(@PathVariable long id, @Valid Gebruiker gebruiker,
+			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "gebruikers/wijzigen";
 		}
 		try {
-			gebruikerService.update(gebruiker);
-			return "redirect:/";
+			gebruiker.setId(id);
+                        gebruikerService.update(gebruiker);
+                        return "redirect:/gebruiker";
 		} catch (EmailAdresAlInGebruikException e) {
 			bindingResult.rejectValue("emailAdres",
 					"EmailAdresAlInGebruikException");
@@ -111,13 +112,13 @@ public class GebruikerController {
 			return new ModelAndView("redirect:/");
 		}
 		ModelAndView modelAndView = new ModelAndView();
-		try {
-			gebruikerService.delete(id);
-			modelAndView.setViewName("redirect:/gebruikers/verwijderd");
+		try {			
+			modelAndView.setViewName("gebruikers/verwijderd");
 			modelAndView.addObject("id", id);
 			modelAndView.addObject("emailAdres", gebruiker.getEmailAdres());
+                        gebruikerService.delete(id);
 		} catch (GebruikerHeeftNogKaraktersException e) {
-			modelAndView.setViewName("redirect:/gebruikers/{id}");
+			modelAndView.setViewName("redirect:/gebruiker/{id}");
 			modelAndView.addObject("fout",
 					"Gebruiker is niet verwijderd, het bevat nog karakters");
 		}

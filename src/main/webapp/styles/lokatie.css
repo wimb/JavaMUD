@@ -1,0 +1,48 @@
+.lokatieAfbeelding{
+	width: 422px;
+	height: 317px;
+}
+/*Opdeling 50/50*/
+.lokatieItem {
+	width: 50%;
+	float:left;
+}
+
+.lokatieKarakter{
+	display:inline;
+	width:50%;
+}
+
+.actieButton{
+	width:50px;
+	display:inline;
+}
+
+.karakterItem {
+	margin-left: 25%;
+	position: absolute;
+	top: 650px;
+	width: 25%;
+	font-size: 0.75em;
+}
+
+#acties {
+	margin-left: 50%;
+	position: absolute;
+	top: 650px;
+	width: 25%;
+	font-size: 0.75em;
+}
+
+.actieRes{
+display:block;
+ text-align: left;
+ width: 600px;
+ margin-left:auto;
+ margin-right:auto;
+ margin-top: 50px;
+}
+.actieRes p{
+	margin-left:auto;
+	margin-right:auto;
+}

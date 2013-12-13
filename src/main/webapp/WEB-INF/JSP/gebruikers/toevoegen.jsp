@@ -9,6 +9,7 @@
 	href="${pageContext.servletContext.contextPath}/styles/default.css" />
 </head>
 <body>
+	<c:import url="/WEB-INF/JSP/menu.jsp" />
 	<h1>Gebruiker toevoegen</h1>
 	<c:url value="/gebruiker" var="url" />
 	<form:form action="${url}" method="post" commandName="gebruiker">

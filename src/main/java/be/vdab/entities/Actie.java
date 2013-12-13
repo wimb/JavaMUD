@@ -64,7 +64,7 @@ public abstract class Actie {
     
     
     
-    abstract public ActionResult doe();
+    abstract public ActionResult doe(ActionContext ac);
     abstract public String getOmschrijving();
     
    
