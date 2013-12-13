@@ -5,12 +5,12 @@ body {
 	display: block;
 	font-family: Meiryo, Verdana, sans-serif;
 	background-color: #000000;
-	color: #FF0000;
+	color:black;
 	margin-left: auto;
 	margin-right: auto;
 	text-align:center;
 	width:800px;
-	background-color: black;
+	background-color: #999eff;
 	background-image: url(../images/background.png);
 	background-repeat: repeat-x;
 }
@@ -37,16 +37,22 @@ input {
 }
 
 a:link , a:visited{
-	color: #f00;
+	color: black;
 	text-decoration:none;
 }
 a:hover {
 	color: #fff;
+	color: #16800f;
 	text-decoration:none;
+	font-style:bold;
 }
 a:active {
 	color: #B26B00;
 	text-decoration:none;
+}
+
+.Hoofdmenulink{
+	font-size: 20px;
 }
 
 /*om lijsten zonder list-style te laten weergeven*/

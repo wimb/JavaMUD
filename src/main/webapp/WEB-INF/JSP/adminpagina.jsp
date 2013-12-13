@@ -35,11 +35,13 @@
         <div id="karakterVerplaatsen" class="adminpaneel">
 			<h2>Karakter verplaatsen</h2>
             <form method="post" action="${karakterVerplaatsenURL}">
+				<label>van:</label>
                 <select name="karakterCombo" id="karakterCombo">
                     <c:forEach var="karakter" items="${karakters}">
                         <option value="${karakter.id}">${karakter.naam}</option>
                     </c:forEach>
                 </select>
+				<label>naar</label>
                 <select name="karLokCombo" id="karLokCombo">
                     <c:forEach var='lokatie' items='${lokaties}'>
                         <option value='${lokatie.id}'>${lokatie.beschrijving}</option>
