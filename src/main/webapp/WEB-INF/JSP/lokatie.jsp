@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JavaMUD</title>
         <link rel="stylesheet" href="${contextPath}/styles/default.css" />
+        <link rel="stylesheet" href="${contextPath}/styles/lokatie.css" />
     </head>
     <body>
         <c:import url="/WEB-INF/JSP/menu.jsp" />
