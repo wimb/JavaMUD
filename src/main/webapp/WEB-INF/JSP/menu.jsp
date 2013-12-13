@@ -6,7 +6,7 @@
 			<img src="${pageContext.request.contextPath}/images/logo.png" alt="logo">
 			<ul class="zonderbolletjes">
 				<c:url value="/hoofdmenu" var="hoofdmenuURL" />
-				<li><a href="${hoofdmenuURL}">Hoofdmenu</a></li>
+				<li><a href="${hoofdmenuURL}" class="Hoofdmenulink">Hoofdmenu</a></li>
 			</ul>
 		</nav>
 	</div>
