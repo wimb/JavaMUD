@@ -187,4 +187,8 @@ public class Gebruiker implements Serializable {
         //TODO: make a real implementation with roles and stuff
         return this.voornaam.equals("admin");
     }
+    
+    public void setId(long id){
+        this.id = id;
+    }
 }
