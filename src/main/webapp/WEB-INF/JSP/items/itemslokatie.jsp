@@ -16,7 +16,7 @@
                             </c:url>
                             ${item.id}
                             <form action="${actieURL}" method="post">
-                                <input type="submit" value="${actie}"/>
+                                <input type="submit" value="${actie.omschrijving}"/>
                             </form>                
                         </c:forEach>
                     </ul>
