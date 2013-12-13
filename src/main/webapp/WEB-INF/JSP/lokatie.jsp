@@ -1,4 +1,4 @@
-<%-- 
+
 <%--
     Document : lokatie
     Created on : Sep 30, 2013, 3:29:15 PM
@@ -43,7 +43,7 @@
                         </c:if>
         </c:forEach>
             
-<c:if test="${not empty lokatie.items}">
+		<c:if test="${not empty lokatie.items}">
             <c:set var="items" value="${lokatie.items}"/>
             <%@include file="/WEB-INF/JSP/items/itemslokatie.jsp"%>
         </c:if>
@@ -51,33 +51,33 @@
             
     </div>
         
-        <div class="lokatieKarakter">
-                <h2>Alle karakters op locatie</h2>
-        
-                <c:if test="${not empty lokatie.karakters}">
-                        <c:set var="karakters" value="${lokatie.karakters}"/>
-                        <%@include file="/WEB-INF/JSP/karakters/karakterlijstlokatie.jsp"%>
-                </c:if>
+    <div class="lokatieKarakter">
+		<h2>Alle karakters op locatie</h2>
+
+		<c:if test="${not empty lokatie.karakters}">
+				<c:set var="karakters" value="${lokatie.karakters}"/>
+				<%@include file="/WEB-INF/JSP/karakters/karakterlijstlokatie.jsp"%>
+		</c:if>
     </div>
     <div id="acties">
-                <c:if test="${not empty lokatie.acties}">
-                        <c:set var="acties" value="${lokatie.acties}" />
-                        <%@include file="/WEB-INF/JSP/acties.jsp" %>
-                </c:if>
-                <c:if test="${not empty karakter.acties}">
-                        <c:set var="acties" value="${lokatie.acties}" />
-                        <%@include file="/WEB-INF/JSP/acties.jsp" %>
-                </c:if>
-        </div>
+		<c:if test="${not empty lokatie.acties}">
+			<c:set var="acties" value="${lokatie.acties}" />
+			<%@include file="/WEB-INF/JSP/acties.jsp" %>
+		</c:if>
+		<c:if test="${not empty karakter.acties}">
+			<c:set var="acties" value="${lokatie.acties}" />
+			<%@include file="/WEB-INF/JSP/acties.jsp" %>
+		</c:if>
+	</div>
         
-        <c:if test="${not empty actieResultaat}">
-                <jsp:include page="/WEB-INF/JSP/actieResultaat.jsp" />
-        </c:if>
+	<c:if test="${not empty actieResultaat}">
+		<jsp:include page="/WEB-INF/JSP/actieResultaat.jsp" />
+	</c:if>
     <div class="actieRes">
-                <c:if test="${not empty message}">
-                        <p>Actie omschrijving: ${message}</p>
-                </c:if>
-        </div>
+		<c:if test="${not empty message}">
+			<p>Actie omschrijving: ${message}</p>
+		</c:if>
+	</div>
         
 </body>
 </html>
