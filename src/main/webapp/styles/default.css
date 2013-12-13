@@ -66,4 +66,12 @@ a:active {
 	display:inline;
 }
 
+/*opmaak adminpaneel*/
+.adminformselectie{
+	width:100%;
+}
+
+.adminformselector{
+	display:inline;
+}
 

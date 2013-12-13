@@ -17,16 +17,24 @@
         <div id="itemsToevoegen" class="adminpaneel">
 			<h2>Item toevoegen</h2>
             <form method='post' action='${adminpaginaURL}'>
-                <select name="itemsCombo" id="itemsCombo">
-                    <c:forEach var='item' items='${items}'>
-                        <option value='${item}'>${item.omschrijving}</option>
-                    </c:forEach>            
-                </select>
-                <select name="lokatiesCombo" id="itemsCombo">
-                    <c:forEach var='lokatie' items='${lokaties}'>
-                        <option value='${lokatie.id}'>${lokatie.beschrijving}</option>
-                    </c:forEach>            
-                </select>
+                <div class="adminformselectie">
+					<div class="adminformselector">
+						<label>Type:</label>
+						<select name="itemsCombo" id="itemsCombo">
+							<c:forEach var='item' items='${items}'>
+								<option value='${item}'>${item.omschrijving}</option>
+							</c:forEach>            
+						</select>
+					</div
+					<div class="adminformselector">
+						<label>Locatie:</label>
+						<select name="lokatiesCombo" id="itemsCombo">
+							<c:forEach var='lokatie' items='${lokaties}'>
+								<option value='${lokatie.id}'>${lokatie.beschrijving}</option>
+							</c:forEach>            
+						</select>
+					</div>
+				</div>
                 <input type="submit" value="Toevoegen"/>
             </form>
         </div>
@@ -35,18 +43,24 @@
         <div id="karakterVerplaatsen" class="adminpaneel">
 			<h2>Karakter verplaatsen</h2>
             <form method="post" action="${karakterVerplaatsenURL}">
-				<label>van:</label>
-                <select name="karakterCombo" id="karakterCombo">
-                    <c:forEach var="karakter" items="${karakters}">
-                        <option value="${karakter.id}">${karakter.naam}</option>
-                    </c:forEach>
-                </select>
-				<label>naar</label>
-                <select name="karLokCombo" id="karLokCombo">
-                    <c:forEach var='lokatie' items='${lokaties}'>
-                        <option value='${lokatie.id}'>${lokatie.beschrijving}</option>
-                    </c:forEach> 
-                </select>
+				<div class="adminformselectie">
+					<div class="adminformselector">
+						<label>van:</label>
+						<select name="karakterCombo" id="karakterCombo">
+							<c:forEach var="karakter" items="${karakters}">
+								<option value="${karakter.id}">${karakter.naam}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="adminformselector">
+						<label>naar:</label>
+						<select name="karLokCombo" id="karLokCombo">
+							<c:forEach var='lokatie' items='${lokaties}'>
+								<option value='${lokatie.id}'>${lokatie.beschrijving}</option>
+							</c:forEach> 
+						</select>
+					</div>
+				</div>
                 <input type="submit" value="Verplaatsen"/>
             </form>
         </div>
