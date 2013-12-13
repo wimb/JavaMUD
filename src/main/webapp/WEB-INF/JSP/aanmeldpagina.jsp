@@ -28,8 +28,7 @@
         <c:if test="${param.fout }">
             <p class="fout">Foutieve inloggegevens!</p>
         </c:if>
-        <c:url value="/adminpagina" var="adminURL" />
-        <a href="${adminURL}">Administratie</a>
+       
 
     </body>
 </html>
