@@ -45,8 +45,8 @@ public class GebruikerController {
 		if (!bindingResult.hasErrors()) {
 			try {
 				gebruikerService.create(gebruiker);
-                                session.setAttribute("gebruiker", gebruiker);
-				return "redirect:/hoofdmenu";
+                                //session.setAttribute("gebruiker", gebruiker);
+				return "redirect:/aanmelden";
 			} catch (EmailAdresAlInGebruikException e) {
 				bindingResult.rejectValue("emailAdres",
 						"EmailAdresAlInGebruikException");
@@ -83,13 +83,14 @@ public class GebruikerController {
 	}
 
 	@RequestMapping(value = "{id}/wijzigen", method = RequestMethod.PUT)
-	public String update(@Valid Gebruiker gebruiker,
-			BindingResult bindingResult, @PathVariable long id) {
+	public String update(@PathVariable long id, @Valid Gebruiker gebruiker,
+			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "gebruikers/wijzigen";
 		}
 		try {
-			gebruikerService.update(gebruiker);
+			gebruiker.setId(id);
+                        gebruikerService.update(gebruiker);
                         return "redirect:/gebruiker";
 		} catch (EmailAdresAlInGebruikException e) {
 			bindingResult.rejectValue("emailAdres",

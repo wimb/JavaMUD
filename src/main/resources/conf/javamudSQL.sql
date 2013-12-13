@@ -19,7 +19,7 @@
 --
 -- Create schema javamud
 --
-
+DROP DATABASE IF EXISTS javamud;
 CREATE DATABASE IF NOT EXISTS javamud;
 USE javamud;
 
