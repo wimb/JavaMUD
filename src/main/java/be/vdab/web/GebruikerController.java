@@ -107,10 +107,10 @@ public class GebruikerController {
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "{id}/verwijderen")
 	public ModelAndView delete(@PathVariable long id, HttpSession session) {
-		Gebruiker gebruiker = gebruikerService.read(id);
-                //gebruiker uit sessie verwijderen
-                session.invalidate();
+		Gebruiker gebruiker = gebruikerService.read(id);               
 		if (gebruiker == null) {
+                     //gebruiker uit sessie verwijderen
+                session.invalidate();
 			return new ModelAndView("redirect:/");
 		}
 		ModelAndView modelAndView = new ModelAndView();
